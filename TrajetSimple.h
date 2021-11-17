@@ -1,57 +1,30 @@
-/*************************************************************************
-                           Xxx  -  description
-                             -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
-*************************************************************************/
 
-//---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
-#if ! defined ( TRAJETS_H )
-#define TRAJETS_H
+#if ! defined ( TRAJET_SIMPLE_H )
+#define TRAJET_SIMPLE_H
+#include <Trajet.h>
 
-//--------------------------------------------------- Interfaces utilisées
 
-//------------------------------------------------------------- Constantes
+class TrajetSimple : public Trajet {
 
-//------------------------------------------------------------------ Types
+public:
 
-//------------------------------------------------------------------------
-// Rôle de la classe <Xxx>
-//
-//
-//------------------------------------------------------------------------
+    TrajetSimple (const TrajetSimple & unTrajetSimple);
 
-class TrajetSimple 
-{
-	private:
-		char* moyenTransport;
-//----------------------------------------------------------------- PUBLIC
 
-	public:
-		
-//----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    TrajetSimple();
+
 	
-
-//------------------------------------------------- Surcharge d'opérateurs
-
-
-//-------------------------------------------- Constructeurs - destructeur	
-		TrajetSimple(const char* , const char* , const char* );
+	TrajetSimple(const char* uneVilleDepart,const char* uneVilleArrivee,const char* unMoyTrans) 
+    : Trajet(villeDepart, villeArrivee), moyTrans(unMoyTrans);
+	
+    ~TrajetSimple();
 
 
-//----------------------------------------------------- Méthodes protégées
+protected:
 
-//----------------------------------------------------- Attributs protégés
-
+	char* moyTrans;
 };
 
-//-------------------------------- Autres définitions dépendantes de <Xxx>
+#endif 
 
-#endif // XXX_H
 

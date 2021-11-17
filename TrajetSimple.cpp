@@ -1,71 +1,27 @@
-/*************************************************************************
-                           Xxx  -  description
-                             -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
-*************************************************************************/
-
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
-
-//---------------------------------------------------------------- INCLUDE
-
-//-------------------------------------------------------- Include système
+using namespace std;
 #include <iostream>
 #include <cstring>
 
-//------------------------------------------------------ Include personnel
 #include "TrajetSimple.h"
 
-//------------------------------------------------------------- Constantes
-
-//----------------------------------------------------------------- PUBLIC
-
-//----------------------------------------------------- Méthodes publiques
-// type Xxx::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-
-
-//-------------------------------------------- Constructeurs - destructeur
-TrajetSimple::TrajetSimple(const char* A, const char* B) {
-	strcmp()
+TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple ) {
+	strcpy(villeDepart, unTrajetSimple.villeDepart);
+	strcpy(villeArrivee, unTrajetSimple.villeArrivee);
+	strcpy(moyTrans, unTrajetSimple.moyTrans);
 }
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Xxx>" << endl;
-#endif
-} //----- Fin de Xxx (constructeur de copie)
 
 
-Xxx::Xxx ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de <Xxx>" << endl;
-#endif
-} //----- Fin de Xxx
+TrajetSimple::TrajetSimple () {
+	
+}
 
+TrajetSimple(const char* villeDepart,const char* villeArrivee,const char* unMoyTrans): Trajet(villeDepart, villeArrivee), moyTrans(unMoyTrans) {
+	strcpy (moyTrans, unMoyTrans);
+}
+	
 
-Xxx::~Xxx ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <Xxx>" << endl;
-#endif
-} //----- Fin de ~Xxx
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
+TrajetSimple::~TrajetSimple () {
+	Trajet::~Trajet();
+	delete[] moyTrans;
+} 
 

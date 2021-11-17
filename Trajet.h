@@ -1,57 +1,20 @@
-/*************************************************************************
-                           Xxx  -  description
-                             -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
-*************************************************************************/
 
-//---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
-#if ! defined ( TRAJET_H )
-#define TRAJET_H
+#if ! defined ( Trajet_H )
+#define Trajet_H
 
-//--------------------------------------------------- Interfaces utilisées
-
-//------------------------------------------------------------- Constantes
-
-//------------------------------------------------------------------ Types
-
-//------------------------------------------------------------------------
-// Rôle de la classe <Xxx>
-//
-//
-//------------------------------------------------------------------------
-
-class Trajet 
-{
-	protected:
-		char* ville_depart;
-		char* ville_arrivee;
-//----------------------------------------------------------------- PUBLIC
+class Trajet {
 
 public:
-//----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-	
 
-//------------------------------------------------- Surcharge d'opérateurs
+    Trajet (const Trajet & unTrajet );
+
+    Trajet (const char* uneVilleDepart,const char* uneVilleArrivee) 
+
+    ~Trajet();
 
 
-//-------------------------------------------- Constructeurs - destructeur
+protected:
+	char * villeDepart;
+	char * villeArrivee;
 
-
-
-//----------------------------------------------------- Méthodes protégées
-
-//----------------------------------------------------- Attributs protégés
-
-};
-
-//-------------------------------- Autres définitions dépendantes de <Xxx>
-
-#endif // XXX_H
-
+#endif

@@ -1,74 +1,22 @@
-/*************************************************************************
-                           Xxx  -  description
-                             -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
-*************************************************************************/
-
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
-
-//---------------------------------------------------------------- INCLUDE
-
-//-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <cstring>
 
-//------------------------------------------------------ Include personnel
-#include "Xxx.h"
+#include "Trajet.h"
 
-//------------------------------------------------------------- Constantes
-
-//----------------------------------------------------------------- PUBLIC
-
-//----------------------------------------------------- Méthodes publiques
-// type Xxx::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
+Trajet::Trajet (const Trajet & unTrajet) {
+	strcpy(villeDepart, unTrajet.villeDepart);
+	strcpy(villeArrivee, unTrajet.villeArrivee);
+}
 
 
-//------------------------------------------------- Surcharge d'opérateurs
-Xxx & Xxx::operator = ( const Xxx & unXxx )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
+Trajet (const char* uneVilleDepart,const char* uneVilleArrivee) {
+	strcpy (villeDepart, uneVilleDepart);
+	strcpy (villeArrivee, uneVilleArrivee);
+}
+	
 
-
-//-------------------------------------------- Constructeurs - destructeur
-Xxx::Xxx ( const Xxx & unXxx )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Xxx>" << endl;
-#endif
-} //----- Fin de Xxx (constructeur de copie)
-
-
-Xxx::Xxx ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de <Xxx>" << endl;
-#endif
-} //----- Fin de Xxx
-
-
-Xxx::~Xxx ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <Xxx>" << endl;
-#endif
-} //----- Fin de ~Xxx
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
-
+Trajet::~Trajet() {
+	delete[] villeArrivee;
+	delete[] villeDepart;
+} 
