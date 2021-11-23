@@ -17,7 +17,7 @@ public:
 	TrajetSimple(const char* uneVilleDepart,const char* uneVilleArrivee,const char* unMoyTrans) 
     : Trajet(villeDepart, villeArrivee), moyTrans(unMoyTrans);
 	
-    ~TrajetSimple();
+    ~Trajet();
 
 
 protected:

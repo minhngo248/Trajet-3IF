@@ -10,7 +10,7 @@ public:
 
     Trajet (const char* uneVilleDepart,const char* uneVilleArrivee) 
 
-    ~Trajet();
+    virtual ~Trajet();
 
 
 protected:

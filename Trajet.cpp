@@ -4,15 +4,15 @@ using namespace std;
 
 #include "Trajet.h"
 
+
+Trajet (const char* uneVilleDepart, const char* uneVilleArrivee) {
+	strcpy (villeDepart, uneVilleDepart);
+	strcpy (villeArrivee, uneVilleArrivee);
+}
+
 Trajet::Trajet (const Trajet & unTrajet) {
 	strcpy(villeDepart, unTrajet.villeDepart);
 	strcpy(villeArrivee, unTrajet.villeArrivee);
-}
-
-
-Trajet (const char* uneVilleDepart,const char* uneVilleArrivee) {
-	strcpy (villeDepart, uneVilleDepart);
-	strcpy (villeArrivee, uneVilleArrivee);
 }
 	
 

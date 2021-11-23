@@ -1,16 +1,3 @@
-/*************************************************************************
-                           Xxx  -  description
-                             -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
-*************************************************************************/
-
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
-
-//---------------------------------------------------------------- INCLUDE
-
-//-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
 #include "ListeTrajet.h"
@@ -87,7 +74,12 @@ void ListeTrajet::supprimer(Trajet trajet) {
 }
 
 
-ListeTrajet::~ListeTrajet ()
-{
+ListeTrajet::~ListeTrajet() {
+	NodeTrajet* p;
+	p = head;
+	while (p != NULL) {
+		p->trajet.~Trajet();
+		p = p->next;
+	}
 	delete head;
 }
