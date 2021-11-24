@@ -12,7 +12,6 @@ public:
     TrajetSimple();
 	TrajetSimple (const char* ,const char* ,char*);
     
-    bool comparer(Trajet);
     void afficher() const;
     ~TrajetSimple();
 
