@@ -10,7 +10,7 @@ public:
 
     TrajetSimple (const TrajetSimple&);
     TrajetSimple();
-	TrajetSimple (const char* ,const char* ,char*);
+	TrajetSimple (const char* ,const char* ,const char*);
     
     void afficher() const;
     ~TrajetSimple();

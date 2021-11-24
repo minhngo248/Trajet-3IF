@@ -7,7 +7,7 @@ ListeTrajet::ListeTrajet() {
 	head = NULL;	
 }
 
-void ListeTrajet::ajouter_en_tete(Trajet trajet) {
+/*void ListeTrajet::ajouter_en_tete(Trajet *trajet) {
 	if (head == NULL) {
 		head = new NodeTrajet();
 		head->trajet = trajet;
@@ -21,7 +21,7 @@ void ListeTrajet::ajouter_en_tete(Trajet trajet) {
 	}
 }
 
-/*void ListeTrajet::rechercher ( Trajet trajet ) {
+void ListeTrajet::rechercher ( Trajet trajet ) {
 	int i=0;
 	NodeTrajet* p = new NodeTrajet();
 	p = head;
@@ -35,7 +35,13 @@ void ListeTrajet::ajouter_en_tete(Trajet trajet) {
 	}
 }*/
 
-void ListeTrajet::ajouter_en_queue(Trajet trajet) {
+void ListeTrajet::ajouter_en_queue(Trajet *trajet) {
+	if (head == nullptr) {
+		head = new NodeTrajet();
+		head->trajet = trajet;
+		head->next = nullptr;
+	}
+	else {
 	NodeTrajet* p = new NodeTrajet();
 	p = head;
 	while(p->next != NULL) {
@@ -44,13 +50,13 @@ void ListeTrajet::ajouter_en_queue(Trajet trajet) {
 	NodeTrajet* q = new NodeTrajet();
 	q->trajet = trajet;
 	q->next = NULL;
-	p->next = q;	
+	p->next = q; }	
 }
 
 void ListeTrajet::afficher() {
 	NodeTrajet* p = head;
 	while (p != NULL) {
-	//	printf("%d\t", p->value);
+		cout<< p->trajet->villeArrivee;
 		p = p->next;
 	}
 }
@@ -74,11 +80,5 @@ void ListeTrajet::afficher() {
 
 
 ListeTrajet::~ListeTrajet() {
-	NodeTrajet* p;
-	p = head;
-	while (p != NULL) {
-		p->trajet.~Trajet();
-		p = p->next;
-	}
 	delete head;
 }

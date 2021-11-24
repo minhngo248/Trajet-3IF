@@ -1,7 +1,8 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
-
+//#include "TrajetSimple.h"
+//#include "TrajetCompose.h"
 #include "Trajet.h"
 
 Trajet::Trajet() {
@@ -26,6 +27,6 @@ void Trajet::afficher() const {
 }
 	
 Trajet::~Trajet() {
-	TrajetSimple::~TrajetSimple();
-	TrajetCompose::~TrajetCompose();
+	delete[] villeDepart;
+	delete[] villeArrivee;
 } 

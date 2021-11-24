@@ -1,7 +1,7 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
-
+#include "TrajetSimple.h"
 #include "TrajetCompose.h"
 
 TrajetCompose::TrajetCompose() {

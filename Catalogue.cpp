@@ -1,74 +1,31 @@
-/*************************************************************************
-                           Xxx  -  description
-                             -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
-*************************************************************************/
-
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
-
-//---------------------------------------------------------------- INCLUDE
-
-//-------------------------------------------------------- Include système
-using namespace std;
 #include <iostream>
+using namespace std;
+#include "Catalogue.h"
 
-//------------------------------------------------------ Include personnel
-#include "Xxx.h"
+Catalogue::Catalogue() {
+	listeTrajet = nullptr;
+}
 
-//------------------------------------------------------------- Constantes
+void Catalogue::ajouter_trajet(Trajet *trajet) {
+	if (listeTrajet == nullptr) {
+		listeTrajet = new ListeTrajet();
+		listeTrajet->ajouter_en_queue(trajet);
+		//listeTrajet->head = new NodeTrajet();
+		//listeTrajet->head->trajet = trajet;
+	}
+	else {
+		listeTrajet->ajouter_en_queue(trajet);
+	}
+}
 
-//----------------------------------------------------------------- PUBLIC
+/*void Catalogue::rechercher() {
+	
+} */
 
-//----------------------------------------------------- Méthodes publiques
-// type Xxx::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
+void Catalogue::afficher() {
+	listeTrajet->afficher();
+}
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-Xxx & Xxx::operator = ( const Xxx & unXxx )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
-
-
-//-------------------------------------------- Constructeurs - destructeur
-Xxx::Xxx ( const Xxx & unXxx )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Xxx>" << endl;
-#endif
-} //----- Fin de Xxx (constructeur de copie)
-
-
-Xxx::Xxx ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de <Xxx>" << endl;
-#endif
-} //----- Fin de Xxx
-
-
-Xxx::~Xxx ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <Xxx>" << endl;
-#endif
-} //----- Fin de ~Xxx
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
-
+Catalogue::~Catalogue() {
+	delete listeTrajet;
+}

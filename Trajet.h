@@ -1,5 +1,7 @@
-#if ! defined ( Trajet_H )
-#define Trajet_H
+#if ! defined TRAJET_H
+#define TRAJET_H
+//#include "TrajetSimple.h"
+//#include "TrajetCompose.h"
 
 class Trajet {
 
@@ -10,7 +12,6 @@ public:
     Trajet (const char* ,const char* );    
     virtual void afficher() const;
     virtual ~Trajet();
-    virtual bool comparer(Trajet);
 
 protected:
 	char * villeDepart;
