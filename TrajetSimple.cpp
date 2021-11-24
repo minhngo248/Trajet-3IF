@@ -9,7 +9,9 @@ TrajetSimple::TrajetSimple () {
 	
 }
 
-TrajetSimple(const char* villeDepart,const char* villeArrivee,const char* unMoyTrans): Trajet(villeDepart, villeArrivee), moyTrans(unMoyTrans) {
+TrajetSimple::TrajetSimple(const char* villeDepart,const char* villeArrivee, char* unMoyTrans)
+: Trajet(villeDepart, villeArrivee), moyTrans(unMoyTrans) {
+	moyTrans = new char[50];
 	strcpy (moyTrans, unMoyTrans);
 }
 
@@ -19,9 +21,13 @@ TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple ) {
 	strcpy(moyTrans, unTrajetSimple.moyTrans);
 }
 	
-
-TrajetSimple::~Trajet() {
-	Trajet::~Trajet();
+void TrajetSimple::afficher() const {
+	Trajet::afficher();
+	cout << " en" << moyTrans;
+}
+TrajetSimple::~TrajetSimple() {
+	delete[] villeArrivee;
+	delete[] villeDepart;
 	delete[] moyTrans;
 } 
 

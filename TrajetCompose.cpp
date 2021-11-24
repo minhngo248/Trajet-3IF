@@ -2,35 +2,14 @@ using namespace std;
 #include <iostream>
 #include <cstring>
 
-#include <TrajetCompose.h>
+#include "TrajetCompose.h"
 
 TrajetCompose::TrajetCompose() {
-	
+	listeSimple = new ListeTrajet();
 }
 
-TrajetCompose::TrajetCompose(const TrajetSimple trajetA, const TrajetSimple trajetB) {
-	bool b = true;
-	if (strcmp(trajetA.villeArrivee, trajetB.villeDepart) == 0) {
-		b = false;
-		strcpy(this->villeDepart, trajetA.villeDepart);
-		strcpy(this->villeArrivee, trajetB.villeArrivee);
-		
-		listeSimple.ajouter_en_tete(trajetB);
-		listeSimple.ajouter_en_tete(trajetA);
-	}
-	if (strcmp(trajetA.villeDepart, trajetB.villeArrivee) == 0) {
-		b = false;
-		
-		strcpy(this->villeDepart, trajetB.villeDepart);
-		strcpy(this->villeArrivee, trajetA.villeArrivee);
-		
-		listeSimple.ajouter_en_tete(trajetA);
-		listeSimple.ajouter_en_tete(trajetB);
-	}
-	
-	if (b) {
-		cout << "Erreur en créant un trajet composé\r\n";
-	}
+TrajetCompose::ajouter(TrajetSimple unTS) {
+	listeSimple->ajouter_en_queue(unTS);
 }
 
 TrajetCompose::TrajetCompose(const TrajetCompose & unTrajetCompose) {
@@ -40,9 +19,19 @@ TrajetCompose::TrajetCompose(const TrajetCompose & unTrajetCompose) {
 	this->listeSimple.head = unTrajetCompose.listeSimple.head;
 }
 
-TrajetCompose::~TrajetCompose() {
-	Trajet::~Trajet();
-	listeSimple.~ListeTrajet();
 
-	
+void afficher() const {
+	NodeTrajet* p = listeSimple->head;
+	while (p != NULL) {
+		p->trajet.afficher();
+		if (p->next != NULL) {
+			cout << " - ";
+		}
+	} 
+}
+
+TrajetCompose::~TrajetCompose() {
+	delete[] villeDepart;
+	delete[] villeArrivee;
+	listeSimple.~ListeTrajet();	
 }

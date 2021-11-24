@@ -1,6 +1,7 @@
 #if ! defined ( TRAJET_COMPOSE_H )
 #define TRAJET_COMPOSE_H
-#include <TrajetSimple.h>
+#include "TrajetSimple.h"
+#include "ListeTrajet.h"
 
 
 class TrajetCompose : public Trajet {
@@ -8,19 +9,13 @@ class TrajetCompose : public Trajet {
 public:
 
     TrajetCompose();
-
-	
-	TrajetCompose(const TrajetSimple trajetA, const TrajetSimple trajetB); 
-	
+	void ajouter(TrajetSimple unTS); 
 	TrajetCompose(const TrajetCompose & unTrajetCompose);
-	
-	
+	void afficher() const;
     ~TrajetCompose();
 
-
 protected:
-
-	ListeTrajet listeSimple;
+	ListeTrajet* listeSimple;
 };
 
 #endif 

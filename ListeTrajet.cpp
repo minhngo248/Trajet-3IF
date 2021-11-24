@@ -4,12 +4,12 @@ using namespace std;
 
 //------ Constructeurs - destructeur
 ListeTrajet::ListeTrajet() {
-	head = new NodeTrajet();
 	head = NULL;	
 }
 
 void ListeTrajet::ajouter_en_tete(Trajet trajet) {
 	if (head == NULL) {
+		head = new NodeTrajet();
 		head->trajet = trajet;
 		head->next = NULL;
 	}
@@ -21,7 +21,7 @@ void ListeTrajet::ajouter_en_tete(Trajet trajet) {
 	}
 }
 
-void ListeTrajet::rechercher ( Trajet trajet ) {
+/*void ListeTrajet::rechercher ( Trajet trajet ) {
 	int i=0;
 	NodeTrajet* p = new NodeTrajet();
 	p = head;
@@ -33,10 +33,9 @@ void ListeTrajet::rechercher ( Trajet trajet ) {
 		p = p->next;
 		i++;
 	}
-}
+}*/
 
-void ListeTrajet::ajouter_en_queue(Trajet trajet) 
-{
+void ListeTrajet::ajouter_en_queue(Trajet trajet) {
 	NodeTrajet* p = new NodeTrajet();
 	p = head;
 	while(p->next != NULL) {
@@ -56,14 +55,14 @@ void ListeTrajet::afficher() {
 	}
 }
 
-void ListeTrajet::supprimer(Trajet trajet) {
+/*void ListeTrajet::supprimer(Trajet unT) {
 	NodeTrajet* p = new NodeTrajet();
-	if (head->trajet == trajet) {
+	if (strcmp(head->trajet.villeDepart,unT.villeDepart)) {
 		head = head->next;
 	}
 	p = head;
 	while(p->next != NULL) {
-		if(p->next->trajet == trajet) {
+		if(p->next->trajet == unT) {
 			NodeTrajet* q = new NodeTrajet();
 			q = p->next;
 			p->next = q->next;
@@ -71,7 +70,7 @@ void ListeTrajet::supprimer(Trajet trajet) {
 		}
 		p = p->next;
 	}
-}
+}*/
 
 
 ListeTrajet::~ListeTrajet() {

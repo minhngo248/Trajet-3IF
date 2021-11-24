@@ -1,5 +1,7 @@
-#ifndef (NODETRAJET_H)
-#define NODETRAJET_H
+#if ! defined (NODE_TRAJET_H)
+#define NODE_TRAJET_H
+
+#include "Trajet.h"
 
 class NodeTrajet 
 {
@@ -8,6 +10,6 @@ class NodeTrajet
 		Trajet trajet; 
 	public:
 		NodeTrajet();
-}
+};
 
 #endif

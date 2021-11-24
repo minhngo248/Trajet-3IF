@@ -1,23 +1,20 @@
 
 #if ! defined ( TRAJET_SIMPLE_H )
 #define TRAJET_SIMPLE_H
-#include <Trajet.h>
+#include "Trajet.h"
 
 
 class TrajetSimple : public Trajet {
 
 public:
 
-    TrajetSimple (const TrajetSimple & unTrajetSimple);
-
-
+    TrajetSimple (const TrajetSimple&);
     TrajetSimple();
-
-	
-	TrajetSimple(const char* uneVilleDepart,const char* uneVilleArrivee,const char* unMoyTrans) 
-    : Trajet(villeDepart, villeArrivee), moyTrans(unMoyTrans);
-	
-    ~Trajet();
+	TrajetSimple (const char* ,const char* ,char*);
+    
+    bool comparer(Trajet);
+    void afficher() const;
+    ~TrajetSimple();
 
 
 protected:
