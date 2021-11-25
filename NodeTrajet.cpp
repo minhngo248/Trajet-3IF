@@ -2,12 +2,12 @@
 #include <iostream>
 
 NodeTrajet::NodeTrajet() {
-	next = NULL;
+//	trajet = nullptr;
 }
 
 NodeTrajet::~NodeTrajet() {
-	delete trajet;
+/*	delete trajet;
 	if(next!= nullptr) {
 		delete next;
-	}
+	}*/
 }

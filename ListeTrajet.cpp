@@ -4,10 +4,10 @@ using namespace std;
 
 //------ Constructeurs - destructeur
 ListeTrajet::ListeTrajet() {
-	head = NULL;	
+	head = nullptr;	
 }
 
-/*void ListeTrajet::ajouter_en_tete(Trajet *trajet) {
+/*void ListeTrajet::ajouter_en_tete(Trajet* trajet) {
 	if (head == NULL) {
 		head = new NodeTrajet();
 		head->trajet = trajet;
@@ -35,28 +35,28 @@ void ListeTrajet::rechercher ( Trajet trajet ) {
 	}
 }*/
 
-void ListeTrajet::ajouter_en_queue(Trajet *trajet) {
+void ListeTrajet::ajouter_en_queue(Trajet trajet) {
 	if (head == nullptr) {
 		head = new NodeTrajet();
 		head->trajet = trajet;
 		head->next = nullptr;
 	}
 	else {
-	NodeTrajet* p = new NodeTrajet();
-	p = head;
-	while(p->next != NULL) {
-		p = p->next;
-	}
-	NodeTrajet* q = new NodeTrajet();
-	q->trajet = trajet;
-	q->next = NULL;
-	p->next = q; }	
+		NodeTrajet* p;
+		p = head;
+		while(p->next != NULL) {
+			p = p->next;
+		}
+		NodeTrajet* q = new NodeTrajet();
+		q->trajet = trajet;
+		q->next = NULL;
+		p->next = q; }	
 }
 
 void ListeTrajet::afficher() {
 	NodeTrajet* p = head;
-	while (p != NULL) {
-		cout<< p->trajet->villeArrivee;
+	while (p != nullptr) { //afficher que les trajets simples
+		p->trajet.afficher();
 		p = p->next;
 	}
 }

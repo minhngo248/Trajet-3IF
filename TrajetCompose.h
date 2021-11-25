@@ -15,7 +15,7 @@ public:
     ~TrajetCompose();
 
 protected:
-	ListeTrajet* listeSimple;
+	ListeTrajet listeSimple;
 };
 
 #endif 

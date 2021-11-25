@@ -6,13 +6,13 @@ class Catalogue {
 	
 public:
 	Catalogue();
-	void ajouter_trajet(Trajet *trajet);
+	void ajouter_trajet(Trajet);
 //	void rechercher(char* uneVilleDepart, char* uneVilleArrivee);
 	void afficher();
 	~Catalogue();
 	
 private:
-	ListeTrajet* listeTrajet;
+	ListeTrajet listeTrajet;
 };
 
 #endif

@@ -1,17 +1,19 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
-//#include "TrajetSimple.h"
-//#include "TrajetCompose.h"
 #include "Trajet.h"
+#include "TrajetSimple.h"
 
 Trajet::Trajet() {
 	
 }
 
+void Trajet::getTrajet(char* getVilleDepart, char* getVilleArrivee) {
+	strcpy(getVilleDepart, villeDepart);
+	strcpy(getVilleArrivee, villeArrivee);
+}
+
 Trajet::Trajet (const char* uneVilleDepart, const char* uneVilleArrivee) {
-	villeDepart = new char [50];
-	villeArrivee = new char [50];
 	strcpy (villeDepart, uneVilleDepart);
 	strcpy (villeArrivee, uneVilleArrivee);
 }
@@ -23,10 +25,10 @@ Trajet::Trajet (const Trajet & unTrajet) {
 
 	
 void Trajet::afficher() const {
-	cout <<"de " << villeDepart << "a "<< villeArrivee;
+	cout << "de " << villeDepart << " jusqu'a " << villeArrivee;  
 }
 	
 Trajet::~Trajet() {
-	delete[] villeDepart;
-	delete[] villeArrivee;
+//	delete[] villeDepart;
+//	delete[] villeArrivee;
 } 
