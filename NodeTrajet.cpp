@@ -1,13 +1,15 @@
+using namespace std;
 #include "NodeTrajet.h"
 #include <iostream>
 
 NodeTrajet::NodeTrajet() {
-//	trajet = nullptr;
+	next = nullptr;
+	trajet = new Trajet();
 }
 
 NodeTrajet::~NodeTrajet() {
-/*	delete trajet;
-	if(next!= nullptr) {
+	delete trajet;
+	if(this->next != nullptr) {
 		delete next;
-	}*/
+	}
 }

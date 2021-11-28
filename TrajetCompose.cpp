@@ -1,28 +1,32 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
-#include "TrajetSimple.h"
 #include "TrajetCompose.h"
 
 TrajetCompose::TrajetCompose() {
-	
+	listeSimple = new ListeTrajet();
 }
 
-void TrajetCompose::ajouter(TrajetSimple unTS) {
-	listeSimple.ajouter_en_queue(unTS);
+void TrajetCompose::ajouter(TrajetSimple* unTS) {
+	if (listeSimple->head->trajet->GetVille(1)[0] == '\0') {
+		strcpy(villeDepart, unTS->GetVille(1));
+	}
+	listeSimple->ajouter_en_queue(unTS);
+	strcpy(villeArrivee, unTS->GetVille(2));
 }
 
-TrajetCompose::TrajetCompose(const TrajetCompose & unTrajetCompose) {
-	strcpy(villeDepart, unTrajetCompose.villeDepart);
-	strcpy(villeArrivee, unTrajetCompose.villeArrivee);
-	this->listeSimple.head = unTrajetCompose.listeSimple.head;
+TrajetCompose::TrajetCompose(const TrajetCompose & unTC) {
+	strcpy(villeDepart, unTC.villeDepart);
+	strcpy(villeArrivee, unTC.villeArrivee);
+	this->listeSimple->head = unTC.listeSimple->head;
 }
 
 
-void TrajetCompose::afficher() const {
-	NodeTrajet* p = listeSimple.head;
+void TrajetCompose::afficher(const int i) const {
+	cout << "TC: ";
+	NodeTrajet* p = listeSimple->head;
 	while (p != NULL) {
-		p->trajet.afficher();
+		p->trajet->afficher(0);
 		if (p->next != NULL) {
 			cout << " - ";
 		}
@@ -31,5 +35,5 @@ void TrajetCompose::afficher() const {
 }
 
 TrajetCompose::~TrajetCompose() {
-	listeSimple.~ListeTrajet();	
+	delete listeSimple;	
 }

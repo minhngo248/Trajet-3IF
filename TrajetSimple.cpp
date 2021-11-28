@@ -6,17 +6,18 @@ using namespace std;
 
 
 TrajetSimple::TrajetSimple () {
-	
+	moyTrans = new char[50];
 }
 
-void TrajetSimple::SetTrajet(const char* uneVilleDepart,const char* uneVilleArrivee, const char* unMoyTrans) {
+/*void TrajetSimple::SetTrajet(const char* uneVilleDepart,const char* uneVilleArrivee, const char* unMoyTrans) {
 	strcpy(villeDepart, uneVilleDepart);
 	strcpy(villeArrivee, uneVilleArrivee);
 	strcpy(moyTrans, unMoyTrans);
-}
+}*/
 
 TrajetSimple::TrajetSimple(const char* villeDepart,const char* villeArrivee, const char* unMoyTrans)
 : Trajet(villeDepart, villeArrivee) {
+	moyTrans = new char[50];
 	strcpy (moyTrans, unMoyTrans);
 }
 
@@ -25,10 +26,22 @@ TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple ) {
 	strcpy(villeArrivee, unTrajetSimple.villeArrivee);
 	strcpy(moyTrans, unTrajetSimple.moyTrans);
 }
+
+char* TrajetSimple::GetVille(const int i) {
+	return Trajet::GetVille(i);
+}
 	
-void TrajetSimple::afficher() const {
-	cout << "de" << villeDepart << " jusqu'a " << villeArrivee << " en " << moyTrans << "\r\n";
+void TrajetSimple::afficher(const int i) const {
+	if (i == 1) {
+		cout << "TS: "; 
+		Trajet::afficher(i);
+		cout << " en " << moyTrans;
+		cout << endl;
+	}else{
+		Trajet::afficher(i);
+		cout << " en " << moyTrans;
+	}
 }
 TrajetSimple::~TrajetSimple() {
-//	delete[] moyTrans;
+	delete[] moyTrans;
 }

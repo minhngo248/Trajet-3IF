@@ -7,7 +7,7 @@ class NodeTrajet
 {
 	public:
 		NodeTrajet* next;
-		Trajet trajet; 
+		Trajet* trajet; 
 		
 	public:
 		NodeTrajet();

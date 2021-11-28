@@ -10,12 +10,13 @@ public:
 	Trajet();
     Trajet (const Trajet&);
     Trajet ( const char* , const char* );  
-	void getTrajet(char* , char* );  
-    virtual void afficher() const;
+	//void getTrajet(char* , char* );  
+	virtual char* GetVille(int);
+    virtual void afficher(const int) const;
     virtual ~Trajet();
 
 protected:
-	char villeDepart[50];
-	char villeArrivee[50];
+	char* villeDepart;
+	char* villeArrivee;
 };
 #endif

@@ -6,18 +6,20 @@
 class TrajetSimple : public Trajet {
 
 public:
-	void SetTrajet(const char* ,const char* , const char* );
+	//void SetTrajet(const char* ,const char* , const char* );
     TrajetSimple (const TrajetSimple&);
     TrajetSimple();
 	TrajetSimple (const char* ,const char* ,const char*);
+	
+	char* GetVille(const int);
     
-    void afficher() const;
+    void afficher(const int) const;
     ~TrajetSimple();
 
 
 protected:
 
-	char moyTrans[50];
+	char* moyTrans;
 };
 
 #endif 

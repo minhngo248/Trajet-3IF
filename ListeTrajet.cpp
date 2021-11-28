@@ -1,10 +1,11 @@
+//#include <cstring>
 using namespace std;
 #include <iostream>
 #include "ListeTrajet.h"
 
 //------ Constructeurs - destructeur
 ListeTrajet::ListeTrajet() {
-	head = nullptr;	
+	head = new NodeTrajet();	
 }
 
 /*void ListeTrajet::ajouter_en_tete(Trajet* trajet) {
@@ -35,8 +36,8 @@ void ListeTrajet::rechercher ( Trajet trajet ) {
 	}
 }*/
 
-void ListeTrajet::ajouter_en_queue(Trajet trajet) {
-	if (head == nullptr) {
+void ListeTrajet::ajouter_en_queue(Trajet* trajet) {
+	if (head->trajet->GetVille(1)[0] == '\0') {
 		head = new NodeTrajet();
 		head->trajet = trajet;
 		head->next = nullptr;
@@ -49,14 +50,15 @@ void ListeTrajet::ajouter_en_queue(Trajet trajet) {
 		}
 		NodeTrajet* q = new NodeTrajet();
 		q->trajet = trajet;
-		q->next = NULL;
-		p->next = q; }	
+		q->next = nullptr;
+		p->next = q; 
+	}	
 }
 
 void ListeTrajet::afficher() {
 	NodeTrajet* p = head;
 	while (p != nullptr) { //afficher que les trajets simples
-		p->trajet.afficher();
+		p->trajet->afficher(1);
 		p = p->next;
 	}
 }

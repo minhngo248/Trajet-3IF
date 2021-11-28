@@ -9,9 +9,9 @@ class ListeTrajet {
 	public:
 		ListeTrajet();
 		~ListeTrajet();
-		void ajouter_en_tete(Trajet); 
+		//void ajouter_en_tete(Trajet); 
 		//void rechercher(Trajet);
-		void ajouter_en_queue(Trajet); 
+		void ajouter_en_queue(Trajet*); 
 		void afficher(); 
 		//void supprimer(Trajet);  
 };

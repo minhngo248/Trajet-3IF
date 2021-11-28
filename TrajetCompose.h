@@ -9,13 +9,13 @@ class TrajetCompose : public Trajet {
 public:
 
     TrajetCompose();
-	void ajouter(TrajetSimple unTS); 
+	void ajouter(TrajetSimple* unTS); 
 	TrajetCompose(const TrajetCompose & unTrajetCompose);
-	void afficher() const;
+	void afficher(const int) const;
     ~TrajetCompose();
 
 protected:
-	ListeTrajet listeSimple;
+	ListeTrajet* listeSimple;
 };
 
 #endif 
