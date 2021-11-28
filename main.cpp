@@ -28,6 +28,7 @@ int main() {
 		}while (n<1 || n>4);
 		switch(n) {
 			case 1:	
+				cout << endl << "-------AJOUTER UN TRAJET SIMPLE-----\r\n" << endl;
 				cout << "Entrez une ville du depart : ";
 				scanf(" %s", uneVilleDepart);
 				cout << "Entrez une ville d'arrivee : ";
@@ -39,6 +40,7 @@ int main() {
 				break;
 			
 			case 2: 
+				cout << endl << "-------AJOUTER UN TRAJET COMPOSE-----\r\n" << endl;
 				unTC = new TrajetCompose();
 				i = 1;
 				do {
@@ -60,7 +62,7 @@ int main() {
 				C->ajouter_trajet(unTC);
 				break;		
 			case 3:
-				cout << endl << "--------Rechercher des trajets-----\r\n" << endl;
+				cout << endl << "--------RECHERCHER DES TRAJETS-----\r\n" << endl;
 				cout << "Entrez une ville du depart : ";
 				scanf(" %s", uneVilleDepart);
 				cout << "Entrez une ville d'arrivee : ";
@@ -68,6 +70,7 @@ int main() {
 				C->rechercher(uneVilleDepart , uneVilleArrivee);
 				break;
 			default:
+				cout << endl << "--------AFFICHER TOUS LES TRAJETS DANS LE CATALOGUE---------\r\n" << endl;
 				C->afficher();
 				break; }
 		cout << "Tapez Y ou y pour continuer : ";
