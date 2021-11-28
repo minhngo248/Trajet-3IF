@@ -8,8 +8,7 @@ class ListeTrajet {
 		NodeTrajet* head;
 	public:
 		ListeTrajet();
-		~ListeTrajet();
-		//void ajouter_en_tete(Trajet); 
+		~ListeTrajet(); 
 		//void rechercher(Trajet);
 		void ajouter_en_queue(Trajet*); 
 		void afficher(); 

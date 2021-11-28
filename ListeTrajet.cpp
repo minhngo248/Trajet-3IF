@@ -8,34 +8,6 @@ ListeTrajet::ListeTrajet() {
 	head = new NodeTrajet();	
 }
 
-/*void ListeTrajet::ajouter_en_tete(Trajet* trajet) {
-	if (head == NULL) {
-		head = new NodeTrajet();
-		head->trajet = trajet;
-		head->next = NULL;
-	}
-	else {
-		NodeTrajet* p = new NodeTrajet();
-		p->trajet = trajet;
-		p->next = head;
-		head = p;
-	}
-}
-
-void ListeTrajet::rechercher ( Trajet trajet ) {
-	int i=0;
-	NodeTrajet* p = new NodeTrajet();
-	p = head;
-
-	while (p != NULL) {
-		if (p->trajet == trajet) {
-			printf("pos : %d\n", i);
-		}
-		p = p->next;
-		i++;
-	}
-}*/
-
 void ListeTrajet::ajouter_en_queue(Trajet* trajet) {
 	if (head->trajet->GetVille(1)[0] == '\0') {
 		head = new NodeTrajet();

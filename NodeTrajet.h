@@ -11,7 +11,7 @@ class NodeTrajet
 		
 	public:
 		NodeTrajet();
-		virtual ~NodeTrajet();
+		~NodeTrajet();
 };
 
 #endif

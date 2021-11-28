@@ -12,6 +12,7 @@ public:
 	void ajouter(TrajetSimple* unTS); 
 	TrajetCompose(const TrajetCompose & unTrajetCompose);
 	void afficher(const int) const;
+	void GetTrajet( char* , char* );
     ~TrajetCompose();
 
 protected:

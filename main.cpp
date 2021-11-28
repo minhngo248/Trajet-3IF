@@ -7,25 +7,25 @@ using namespace std;
 #include "TrajetCompose.h"
 
 int main() {
-//	t->afficher();
 	char c = 'y';
 	int n, i, k;
 	char uneVilleDepart[50], uneVilleArrivee[50], unMoyTrans[50];
 	char uneVD[50], uneVA[50];
 	Catalogue* C = new Catalogue();
-	TrajetCompose* unTC = new TrajetCompose();
+	TrajetCompose* unTC;
 	TrajetSimple* t = new TrajetSimple();
 	do {	
+		
 		cout << "Veuillez choisir une demande \r\n" << endl;
 		cout << "1. Ajouter un trajet simple. \r\n" << endl;
 		cout << "2. Ajouter un trajet composee. \r\n" << endl;
-		cout << "3. Afficher tous les trajets dans le catalogue. \r\n" << endl;	
-		
-		cin >> n;
-		while (n<1 || n>3) {
-			cout << "Veuillez choisir une demande entre 1,2,3" << endl;
+		cout << "3. Rechercher des trajets. \r\n" << endl;
+		cout << "4. Afficher tous les trajets dans le catalogue. \r\n" << endl;
+			
+		do {
+			cout << "Veuillez choisir une demande entre 1,2,3,4" << endl;
 			cin >> n;
-		}
+		}while (n<1 || n>4);
 		switch(n) {
 			case 1:	
 				cout << "Entrez une ville du depart : ";
@@ -39,6 +39,7 @@ int main() {
 				break;
 			
 			case 2: 
+				unTC = new TrajetCompose();
 				i = 1;
 				do {
 					cout << "Entrez un trajet simple #" << i << endl;
@@ -57,8 +58,15 @@ int main() {
 					scanf("%d", &k);
 				}while(k == 1);
 				C->ajouter_trajet(unTC);
+				break;		
+			case 3:
+				cout << endl << "--------Rechercher des trajets-----\r\n" << endl;
+				cout << "Entrez une ville du depart : ";
+				scanf(" %s", uneVilleDepart);
+				cout << "Entrez une ville d'arrivee : ";
+				scanf(" %s", uneVilleArrivee);
+				C->rechercher(uneVilleDepart , uneVilleArrivee);
 				break;
-			
 			default:
 				C->afficher();
 				break; }
@@ -66,9 +74,9 @@ int main() {
 		cin >> c;				
 	}while(c == 'Y' || c == 'y');
 	
-	delete t;
+	//delete t;
 	//delete unTC;
-	//delete C;
+	delete C;
 	
 	return 0;
 }

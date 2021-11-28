@@ -30,6 +30,10 @@ TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple ) {
 char* TrajetSimple::GetVille(const int i) {
 	return Trajet::GetVille(i);
 }
+
+void TrajetSimple::GetTrajet( char* villeStart, char* villeFinish) {
+	Trajet::GetTrajet(villeStart , villeFinish);
+}
 	
 void TrajetSimple::afficher(const int i) const {
 	if (i == 1) {

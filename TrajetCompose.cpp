@@ -16,11 +16,21 @@ void TrajetCompose::ajouter(TrajetSimple* unTS) {
 }
 
 TrajetCompose::TrajetCompose(const TrajetCompose & unTC) {
-	strcpy(villeDepart, unTC.villeDepart);
+/*	strcpy(villeDepart, unTC.villeDepart);
 	strcpy(villeArrivee, unTC.villeArrivee);
-	this->listeSimple->head = unTC.listeSimple->head;
+	this->listeSimple->head = unTC.listeSimple->head; */
 }
 
+void TrajetCompose::GetTrajet( char* villeStart , char* villeFinish ) {
+	NodeTrajet* p = listeSimple->head;
+	if (listeSimple->head->trajet->GetVille(1)[0] != '\0') {
+		strcpy(villeStart, p->trajet->GetVille(1));
+		while(p->next != nullptr) {
+			p = p->next;
+		}
+		strcpy(villeFinish , p->trajet->GetVille(2));
+	}	
+}
 
 void TrajetCompose::afficher(const int i) const {
 	cout << "TC: ";
@@ -32,6 +42,7 @@ void TrajetCompose::afficher(const int i) const {
 		}
 		p = p->next;
 	} 
+	cout << endl;
 }
 
 TrajetCompose::~TrajetCompose() {

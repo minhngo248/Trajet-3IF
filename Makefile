@@ -1,7 +1,7 @@
 sejours: main.o Trajet.o TrajetSimple.o TrajetCompose.o ListeTrajet.o NodeTrajet.o Catalogue.o
 	g++ -o sejours *.o
 main: main.cpp
-	g++ -c main.cpp -std=c++11
+	g++ -c main.cpp -std=c++11 -Wall
 Trajet: Trajet.cpp
 	g++ -c Trajet.cpp
 TrajetSimple: TrajetSimple.cpp
@@ -14,4 +14,6 @@ NodeTrajet: NodeTrajet.cpp
 	g++ -c NodeTrajet.cpp
 Catalogue: Catalogue.cpp
 	g++ -c Catalogue.cpp
+valgrind: ./sejours
+	valgrind ./sejours -g
 

@@ -10,9 +10,8 @@ public:
     TrajetSimple (const TrajetSimple&);
     TrajetSimple();
 	TrajetSimple (const char* ,const char* ,const char*);
-	
 	char* GetVille(const int);
-    
+    void GetTrajet( char* , char* );
     void afficher(const int) const;
     ~TrajetSimple();
 

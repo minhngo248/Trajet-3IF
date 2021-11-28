@@ -2,12 +2,13 @@
 #define CALALOGUE_H
 #include "ListeTrajet.h"
 #include "Trajet.h"
+#include <cstring>
 class Catalogue {
 	
 public:
 	Catalogue();
 	void ajouter_trajet(Trajet*);
-//	void rechercher(char* uneVilleDepart, char* uneVilleArrivee);
+	void rechercher( const char* , const char* );
 	void afficher();
 	~Catalogue();
 	
