@@ -7,6 +7,7 @@ class Catalogue {
 	
 public:
 	Catalogue();
+	Catalogue(const Catalogue&);
 	void ajouter_trajet(Trajet*);
 	void rechercher( const char* , const char* );
 	void afficher();

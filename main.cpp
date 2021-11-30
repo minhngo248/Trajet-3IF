@@ -51,12 +51,15 @@ int main() {
 					scanf(" %s", uneVA);
 					cout << "Entrez un moyen de transport : ";
 					scanf(" %s", unMoyTrans);
-					cout << "Continue? (1 pour oui et 0 pour non)";	
 					t = new TrajetSimple(uneVD , uneVA , unMoyTrans);	
 									
-					unTC->ajouter(t);
-					i++;
+					if(unTC->ajouter(t) ==0) {
+						cout << "Erreur en ajoutant le trajet!" << endl;
+					}else{
+						i++;
+					}
 					
+					cout << "Continue? (1 pour oui et 0 pour non)";	
 					scanf("%d", &k);
 				}while(k == 1);
 				C->ajouter_trajet(unTC);
@@ -77,8 +80,6 @@ int main() {
 		cin >> c;				
 	}while(c == 'Y' || c == 'y');
 	
-	//delete t;
-	//delete unTC;
 	delete C;
 	
 	return 0;

@@ -9,7 +9,7 @@ class TrajetCompose : public Trajet {
 public:
 
     TrajetCompose();
-	void ajouter(TrajetSimple* unTS); 
+	int ajouter(TrajetSimple* unTS); 
 	TrajetCompose(const TrajetCompose & unTrajetCompose);
 	void afficher(const int) const;
 	void GetTrajet( char* , char* );

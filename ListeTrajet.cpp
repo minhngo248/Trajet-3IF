@@ -8,31 +8,49 @@ ListeTrajet::ListeTrajet() {
 	head = new NodeTrajet();	
 }
 
-void ListeTrajet::ajouter_en_queue(Trajet* trajet) {
-	if (head->trajet->GetVille(1)[0] == '\0') {
-		head = new NodeTrajet();
-		head->trajet = trajet;
-		head->next = nullptr;
+ListeTrajet::ListeTrajet(const ListeTrajet& unLT) {
+	head = new NodeTrajet();
+	head = unLT.head;
+}
+
+NodeTrajet* ListeTrajet::getLastNode() {	
+	NodeTrajet* p;
+	p = head;
+	while(p->next != NULL) {
+		p = p->next;
 	}
-	else {
+	return p;
+}
+
+void ListeTrajet::ajouter_en_queue(Trajet* unTrajet) {
+	if (head->trajet->GetVille(1)[0] == '\0') {
+		head->trajet = unTrajet;
+		head->next = nullptr;
+	}else{
 		NodeTrajet* p;
-		p = head;
-		while(p->next != NULL) {
-			p = p->next;
-		}
+		p = this->getLastNode();
 		NodeTrajet* q = new NodeTrajet();
-		q->trajet = trajet;
+		q->trajet = unTrajet;
 		q->next = nullptr;
 		p->next = q; 
-	}	
+	}
+	
 }
 
 void ListeTrajet::afficher() {
+	bool b = true;
+	
 	NodeTrajet* p = head;
-	while (p != nullptr) { //afficher que les trajets simples
+	while (p != nullptr && p->trajet->GetVille(1)[0] != '\0' ) { //afficher que les trajets simples
 		p->trajet->afficher(1);
 		p = p->next;
+		b = false;
 	}
+	
+	if (b) {
+		cout << "Il n'y a accun trajet." <<endl;
+	}
+	delete p;
 }
 
 /*void ListeTrajet::supprimer(Trajet unT) {

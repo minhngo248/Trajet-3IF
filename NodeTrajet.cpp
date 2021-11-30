@@ -7,6 +7,12 @@ NodeTrajet::NodeTrajet() {
 	trajet = new Trajet();
 }
 
+NodeTrajet::NodeTrajet(const NodeTrajet& unNT) {
+	next = nullptr;
+	trajet = new Trajet();
+	trajet = unNT.trajet;
+}
+
 NodeTrajet::~NodeTrajet() {
 	delete trajet;
 	if(this->next != nullptr) {

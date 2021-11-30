@@ -8,8 +8,10 @@ class ListeTrajet {
 		NodeTrajet* head;
 	public:
 		ListeTrajet();
+		ListeTrajet(const ListeTrajet&);
 		~ListeTrajet(); 
 		//void rechercher(Trajet);
+		NodeTrajet* getLastNode();
 		void ajouter_en_queue(Trajet*); 
 		void afficher(); 
 		//void supprimer(Trajet);  

@@ -6,6 +6,11 @@ Catalogue::Catalogue() {
 	listeTrajet = new ListeTrajet();
 }
 
+Catalogue::Catalogue(const Catalogue& unC) {
+	listeTrajet = new ListeTrajet();
+	listeTrajet = unC.listeTrajet;
+}
+
 void Catalogue::ajouter_trajet(Trajet* trajet) {
 	listeTrajet->ajouter_en_queue(trajet);
 }
@@ -23,6 +28,8 @@ void Catalogue::rechercher(const char* uneVilleDepart, const char* uneVilleArriv
 		}
 		p = p->next;
 	}
+	delete[] villeStart;
+	delete[] villeFinish;
 }
 
 void Catalogue::afficher() {
