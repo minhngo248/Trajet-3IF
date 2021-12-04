@@ -1,12 +1,37 @@
+/*************************************************************************
+                           ListeTrajet  -  une liste chainee de trajets
+                             -------------------
+    début                : 23 novembre 2021
+    copyright            : (C) 2021 par NGO Ngoc Minh, PHAM Quoc Viet
+*************************************************************************/
+
+//---------- Réalisation de la classe <ListeTrajet> (fichier ListeTrajet.cpp) -------
+
+//---------------------------------------------------------------- INCLUDE
+
+//-------------------------------------------------------- Include système
 #include <cstring>
 using namespace std;
 #include <iostream>
+//------------------------------------------------------ Include personnel
 #include "ListeTrajet.h"
+//----------------------------------------------------------------- PUBLIC
 
-//------ Constructeurs - destructeur
+//-------------------------------------------- Constructeurs - destructeur
 ListeTrajet::ListeTrajet() {
 	head = new NodeTrajet();	
-}
+} //-------- Fin du Constructeur
+
+//----------------------------------------------------- Méthodes publiques
+
+NodeTrajet* ListeTrajet::getLastNode() {	
+	NodeTrajet* p;
+	p = head;
+	while(p->next != NULL) {
+		p = p->next;
+	}
+	return p;
+} //-------- Fin de Methode
 
 void ListeTrajet::ajouter_en_queue(Trajet* trajet) {
 	if (head->trajet->GetVille(1)[0] == '\0') {
@@ -25,7 +50,7 @@ void ListeTrajet::ajouter_en_queue(Trajet* trajet) {
 		q->next = nullptr;
 		p->next = q; 
 	}	
-}
+} //-------- Fin de Methode
 
 void ListeTrajet::getVille(char* villeStart, char* villeFinish) {
 	char* uneVilleStart = new char [50];
@@ -37,7 +62,7 @@ void ListeTrajet::getVille(char* villeStart, char* villeFinish) {
 		p = p->next;
 	p->trajet->GetTrajet(uneVilleStart, uneVilleFinish);
 	strcpy(villeFinish, uneVilleFinish);
-}
+} //-------- Fin de Methode
 
 int ListeTrajet::size() {
 	int size = 0;
@@ -50,7 +75,7 @@ int ListeTrajet::size() {
 		}
 		return size;
 	}
-}
+} //-------- Fin de Methode
 
 void ListeTrajet::afficher() {
 	NodeTrajet* p = head;
@@ -58,8 +83,9 @@ void ListeTrajet::afficher() {
 		p->trajet->afficher(1);
 		p = p->next;
 	}
-}
+} //-------- Fin de Methode
 
+//-------------------------------------------- Constructeurs - destructeur
 ListeTrajet::~ListeTrajet() {
 	delete head;
-}
+} //----- Fin du Destructeur

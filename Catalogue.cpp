@@ -1,18 +1,38 @@
-#include <iostream>
+/*************************************************************************
+                           Catalogue  -  methodes pour un catalogue de trajets
+                             -------------------
+    début                : 23 novembre 2021
+    copyright            : (C) 2021 par NGO Ngoc Minh, PHAM Quoc Viet
+*************************************************************************/
+
+//---------- Réalisation de la classe <Catalogue> (fichier Catalogue.cpp) -------
+
+//---------------------------------------------------------------- INCLUDE
+
+//-------------------------------------------------------- Include système
+#include <bits/stdc++.h>
 #include <cmath>
 using namespace std;
-#include "Catalogue.h"
 
+//------------------------------------------------------ Include personnel
+#include "Catalogue.h"
+//----------------------------------------------------------------- PUBLIC
+
+
+//-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue() {
 	listeTrajet = new ListeTrajet();
 	listeTrajetAvance = new ListeTrajet();
-}
+} //----- Fin de Méthode
 
 void Catalogue::ajouter_trajet(Trajet* trajet) {
 	listeTrajet->ajouter_en_queue(trajet);
-}
+} //----- Fin de Méthode
 
+//----------------------------------------------------- Méthodes publiques
 void Catalogue::creer_liste_avancee(int & num) {
+// Algorithme : parcourir tous les elements de la listeTrajet et relier tous les 
+// trajets possibles
 	long m = pow(2, listeTrajet->size()) - 1;
 	listeTrajetAvance = new ListeTrajet [m];
 	int i, j; //compteur de LTA
@@ -51,12 +71,14 @@ void Catalogue::creer_liste_avancee(int & num) {
 		}
 		n++;
 		a = k1;
-		b = i - k1;
+		b = i - k1 + 1;
 	}
 	num = i;
-} 
+} //----- Fin de Méthode
 
 void Catalogue::recherche_avancee(const char* uneVilleDepart, const char* uneVilleArrivee) {
+// Algorithme : Parcourir toute la listeTrajetAvance pour afficher les trajets possibles
+//
 	int num;
 	char* uneVD;
 	char* uneVA;
@@ -67,11 +89,14 @@ void Catalogue::recherche_avancee(const char* uneVilleDepart, const char* uneVil
 		listeTrajetAvance[i].getVille(uneVD, uneVA);
 		if (strcmp(uneVD, uneVilleDepart) == 0 && strcmp(uneVA, uneVilleArrivee)==0) {
 			listeTrajetAvance[i].afficher();
+			cout << endl << endl;
 		}
 	}
-}
+} //----- Fin de Méthode
 
 void Catalogue::rechercher(const char* uneVilleDepart, const char* uneVilleArrivee) {
+// Algorithme : parcourir tous les elements dans la listeTrajet
+//
 	NodeTrajet* p = listeTrajet->head;
 	char* villeStart;
 	char* villeFinish;
@@ -84,24 +109,16 @@ void Catalogue::rechercher(const char* uneVilleDepart, const char* uneVilleArriv
 		}
 		p = p->next;
 	}
-}
+} //----- Fin de Méthode
 
 void Catalogue::afficher() {
-	listeTrajet->afficher();
-	cout << endl;
-}
+	if (listeTrajet->size()) {
+		listeTrajet->afficher();
+		cout << endl; }
+} //----- Fin de Méthode
 
-void Catalogue::affiche_toute_avancee() {
-	int num;
-	creer_liste_avancee(num);
-	cout << num;
-	for(int i = 0; i < num ; i++) {
-		listeTrajetAvance[i].afficher();
-		cout << endl << endl;
-	} 
-}
-
+//-------------------------------------------- Constructeurs - destructeur
 Catalogue::~Catalogue() {
 	delete listeTrajet;
-//	delete[] listeTrajetAvance;
+//	free(listeTrajetAvance);
 }

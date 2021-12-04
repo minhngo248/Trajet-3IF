@@ -1,6 +1,16 @@
+/*************************************************************************
+                           main 
+                             -------------------
+    debut                : 23 novembre 2021
+    copyright            : (C) 2021 par NGO Ngoc Minh, PHAM Quoc Viet
+*************************************************************************/
+//---------------------------------------------------------------- INCLUDE
+
+//-------------------------------------------------------- Include système
 #include <bits/stdc++.h>
 #include <cstdio> 
 using namespace std;
+//------------------------------------------------------ Include personnel
 #include "Catalogue.h"
 #include "Trajet.h"
 #include "TrajetSimple.h"
@@ -22,12 +32,11 @@ int main() {
 		cout << "3. Rechercher des trajets. \r\n" << endl;
 		cout << "4. Recherche avancee des trajets. \r\n" << endl;
 		cout << "5. Afficher tous les trajets dans le catalogue. \r\n" << endl;
-		cout << "6. Affiche avancee. \r\n" << endl;
 			
 		do {
-			cout << "Veuillez choisir une demande entre 1,2,3,4,5" << endl;
+			cout << "Veuillez choisir une demande entre 1,2,3,4,5 " << endl;
 			cin >> n;
-		}while (n<1 || n>6);
+		}while (n<1 || n>5);
 		switch(n) {
 			case 1:	
 				cout << endl << "-------AJOUTER UN TRAJET SIMPLE-----\r\n" << endl;
@@ -54,11 +63,9 @@ int main() {
 					cout << "Entrez un moyen de transport : ";
 					scanf(" %s", unMoyTrans);
 					cout << "Continue ? (1 pour oui et 0 pour non)";	
-					t = new TrajetSimple(uneVD , uneVA , unMoyTrans);	
-									
+					t = new TrajetSimple(uneVD , uneVA , unMoyTrans);					
 					unTC->ajouter(t);
 					i++;
-					
 					cin >> k;
 				}while(k == 1);
 				C->ajouter_trajet(unTC);
@@ -78,15 +85,12 @@ int main() {
 				cout << "Entrez une ville d'arrivee : ";
 				scanf(" %s", uneVilleArrivee);
 				C->recherche_avancee(uneVilleDepart , uneVilleArrivee);
-				break;				
-			case 5: 
+				break;
+			default:	
 				cout << endl << "--------AFFICHER TOUS LES TRAJETS DANS LE CATALOGUE---------\r\n" << endl;
 				C->afficher();
-				break;
-			default:
-				cout << endl << "--------AFFICHE AVANCEE---------\r\n" << endl;
-				C->affiche_toute_avancee();
-				break; }
+				break;			
+			}
 		cout << endl << "Tapez Y ou y pour continuer : ";
 		cin >> c;				
 	}while(c == 'Y' || c == 'y');
