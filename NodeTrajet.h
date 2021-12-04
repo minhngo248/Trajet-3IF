@@ -11,6 +11,7 @@ class NodeTrajet
 		
 	public:
 		NodeTrajet();
+		NodeTrajet(const NodeTrajet&); //constructeur de copie
 		~NodeTrajet();
 };
 

@@ -9,11 +9,6 @@ Trajet::Trajet() {
 	villeArrivee = new char[50];
 }
 
-/*void Trajet::getTrajet(char* getVilleDepart, char* getVilleArrivee) {
-	strcpy(getVilleDepart, villeDepart);
-	strcpy(getVilleArrivee, villeArrivee);
-}*/
-
 Trajet::Trajet (const char* uneVilleDepart, const char* uneVilleArrivee) {
 	villeDepart = new char[50];
 	villeArrivee = new char[50];
@@ -32,7 +27,7 @@ void Trajet::GetTrajet( char* villeStart, char* villeFinish ) {
 }
 
 char* Trajet::GetVille(int i) {
-	if (i ==1) {
+	if (i == 1) {
 		return this->villeDepart;
 	}
 	return this->villeArrivee;

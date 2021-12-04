@@ -6,7 +6,6 @@
 class TrajetSimple : public Trajet {
 
 public:
-	//void SetTrajet(const char* ,const char* , const char* );
     TrajetSimple (const TrajetSimple&);
     TrajetSimple();
 	TrajetSimple (const char* ,const char* ,const char*);

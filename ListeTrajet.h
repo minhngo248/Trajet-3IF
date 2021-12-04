@@ -8,11 +8,13 @@ class ListeTrajet {
 		NodeTrajet* head;
 	public:
 		ListeTrajet();
+		ListeTrajet(const ListeTrajet&); //constructeur de copie
 		~ListeTrajet(); 
-		//void rechercher(Trajet);
+		int size();
+		void getVille(char*, char*);
 		void ajouter_en_queue(Trajet*); 
 		void afficher(); 
-		//void supprimer(Trajet);  
+		  
 };
 
 #endif

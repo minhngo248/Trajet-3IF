@@ -16,9 +16,9 @@ void TrajetCompose::ajouter(TrajetSimple* unTS) {
 }
 
 TrajetCompose::TrajetCompose(const TrajetCompose & unTC) {
-/*	strcpy(villeDepart, unTC.villeDepart);
+	strcpy(villeDepart, unTC.villeDepart);
 	strcpy(villeArrivee, unTC.villeArrivee);
-	this->listeSimple->head = unTC.listeSimple->head; */
+	this->listeSimple->head = unTC.listeSimple->head;
 }
 
 void TrajetCompose::GetTrajet( char* villeStart , char* villeFinish ) {
