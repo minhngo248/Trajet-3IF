@@ -17,13 +17,13 @@ class Trajet {
 public:
 //----------------------------------------------------- Méthodes publiques
   
-	virtual char* GetVille(int);
+	virtual char* GetVille(int) const;
 	// Mode d'emploi : 
     //	
-	virtual void GetTrajet( char* , char* );
+	virtual void GetTrajet( char* , char* ) const;
 	// Mode d'emploi : prendre la Ville Depart et la Ville Arrivee d'un Trajet
     //	
-    virtual void afficher(const int) const;
+    virtual void Afficher(const int) const;
 	// Mode d'emploi : afficher les caracteristique d'un Trajet : la Ville Depart, 
 	// la Ville Arrivee et le Moyen de Transport
 	//
@@ -33,11 +33,12 @@ public:
 	// les caracteristiques d'un trajet : villeDepart et villeArrivee
 	// 
     Trajet (const Trajet&);
-    // Mode d'emploi (constructeur de copie) :
+    // Mode d'emploi (constructeur de copie) : Créer une copie d'un Trajet
     //
     //
     Trajet ( const char* , const char* );
-	// Mode d'emploi (constructeur) :
+	// Mode d'emploi (constructeur) : Créer un trajet à partir d'une ville de départ et
+	// une ville d'arrivée
 	//     
 	virtual ~Trajet();
 	// Mode d'emploi (destructeur) : liberer les memoires de la VilleDepart et villeArrivee

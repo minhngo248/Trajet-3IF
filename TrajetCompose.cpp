@@ -29,73 +29,62 @@ TrajetCompose::TrajetCompose() {
 TrajetCompose::TrajetCompose(const TrajetCompose & unTC) {
 	strcpy(villeDepart, unTC.villeDepart);
 	strcpy(villeArrivee, unTC.villeArrivee);
-	this->listeSimple->head = unTC.listeSimple->head;
+	this->listeSimple->SetHead(unTC.listeSimple->GetHead());
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetCompose>" << endl;
 #endif
 } //------ Fin de TrajetCompose (constructeur de copie)
 
-//----------------------------------------------------- Méthodes publiques
-
-/*int TrajetCompose::ajouter(TrajetSimple* unTS) {
-	int i =0;
-	if (listeSimple->head->trajet->GetVille(1)[0] == '\0') {
-		strcpy(villeDepart, unTS->GetVille(1));
-		listeSimple->ajouter_en_queue(unTS);
-		strcpy(villeArrivee, unTS->GetVille(2));
-		i =1;
-	}else{
-		NodeTrajet* p = listeSimple->getLastNode();
-		if (strcmp(p->trajet->GetVille(2), unTS->GetVille(1)) ==0) {
-			listeSimple->ajouter_en_queue(unTS);
-			strcpy(villeArrivee, unTS->GetVille(2));
-			i =1;
-		}
-	}
-	listeSimple->ajouter_en_queue(unTS);
-	strcpy(villeArrivee, unTS->GetVille(2));
-	return i;
-} // -------- Fin de Methode */
-
-
-void TrajetCompose::ajouter(TrajetSimple* unTS) {
-	if (listeSimple->head->trajet->GetVille(1)[0] == '\0') {
-		strcpy(villeDepart, unTS->GetVille(1));
-	}
-	listeSimple->ajouter_en_queue(unTS);
-	strcpy(villeArrivee, unTS->GetVille(2));
-} // -------- Fin de Methode
-
-
-
-void TrajetCompose::GetTrajet( char* villeStart , char* villeFinish ) {
-	NodeTrajet* p = listeSimple->head;
-	if (listeSimple->head->trajet->GetVille(1)[0] != '\0') {
-		strcpy(villeStart, p->trajet->GetVille(1));
-		while(p->next != nullptr) {
-			p = p->next;
-		}
-		strcpy(villeFinish , p->trajet->GetVille(2));
-	}	
-} // -------- Fin de Methode
-
-void TrajetCompose::afficher(const int i) const {
-	cout << "TC: ";
-	NodeTrajet* p = listeSimple->head;
-	while (p != NULL) {
-		p->trajet->afficher(0);
-		if (p->next != NULL) {
-			cout << " - ";
-		}
-		p = p->next;
-	} 
-	cout << endl;
-} // -------- Fin de Methode
-
-//-------------------------------------------- Constructeurs - destructeur
 TrajetCompose::~TrajetCompose() {
 	delete listeSimple;	
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif	
 } //------ Fin de ~TrajetCompose
+
+//----------------------------------------------------- Méthodes publiques
+
+bool TrajetCompose::Ajouter(TrajetSimple* unTS) {
+	bool b =false;
+	if (listeSimple->GetHead()->GetTrajet()->GetVille(1)[0] == '\0') {
+		strcpy(villeDepart, unTS->GetVille(1));
+		listeSimple->Ajouter_en_queue(unTS);
+		strcpy(villeArrivee, unTS->GetVille(2));
+		b = true;
+	}else{
+		NodeTrajet* p = listeSimple->GetLastNode();
+		if (strcmp(p->GetTrajet()->GetVille(2), unTS->GetVille(1)) ==0) {
+			listeSimple->Ajouter_en_queue(unTS);
+			strcpy(villeArrivee, unTS->GetVille(2));
+			b = true;
+		}
+	}
+	return b;
+} // -------- Fin de Methode
+
+
+void TrajetCompose::GetTrajet( char* villeStart , char* villeFinish ) const{
+	NodeTrajet* p = listeSimple->GetHead();
+	if (listeSimple->GetHead()->GetTrajet()->GetVille(1)[0] != '\0') {
+		strcpy(villeStart, p->GetTrajet()->GetVille(1));
+		while(p->GetNext() != nullptr) {
+			p = p->GetNext();
+		}
+		strcpy(villeFinish , p->GetTrajet()->GetVille(2));
+	}	
+} // -------- Fin de Methode
+
+void TrajetCompose::Afficher(const int i) const {
+	cout << "TC: ";
+	NodeTrajet* p = listeSimple->GetHead();
+	while (p != NULL) {
+		p->GetTrajet()->Afficher(0);
+		if (p->GetNext() != NULL) {
+			cout << " - ";
+		}
+		p = p->GetNext();
+	} 
+	cout << endl;
+} // -------- Fin de Methode
+
+

@@ -21,7 +21,6 @@ using namespace std;
 
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue() {
-
 	listeTrajet = new ListeTrajet();
 	listeTrajetAvance = new ListeTrajet();
 #ifdef MAP
@@ -29,50 +28,57 @@ Catalogue::Catalogue() {
 #endif
 } //----- Fin de Catalogue
 
+Catalogue::~Catalogue() {
+	delete listeTrajet;
+#ifdef MAP
+    cout << "Appel au destructeur de <Catalogue>" << endl;
+#endif
+} //----- Fin de ~Catalogue
+
 //----------------------------------------------------- Méthodes publiques
 
-void Catalogue::ajouter_trajet(Trajet* trajet) {
-	listeTrajet->ajouter_en_queue(trajet);
+void Catalogue::Ajouter_trajet(Trajet* trajet) {
+	listeTrajet->Ajouter_en_queue(trajet);
 } //----- Fin de Méthode
-
 
 void Catalogue::creer_liste_avancee(int & num) {
 // Algorithme : parcourir tous les elements de la listeTrajet et relier tous les 
 // trajets possibles
-	long m = pow(2, listeTrajet->size()) - 1;
+	long m = pow(2, listeTrajet->Size()) - 1;
 	listeTrajetAvance = new ListeTrajet [m];
 	int i, j; //compteur de LTA
-	NodeTrajet* p = listeTrajet->head;
+	NodeTrajet* p = listeTrajet->GetHead();
 	NodeTrajet* q;
-	for (i = 0 ; i<listeTrajet->size() ; i++) { //1 noeud
-		listeTrajetAvance[i].ajouter_en_queue(p->trajet);
-		p = p->next;
+	for (i = 0 ; i<listeTrajet->Size() ; i++) { //1 noeud
+		listeTrajetAvance[i].Ajouter_en_queue(p->GetTrajet());
+		p = p->GetNext();
 	}
 	char* villeTail1;	char* villeHead1;	char* villeTail2; char* villeHead2;
-	int a = 0, b = listeTrajet->size() - 1, k1;
+	int a = 0, b = listeTrajet->Size() - 1, k1;
 	int n = 2;
-	while (n <= listeTrajet->size()) {
+	while (n <= listeTrajet->Size()) {
 		j = a;
 		k1 = i;
 		while (a <= j && j <= b) {
-			p = listeTrajet->head;
+			p = listeTrajet->GetHead();
 			while(p != nullptr) {
 				villeHead1 = new char [50];
 				villeTail1 = new char [50]; //tail de liste
 				villeHead2 = new char [50]; //head de trajet courant
 				villeTail2 = new char [50]; 
-				listeTrajetAvance[j].getVille(villeHead1, villeTail1);
-				p->trajet->GetTrajet(villeHead2, villeTail2);
+				listeTrajetAvance[j].GetVille(villeHead1, villeTail1);
+				p->GetTrajet()->GetTrajet(villeHead2, villeTail2);
 				if (strcmp(villeTail1, villeHead2) == 0 && strcmp(villeHead1, villeTail2) != 0) { 
-					q = listeTrajetAvance[j].head;
+					q = listeTrajetAvance[j].GetHead();
 					while (q != nullptr) {
-						listeTrajetAvance[i].ajouter_en_queue(q->trajet);
-						q = q->next;
+						listeTrajetAvance[i].Ajouter_en_queue(q->GetTrajet());
+						q = q->GetNext();
 					}
-					listeTrajetAvance[i].ajouter_en_queue(p->trajet);
+					listeTrajetAvance[i].Ajouter_en_queue(p->GetTrajet());
 					i++;
 				} 
-				p = p->next; }
+				p = p->GetNext(); 
+			}
 			j++;
 		}
 		n++;
@@ -82,7 +88,7 @@ void Catalogue::creer_liste_avancee(int & num) {
 	num = i;
 } //----- Fin de Méthode
 
-void Catalogue::recherche_avancee(const char* uneVilleDepart, const char* uneVilleArrivee) {
+void Catalogue::Recherche_avancee(const char* uneVilleDepart, const char* uneVilleArrivee) {
 // Algorithme : Parcourir toute la listeTrajetAvance pour afficher les trajets possibles
 //
 	int num;
@@ -92,52 +98,35 @@ void Catalogue::recherche_avancee(const char* uneVilleDepart, const char* uneVil
 	for (int i=0;i<num;i++) {
 		uneVD = new char [50];
 		uneVA = new char [50];
-		listeTrajetAvance[i].getVille(uneVD, uneVA);
+		listeTrajetAvance[i].GetVille(uneVD, uneVA);
 		if (strcmp(uneVD, uneVilleDepart) == 0 && strcmp(uneVA, uneVilleArrivee)==0) {
-			listeTrajetAvance[i].afficher();
-			cout << endl << endl;
+			listeTrajetAvance[i].Afficher();
+			cout << endl;
 		}
 	}
 } //----- Fin de Méthode
 
-void Catalogue::rechercher(const char* uneVilleDepart, const char* uneVilleArrivee) {
+void Catalogue::Rechercher(const char* uneVilleDepart, const char* uneVilleArrivee) const{
 // Algorithme : parcourir tous les elements dans la listeTrajet
 //
-	NodeTrajet* p = listeTrajet->head;
+	NodeTrajet* p = listeTrajet->GetHead();
 	char* villeStart;
 	char* villeFinish;
 	while (p != NULL) {
 		villeStart = new char [50];
 		villeFinish = new char [50];
-		p->trajet->GetTrajet(villeStart , villeFinish);
+		p->GetTrajet()->GetTrajet(villeStart , villeFinish);
 		if (strcmp(villeStart , uneVilleDepart) == 0 && strcmp(villeFinish,uneVilleArrivee) == 0) {
-			p->trajet->afficher(1);	
+			p->GetTrajet()->Afficher(1);	
 		}
-		p = p->next;
+		p = p->GetNext();
 	}
+	delete[] villeStart;
+	delete[] villeFinish;
 } //----- Fin de Méthode
 
-void Catalogue::affiche_avancee() {
-	int num;
-	creer_liste_avancee(num);
-	cout << num;
-	for(int i=0;i<num;i++) {
-		listeTrajetAvance[i].afficher();
-		cout << endl << endl;
-	}
-	
-}
-
-void Catalogue::afficher() {
-	if (listeTrajet->size()) {
-		listeTrajet->afficher();
-		cout << endl; }
+void Catalogue::Afficher() const{
+	listeTrajet->Afficher();
+	cout << endl; 
 } //----- Fin de Méthode
 
-//-------------------------------------------- Constructeurs - destructeur
-Catalogue::~Catalogue() {
-	delete listeTrajet;
-#ifdef MAP
-    cout << "Appel au destructeur de <Catalogue>" << endl;
-#endif
-} //----- Fin de ~Catalogue

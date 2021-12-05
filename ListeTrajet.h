@@ -19,33 +19,38 @@ class ListeTrajet {
 	
 public:
 //----------------------------------------------------- Méthodes publiques		
-	int size();
+	int Size();
 	// Mode d'emploi : taille de la ListeTrajet
     //
-	NodeTrajet* getLastNode();
-	// Mode d'emploi : taille de la ListeTrajet
+	NodeTrajet* GetLastNode() const;
+	// Mode d'emploi : prendre le dernier élément 
     //
-	void getVille(char*, char*);
+    NodeTrajet* GetHead() const;
+    // Mode d'emploi : prendre le premier élément 
+    //
+    void SetHead(NodeTrajet*);
+    // Mode d'emploi : mettre la valeur du premier élément à la valeur du paramètre passé 
+    //
+	void GetVille(char*, char*) const;
 	// Mode d'emploi : prendre la Ville Debut et la Ville en fin de la liste
     //
-	void ajouter_en_queue(Trajet*); 
+	void Ajouter_en_queue(Trajet*); 
 	// Mode d'emploi : ajouter un noeud en queue de la liste
     //	
-	void afficher(); 
+	void Afficher() const; 
 	// Mode d'emploi : afficher tous les noeud de la liste
-    //	
-    
+    //	    
 //-------------------------------------------- Constructeurs - destructeur
 	ListeTrajet();
 	// Mode d'emploi (constructeur) : initialiser et allouer des espaces dans la 
     //	memoires pour le premier noeud de la liste chainee (head)
 	ListeTrajet(const ListeTrajet&); 
-	// Mode d'emploi (constructeur de copie) :
+	// Mode d'emploi (constructeur de copie) : Créer une copie d'une liste de trajets
 	//
 	~ListeTrajet();
 	// Mode d'emploi (destructeur) : liberer l'espace de "head"
 	// 
-public:
+private:
 	NodeTrajet* head;	  
 };
 

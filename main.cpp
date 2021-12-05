@@ -17,25 +17,26 @@ using namespace std;
 #include "TrajetCompose.h"
 
 int main() {
-	char c;
+	char c, c_n;
 	int n, i, k;
 	char uneVilleDepart[50], uneVilleArrivee[50], unMoyTrans[50];
 	char uneVD[50], uneVA[50];
 	Catalogue* C = new Catalogue();
 	TrajetCompose* unTC;
 	TrajetSimple* t = new TrajetSimple();
-	do { 	
+	do {	
 		//Menu
 		cout << "Veuillez choisir une demande \r\n" << endl;
 		cout << "1. Ajouter un trajet simple. \r\n" << endl;
 		cout << "2. Ajouter un trajet composee. \r\n" << endl;
-		cout << "3. Rechercher des trajets. \r\n" << endl;
-		cout << "4. Recherche avancee des trajets. \r\n" << endl;
+		cout << "3. Rechercher des trajets directs. \r\n" << endl;
+		cout << "4. Rechercher tous les trajets possibles. \r\n" << endl;
 		cout << "5. Afficher tous les trajets dans le catalogue. \r\n" << endl;
 			
 		do {
 			cout << "Veuillez choisir une demande entre 1,2,3,4,5 " << endl;
-			cin >> n;
+			cin >> c_n;
+			n = c_n -'0';
 		}while (n<1 || n>5);
 		switch(n) {
 			case 1:	
@@ -47,7 +48,7 @@ int main() {
 				cout << "Entrez un moyen de transport : ";
 				scanf(" %s", unMoyTrans);
 				t = new TrajetSimple(uneVilleDepart , uneVilleArrivee , unMoyTrans);					
-				C->ajouter_trajet(t);
+				C->Ajouter_trajet(t);
 				break;
 			
 			case 2: 
@@ -62,13 +63,18 @@ int main() {
 					scanf(" %s", uneVA);
 					cout << "Entrez un moyen de transport : ";
 					scanf(" %s", unMoyTrans);
-					cout << "Continue ? (1 pour oui et 0 pour non)";	
+						
 					t = new TrajetSimple(uneVD , uneVA , unMoyTrans);					
-					unTC->ajouter(t);
-					i++;
+					if(unTC->Ajouter(t) ==false) {
+						cout << "Erreur en ajoutant le trajet!" << endl;
+					}else{
+						i++;
+					}
+					
+					cout << "Continue ? (1 pour oui et 0 pour non)";
 					cin >> k;
 				}while(k == 1);
-				C->ajouter_trajet(unTC);
+				C->Ajouter_trajet(unTC);
 				break;		
 			case 3:
 				cout << endl << "--------RECHERCHER DES TRAJETS-----\r\n" << endl;
@@ -76,7 +82,7 @@ int main() {
 				scanf(" %s", uneVilleDepart);
 				cout << "Entrez une ville d'arrivee : ";
 				scanf(" %s", uneVilleArrivee);
-				C->rechercher(uneVilleDepart , uneVilleArrivee);
+				C->Rechercher(uneVilleDepart , uneVilleArrivee);
 				break;
 			case 4:
 				cout << endl << "--------RECHERCHE AVANCEE DES TRAJETS-----\r\n" << endl;
@@ -84,14 +90,14 @@ int main() {
 				scanf(" %s", uneVilleDepart);
 				cout << "Entrez une ville d'arrivee : ";
 				scanf(" %s", uneVilleArrivee);
-				C->recherche_avancee(uneVilleDepart , uneVilleArrivee);
+				C->Recherche_avancee(uneVilleDepart , uneVilleArrivee);
 				break;
 			default:	
 				cout << endl << "--------AFFICHER TOUS LES TRAJETS DANS LE CATALOGUE---------\r\n" << endl;
-				C->afficher();
-				break;						
+				C->Afficher();
+				break;			
 			}
-		cout << endl << "Tapez Y ou y pour continuer : ";
+		cout << endl << "Tapez Y ou y pour continuer : " << endl;
 		cin >> c;				
 	}while(c == 'Y' || c == 'y');
 	

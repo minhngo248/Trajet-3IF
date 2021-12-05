@@ -25,73 +25,91 @@ ListeTrajet::ListeTrajet() {
 #endif	
 } //-------- Fin de ListeTrajet
 
-//----------------------------------------------------- Méthodes publiques
+ListeTrajet::ListeTrajet(const ListeTrajet& unLT) {
+	head = new NodeTrajet();
+	head = unLT.GetHead();
+#ifdef MAP
+    cout << "Appel au constructeur de copie de <ListeTrajet>" << endl;
+#endif
+} //----- Fin de ListeTrajet (constructeur de copie)
 
-NodeTrajet* ListeTrajet::getLastNode() {	
-	NodeTrajet* p;
-	p = head;
-	while(p->next != NULL) {
-		p = p->next;
-	}
-	return p;
-} //-------- Fin de Methode
-
-void ListeTrajet::ajouter_en_queue(Trajet* trajet) {
-	if (head->trajet->GetVille(1)[0] == '\0') {
-		head = new NodeTrajet();
-		head->trajet = trajet;
-		head->next = nullptr;
-	}
-	else {
-		NodeTrajet* p;
-		p = head;
-		while(p->next != NULL) {
-			p = p->next;
-		}
-		NodeTrajet* q = new NodeTrajet();
-		q->trajet = trajet;
-		q->next = nullptr;
-		p->next = q; 
-	}	
-} //-------- Fin de Methode
-
-void ListeTrajet::getVille(char* villeStart, char* villeFinish) {
-	char* uneVilleStart = new char [50];
-	char* uneVilleFinish = new char [50];
-	head->trajet->GetTrajet(uneVilleStart, uneVilleFinish);
-	strcpy(villeStart, uneVilleStart);
-	NodeTrajet* p = head;
-	while(p->next != nullptr)
-		p = p->next;
-	p->trajet->GetTrajet(uneVilleStart, uneVilleFinish);
-	strcpy(villeFinish, uneVilleFinish);
-} //-------- Fin de Methode
-
-int ListeTrajet::size() {
-	int size = 0;
-	NodeTrajet* p = head;
-	if (head->trajet->GetVille(1)[0] == '\0') return 0;
-	else {
-		while (p != nullptr) {
-			size++;
-			p = p->next;
-		}
-		return size;
-	}
-} //-------- Fin de Methode
-
-void ListeTrajet::afficher() {
-	NodeTrajet* p = head;
-	while (p != nullptr) {
-		p->trajet->afficher(1);
-		p = p->next;
-	}
-} //-------- Fin de Methode
-
-//-------------------------------------------- Constructeurs - destructeur
 ListeTrajet::~ListeTrajet() {
 	delete head;
 #ifdef MAP
     cout << "Appel au destructeur de <ListeTrajet>" << endl;
 #endif
 } //----- Fin de ~ListeTrajet
+
+//----------------------------------------------------- Méthodes publiques
+
+NodeTrajet* ListeTrajet::GetLastNode() const{	
+	NodeTrajet* p;
+	p = head;
+	while(p->GetNext()!= NULL) {
+		p = p->GetNext();
+	}
+	return p;
+} //-------- Fin de Methode
+
+void ListeTrajet::Ajouter_en_queue(Trajet* unTrajet) {
+	if (head->GetTrajet()->GetVille(1)[0] == '\0') {
+		head = new NodeTrajet();
+		head->SetTrajet(unTrajet);
+		head->SetNext(nullptr);
+	}
+	else {
+		NodeTrajet* p;
+		p = GetLastNode();
+		NodeTrajet* q = new NodeTrajet();
+		q->SetTrajet(unTrajet);
+		q->SetNext(nullptr);
+		p->SetNext(q); 
+	}	
+} //-------- Fin de Methode
+
+void ListeTrajet::GetVille(char* villeStart, char* villeFinish) const{
+	char* uneVilleStart = new char [50];
+	char* uneVilleFinish = new char [50];
+	head->GetTrajet()->GetTrajet(uneVilleStart, uneVilleFinish);
+	strcpy(villeStart, uneVilleStart);
+	NodeTrajet* p = head;
+	while(p->GetNext() != nullptr)
+		p = p->GetNext();
+	p->GetTrajet()->GetTrajet(uneVilleStart, uneVilleFinish);
+	strcpy(villeFinish, uneVilleFinish);
+} //-------- Fin de Methode
+
+int ListeTrajet::Size() {
+	int size = 0;
+	NodeTrajet* p = head;
+	if (head->GetTrajet()->GetVille(1)[0] == '\0') return 0;
+	else {
+		while (p != nullptr) {
+			size++;
+			p = p->GetNext();
+		}
+		return size;
+	}
+} //-------- Fin de Methode
+
+void ListeTrajet::Afficher() const{
+	bool b = true;
+	NodeTrajet* p = head;
+	while (p != nullptr && p->GetTrajet()->GetVille(1)[0] != '\0') {
+		p->GetTrajet()->Afficher(1);
+		p = p->GetNext();
+		b = false;
+	}
+	if (b) {
+		cout << "Il n'y a accun trajet.";
+	}
+} //-------- Fin de Methode
+
+NodeTrajet* ListeTrajet:: GetHead() const{
+	return this->head;
+}
+
+void ListeTrajet::SetHead(NodeTrajet* n) {
+	this->head = n;
+}
+

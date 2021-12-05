@@ -45,32 +45,32 @@ TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple ) {
 #endif
 } //------ Fin de TrajetSimple (constructeur de copie)
 
-//----------------------------------------------------- Méthodes publiques
-
-char* TrajetSimple::GetVille(const int i) {
-	return Trajet::GetVille(i);
-} // ------- Fin de Methode
-
-void TrajetSimple::GetTrajet( char* villeStart, char* villeFinish) {
-	Trajet::GetTrajet(villeStart , villeFinish);
-} // ------- Fin de Methode
-	
-void TrajetSimple::afficher(const int i) const {
-	if (i == 1) {
-		cout << "TS: "; 
-		Trajet::afficher(i);
-		cout << " en " << moyTrans;
-		cout << endl;
-	}else{
-		Trajet::afficher(i);
-		cout << " en " << moyTrans;
-	}
-} // ------- Fin de Methode
-
-//-------------------------------------------- Constructeurs - destructeur
 TrajetSimple::~TrajetSimple() {
 	delete[] moyTrans;
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif
 } //------ Fin de ~TrajetSimple
+
+//----------------------------------------------------- Méthodes publiques
+
+char* TrajetSimple::GetVille(const int i) const{
+	return Trajet::GetVille(i);
+} // ------- Fin de Methode
+
+void TrajetSimple::GetTrajet( char* villeStart, char* villeFinish) const{
+	Trajet::GetTrajet(villeStart , villeFinish);
+} // ------- Fin de Methode
+	
+void TrajetSimple::Afficher(const int i) const {
+	if (i == 1) {
+		cout << "TS: "; 
+		Trajet::Afficher(i);
+		cout << " en " << moyTrans;
+		cout << endl;
+	}else{
+		Trajet::Afficher(i);
+		cout << " en " << moyTrans;
+	}
+} // ------- Fin de Methode
+

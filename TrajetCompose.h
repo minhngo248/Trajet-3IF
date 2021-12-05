@@ -21,13 +21,13 @@ class TrajetCompose : public Trajet {
 public:
 //----------------------------------------------------- Méthodes publiques
     
-	void ajouter(TrajetSimple* unTS); 
+	bool Ajouter(TrajetSimple* unTS); 
 	// Mode d'emploi : ajouter un Trajet Simple en queue du Trajet Compose
 	//
-	void afficher(const int) const;
+	void Afficher(const int) const;
 	// Mode d'emploi : afficher tous les Trajets Simples dans la liste
 	//	
-	void GetTrajet( char* , char* );
+	void GetTrajet( char* , char* ) const;
 	// Mode d'emploi : prendre la Ville Debut et la Ville en fin de la
 	//	liste
 	//
@@ -35,7 +35,7 @@ public:
 //-------------------------------------------- Constructeurs - destructeur	
      
 	TrajetCompose(const TrajetCompose & unTrajetCompose);
-	// Mode d'emploi (constructeur de copie) :
+	// Mode d'emploi (constructeur de copie) : Créer une copie d'un trajet composé
 	// 
 	TrajetCompose();
 	// Mode d'emploi (constructeur) : initialiser la listeSimple

@@ -19,17 +19,29 @@ class NodeTrajet {
 	
 public:
 //----------------------------------------------------------------- PUBLIC
+	Trajet* GetTrajet() const;
+	// Mode d'emploi : prendre le trajet de ce élément
+    //
+	NodeTrajet* GetNext() const;
+	// Mode d'emploi : prendre l'élément suivant 
+    //
+	void SetTrajet(Trajet*);
+	// Mode d'emploi : mettre le trajet à la valeur du paramètre passé 
+    //
+	void SetNext(NodeTrajet*);
+	// Mode d'emploi : mettre l'élément suivant à la valeur du paramètre passé 
+    //
 //-------------------------------------------- Constructeurs - destructeur	
 	NodeTrajet();
 	// Mode d'emploi (constructeur): initialiser et allouer des espaces dans
     //	la memoire pour "trajet"
 	NodeTrajet(const NodeTrajet&); 
-	// Mode d'emploi (constructeur de copie) :
+	// Mode d'emploi (constructeur de copie) : Créer une copie d'un élément contenant un trajet
 	//
 	~NodeTrajet();
 	// Mode d'emploi (destructeur) : liberer les espaces dans la memoire pour
 	// trajet et next
-public:
+private:
 	NodeTrajet* next;
 	Trajet* trajet;
 };

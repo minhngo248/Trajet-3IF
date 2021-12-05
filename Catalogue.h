@@ -19,23 +19,18 @@ class Catalogue {
 public:
 //----------------------------------------------------- Méthodes publiques
 	
-	void ajouter_trajet(Trajet*);
+	void Ajouter_trajet(Trajet*);
     // Mode d'emploi : ajouter des trajets dans le catalogue
     //
-	void rechercher( const char* , const char* );
+	void Rechercher( const char* , const char* ) const;
     // Mode d'emploi : recherche simple des trajets possibles
-    //	a partir de la Ville du Depart et de la Ville Arrivee
-	void creer_liste_avancee(int&);
-    // Mode d'emploi : creation d'une ListeTrajetAvance en reliant
-	// des trajets ayant la meme nom de tete que celui de queue de
-	// son noeud precedant  	
-	void recherche_avancee(const char* , const char*);
+    //	a partir de la Ville du Depart et de la Ville Arrivee  	
+	void Recherche_avancee(const char* , const char*) ;
     // Mode d'emploi : parcourir tous les elements dans la
 	// listeTrajetAvance pour chercher des trajets appropries
 	// a partir d'une VilleDepart et d'une VilleArrivee 	
-	void afficher();
+	void Afficher() const;
 	// Mode d'emploi : afficher tous les trajets dans le catalogue
-	void affiche_avancee();
 	
 //-------------------------------------------- Constructeurs - destructeur 
 	Catalogue();
@@ -43,7 +38,7 @@ public:
     // listeTrajet et listeTrajetAvance
     // 
 	Catalogue(const Catalogue&); 
-	// Mode d'emploi (constructeur de copie) : 
+	// Mode d'emploi (constructeur de copie) : Créer une copie d'une catalogue
     // 
     //		
 	~Catalogue();
@@ -53,6 +48,12 @@ public:
 	
 private:
 //------------------------------------------------------------------ PRIVE
+//------------------------------------------------------- Méthodes privées
+void creer_liste_avancee(int&);
+    // Mode d'emploi : creation d'une ListeTrajetAvance en reliant
+	// des trajets ayant la meme nom de tete que celui de queue de
+	// son noeud precedant
+//------------------------------------------------------- Paramètres
 	ListeTrajet* listeTrajet; 
 	//stokage tous les trajets du catalogue
 	ListeTrajet* listeTrajetAvance; 

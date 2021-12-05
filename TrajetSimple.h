@@ -20,19 +20,19 @@ class TrajetSimple : public Trajet {
 public:
 //----------------------------------------------------- Méthodes publiques
     
-	char* GetVille(const int);
-	// Mode d'emploi : 
+	char* GetVille(const int) const;
+	// Mode d'emploi : Prendre soit la ville de départ ou la ville d'arrivée
 	//	
-    void GetTrajet( char* , char* );
-	// Mode d'emploi :  
+    void GetTrajet( char* , char* ) const;
+	// Mode d'emploi : Prendre soit la ville de départ et la ville d'arrivée en même temps
 	//
-    void afficher(const int) const;
+    void Afficher(const int) const;
 	// Mode d'emploi :  afficher les caracteristique d'un Trajet simple :
 	// une Ville Depart, une Ville Arrivee et un Moyen de Transport 
 	//	
 //-------------------------------------------- Constructeurs - destructeur	
 	TrajetSimple (const TrajetSimple&);
-	// Mode d'emploi (constructeur de copie): 
+	// Mode d'emploi (constructeur de copie): Créer une copie d'un trajet simple
 	//
     TrajetSimple();
     // Mode d'emploi (constructeur) : initialiser et allouer des memoires pour

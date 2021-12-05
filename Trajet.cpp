@@ -46,24 +46,6 @@ Trajet::Trajet (const Trajet & unTrajet) {
 #endif
 } //----- Fin de Trajet (constructeur de copie)
 
-//----------------------------------------------------- Méthodes publiques
-void Trajet::GetTrajet( char* villeStart, char* villeFinish ) {
-	strcpy(villeStart , villeDepart);
-	strcpy(villeFinish, villeArrivee);
-} // ------- Fin de Methode
-
-char* Trajet::GetVille(int i) {
-	if (i == 1) {
-		return this->villeDepart;
-	}
-	return this->villeArrivee;
-} // ------- Fin de Methode
-	
-void Trajet::afficher(const int i) const {
-	cout << "de " << villeDepart << " a " << villeArrivee;  
-} // ------- Fin de Methode
-	
-//-------------------------------------------- Constructeurs - destructeur	
 Trajet::~Trajet() {
 	delete[] villeDepart;
 	delete[] villeArrivee;
@@ -71,3 +53,21 @@ Trajet::~Trajet() {
     cout << "Appel au destructeur de <Trajet>" << endl;
 #endif
 } //------ Fin de ~Trajet
+
+//----------------------------------------------------- Méthodes publiques
+void Trajet::GetTrajet( char* villeStart, char* villeFinish ) const{
+	strcpy(villeStart , villeDepart);
+	strcpy(villeFinish, villeArrivee);
+} // ------- Fin de Methode
+
+char* Trajet::GetVille(int i) const{
+	if (i == 1) {
+		return this->villeDepart;
+	}
+	return this->villeArrivee;
+} // ------- Fin de Methode
+	
+void Trajet::Afficher(const int i) const {
+	cout << "de " << villeDepart << " a " << villeArrivee;  
+} // ------- Fin de Methode
+
