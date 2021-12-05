@@ -24,8 +24,8 @@ int main() {
 	Catalogue* C = new Catalogue();
 	TrajetCompose* unTC;
 	TrajetSimple* t = new TrajetSimple();
-	do {	
-		
+	do { 	
+		//Menu
 		cout << "Veuillez choisir une demande \r\n" << endl;
 		cout << "1. Ajouter un trajet simple. \r\n" << endl;
 		cout << "2. Ajouter un trajet composee. \r\n" << endl;
@@ -89,7 +89,7 @@ int main() {
 			default:	
 				cout << endl << "--------AFFICHER TOUS LES TRAJETS DANS LE CATALOGUE---------\r\n" << endl;
 				C->afficher();
-				break;			
+				break;						
 			}
 		cout << endl << "Tapez Y ou y pour continuer : ";
 		cin >> c;				

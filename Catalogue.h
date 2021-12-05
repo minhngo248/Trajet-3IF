@@ -35,6 +35,7 @@ public:
 	// a partir d'une VilleDepart et d'une VilleArrivee 	
 	void afficher();
 	// Mode d'emploi : afficher tous les trajets dans le catalogue
+	void affiche_avancee();
 	
 //-------------------------------------------- Constructeurs - destructeur 
 	Catalogue();

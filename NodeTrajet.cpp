@@ -22,11 +22,17 @@ using namespace std;
 NodeTrajet::NodeTrajet() {
 	next = nullptr;
 	trajet = new Trajet();
-} //------ Fin du Constructeur
+#ifdef MAP
+    cout << "Appel au constructeur de <NodeTrajet>" << endl;
+#endif
+} //------ Fin de NodeTrajet
 
 NodeTrajet::~NodeTrajet() {
 	delete trajet;
 	if(this->next != nullptr) {
 		delete next;
 	}
-} //------- Fin du Destructeur 
+#ifdef MAP
+    cout << "Appel au destructeur de <NodeTrajet>" << endl;
+#endif
+} //------ Fin de ~NodeTrajet 

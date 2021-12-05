@@ -1,7 +1,7 @@
 sejours: main.o Trajet.o TrajetSimple.o TrajetCompose.o ListeTrajet.o NodeTrajet.o Catalogue.o
-	g++ -o sejours *.o
+	g++ -o sejours *.o -ansi -pedantic -std=c++11 -Wall 
 main: main.cpp
-	g++ -c main.cpp -std=c++11 -Wall
+	g++ -c main.cpp 
 Trajet: Trajet.cpp
 	g++ -c Trajet.cpp
 TrajetSimple: TrajetSimple.cpp

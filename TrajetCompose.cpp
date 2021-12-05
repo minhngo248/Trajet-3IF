@@ -21,13 +21,19 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 TrajetCompose::TrajetCompose() {
 	listeSimple = new ListeTrajet();
-} // ------ Fin du Constructeur
+#ifdef MAP
+    cout << "Appel au constructeur de <TrajetCompose>" << endl;
+#endif
+} //------ Fin de TrajetCompose
 
 TrajetCompose::TrajetCompose(const TrajetCompose & unTC) {
 	strcpy(villeDepart, unTC.villeDepart);
 	strcpy(villeArrivee, unTC.villeArrivee);
 	this->listeSimple->head = unTC.listeSimple->head;
-}
+#ifdef MAP
+    cout << "Appel au constructeur de copie de <TrajetCompose>" << endl;
+#endif
+} //------ Fin de TrajetCompose (constructeur de copie)
 
 //----------------------------------------------------- Méthodes publiques
 
@@ -89,4 +95,7 @@ void TrajetCompose::afficher(const int i) const {
 //-------------------------------------------- Constructeurs - destructeur
 TrajetCompose::~TrajetCompose() {
 	delete listeSimple;	
-} // ------ Fin du Destructeur
+#ifdef MAP
+    cout << "Appel au destructeur de <TrajetCompose>" << endl;
+#endif	
+} //------ Fin de ~TrajetCompose

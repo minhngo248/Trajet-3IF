@@ -21,15 +21,21 @@ using namespace std;
 
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue() {
+
 	listeTrajet = new ListeTrajet();
 	listeTrajetAvance = new ListeTrajet();
-} //----- Fin de Méthode
+#ifdef MAP
+    cout << "Appel au constructeur de <Catalogue>" << endl;
+#endif
+} //----- Fin de Catalogue
+
+//----------------------------------------------------- Méthodes publiques
 
 void Catalogue::ajouter_trajet(Trajet* trajet) {
 	listeTrajet->ajouter_en_queue(trajet);
 } //----- Fin de Méthode
 
-//----------------------------------------------------- Méthodes publiques
+
 void Catalogue::creer_liste_avancee(int & num) {
 // Algorithme : parcourir tous les elements de la listeTrajet et relier tous les 
 // trajets possibles
@@ -111,6 +117,17 @@ void Catalogue::rechercher(const char* uneVilleDepart, const char* uneVilleArriv
 	}
 } //----- Fin de Méthode
 
+void Catalogue::affiche_avancee() {
+	int num;
+	creer_liste_avancee(num);
+	cout << num;
+	for(int i=0;i<num;i++) {
+		listeTrajetAvance[i].afficher();
+		cout << endl << endl;
+	}
+	
+}
+
 void Catalogue::afficher() {
 	if (listeTrajet->size()) {
 		listeTrajet->afficher();
@@ -120,5 +137,7 @@ void Catalogue::afficher() {
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::~Catalogue() {
 	delete listeTrajet;
-//	free(listeTrajetAvance);
-}
+#ifdef MAP
+    cout << "Appel au destructeur de <Catalogue>" << endl;
+#endif
+} //----- Fin de ~Catalogue

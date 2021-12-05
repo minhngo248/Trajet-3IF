@@ -19,8 +19,11 @@ using namespace std;
 
 //-------------------------------------------- Constructeurs - destructeur
 ListeTrajet::ListeTrajet() {
-	head = new NodeTrajet();	
-} //-------- Fin du Constructeur
+	head = new NodeTrajet();
+#ifdef MAP
+    cout << "Appel au constructeur de <ListeTrajet>" << endl;
+#endif	
+} //-------- Fin de ListeTrajet
 
 //----------------------------------------------------- Méthodes publiques
 
@@ -88,4 +91,7 @@ void ListeTrajet::afficher() {
 //-------------------------------------------- Constructeurs - destructeur
 ListeTrajet::~ListeTrajet() {
 	delete head;
-} //----- Fin du Destructeur
+#ifdef MAP
+    cout << "Appel au destructeur de <ListeTrajet>" << endl;
+#endif
+} //----- Fin de ~ListeTrajet

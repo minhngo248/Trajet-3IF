@@ -23,19 +23,28 @@ using namespace std;
 Trajet::Trajet() {
 	villeDepart = new char[50];
 	villeArrivee = new char[50];
-} // ------ Fin du Constructeur
+#ifdef MAP
+    cout << "Appel au constructeur de <Trajet>" << endl;
+#endif
+} //------ Fin de Trajet
 
 Trajet::Trajet (const char* uneVilleDepart, const char* uneVilleArrivee) {
 	villeDepart = new char[50];
 	villeArrivee = new char[50];
 	strcpy (villeDepart, uneVilleDepart);
 	strcpy (villeArrivee, uneVilleArrivee);
-} // ------ Fin du Constructeur
+#ifdef MAP
+    cout << "Appel au constructeur de <Trajet>" << endl;
+#endif
+} //------ Fin de Trajet
 
 Trajet::Trajet (const Trajet & unTrajet) {
 	strcpy(villeDepart, unTrajet.villeDepart);
 	strcpy(villeArrivee, unTrajet.villeArrivee);
-} // ------- Fin du Constructeur
+#ifdef MAP
+    cout << "Appel au constructeur de copie de <Trajet>" << endl;
+#endif
+} //----- Fin de Trajet (constructeur de copie)
 
 //----------------------------------------------------- Méthodes publiques
 void Trajet::GetTrajet( char* villeStart, char* villeFinish ) {
@@ -58,4 +67,7 @@ void Trajet::afficher(const int i) const {
 Trajet::~Trajet() {
 	delete[] villeDepart;
 	delete[] villeArrivee;
-} // ----- Fin du Destructeur
+#ifdef MAP
+    cout << "Appel au destructeur de <Trajet>" << endl;
+#endif
+} //------ Fin de ~Trajet

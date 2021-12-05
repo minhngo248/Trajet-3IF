@@ -22,19 +22,28 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 TrajetSimple::TrajetSimple () {
 	moyTrans = new char[50];
-} // -------- Fin du Constructeur
+#ifdef MAP
+    cout << "Appel au constructeur de <TrajetSimple>" << endl;
+#endif
+} //------ Fin de TrajetSimple
 
 TrajetSimple::TrajetSimple(const char* villeDepart,const char* villeArrivee, const char* unMoyTrans)
 : Trajet(villeDepart, villeArrivee) {
 	moyTrans = new char[50];
 	strcpy (moyTrans, unMoyTrans);
-} // -------- Fin du Constructeur
+#ifdef MAP
+    cout << "Appel au constructeur de <TrajetSimple>" << endl;
+#endif
+} //------ Fin de TrajetSimple
 
 TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple ) {
 	strcpy(villeDepart, unTrajetSimple.villeDepart);
 	strcpy(villeArrivee, unTrajetSimple.villeArrivee);
 	strcpy(moyTrans, unTrajetSimple.moyTrans);
-} // -------- Fin du Constructeur
+#ifdef MAP
+    cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
+#endif
+} //------ Fin de TrajetSimple (constructeur de copie)
 
 //----------------------------------------------------- Méthodes publiques
 
@@ -61,4 +70,7 @@ void TrajetSimple::afficher(const int i) const {
 //-------------------------------------------- Constructeurs - destructeur
 TrajetSimple::~TrajetSimple() {
 	delete[] moyTrans;
-} // ------- Fin du Destructeur
+#ifdef MAP
+    cout << "Appel au destructeur de <TrajetSimple>" << endl;
+#endif
+} //------ Fin de ~TrajetSimple
