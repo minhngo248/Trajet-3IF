@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Catalogue  -  description
+                           Catalogue
                              -------------------
     début                : 23 novembre 2021
     copyright            : (C) 2021 par NGO Ngoc Minh, PHAM Quoc Viet
@@ -45,19 +45,19 @@ public:
 	// Mode d'emploi (destructeur) : desallocation des memoires de la  
     // listeTrajet et de la listeTrajetAvance
     //
-	
+    
+//------------------------------------------------------------------ PRIVE	
 private:
-//------------------------------------------------------------------ PRIVE
 //------------------------------------------------------- Méthodes privées
 void creer_liste_avancee(int&);
     // Mode d'emploi : creation d'une ListeTrajetAvance en reliant
 	// des trajets ayant la meme nom de tete que celui de queue de
 	// son noeud precedant
-//------------------------------------------------------- Paramètres
+
 	ListeTrajet* listeTrajet; 
-	//stokage tous les trajets du catalogue
+	//stokage de tous les trajets du catalogue
 	ListeTrajet* listeTrajetAvance; 
-	//stokage tous les trajets reliables du catalogue
+	//stokage de tous les trajets reliables du catalogue
 };
 
 #endif // ! defined (CATALOGUE_H)

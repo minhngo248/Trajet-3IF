@@ -100,8 +100,9 @@ void Catalogue::Recherche_avancee(const char* uneVilleDepart, const char* uneVil
 		uneVA = new char [50];
 		listeTrajetAvance[i].GetVille(uneVD, uneVA);
 		if (strcmp(uneVD, uneVilleDepart) == 0 && strcmp(uneVA, uneVilleArrivee)==0) {
+			cout << endl ;
 			listeTrajetAvance[i].Afficher();
-			cout << endl;
+			cout << endl ;
 		}
 	}
 } //----- Fin de Méthode

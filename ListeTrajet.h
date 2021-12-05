@@ -50,6 +50,8 @@ public:
 	~ListeTrajet();
 	// Mode d'emploi (destructeur) : liberer l'espace de "head"
 	// 
+	
+//------------------------------------------------------------------ PRIVE
 private:
 	NodeTrajet* head;	  
 };

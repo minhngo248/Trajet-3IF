@@ -41,6 +41,8 @@ public:
 	~NodeTrajet();
 	// Mode d'emploi (destructeur) : liberer les espaces dans la memoire pour
 	// trajet et next
+	
+//------------------------------------------------------------------ PRIVE	
 private:
 	NodeTrajet* next;
 	Trajet* trajet;

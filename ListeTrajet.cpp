@@ -107,9 +107,9 @@ void ListeTrajet::Afficher() const{
 
 NodeTrajet* ListeTrajet:: GetHead() const{
 	return this->head;
-}
+} // ------- Fin de Methode
 
 void ListeTrajet::SetHead(NodeTrajet* n) {
 	this->head = n;
-}
+} // ------- Fin de Methode
 
