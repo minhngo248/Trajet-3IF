@@ -28,18 +28,14 @@ public:
 	// la Ville Arrivee et le Moyen de Transport
 	//
 //-------------------------------------------- Constructeurs - destructeur	
-	Trajet();
-	// Mode d'emploi (constructeur) : initialiser et allouer des espaces de memoire pour 
-	// les caracteristiques d'un trajet : villeDepart et villeArrivee
-	// 
+	Trajet ( const char* uneVilleDepart = "\0" , const char* uneVilleArrivee = "\0");
+	// Mode d'emploi (constructeur) : Créer un trajet à partir d'une ville de départ et
+	// une ville d'arrivée
+	//     
     Trajet (const Trajet&);
     // Mode d'emploi (constructeur de copie) : Créer une copie d'un Trajet
     //
     //
-    Trajet ( const char* , const char* );
-	// Mode d'emploi (constructeur) : Créer un trajet à partir d'une ville de départ et
-	// une ville d'arrivée
-	//     
 	virtual ~Trajet();
 	// Mode d'emploi (destructeur) : liberer les memoires de la VilleDepart et villeArrivee
 	//

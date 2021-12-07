@@ -17,7 +17,7 @@ using namespace std;
 #include "TrajetCompose.h"
 
 int main() {
-	char c, c_n;
+	char c, c_n, k_n;
 	int n, i, k;
 	char uneVilleDepart[50], uneVilleArrivee[50], unMoyTrans[50];
 	char uneVD[50], uneVA[50];
@@ -52,10 +52,11 @@ int main() {
 				break;
 			
 			case 2: 
-				cout << endl << "-------AJOUTER UN TRAJET COMPOSE-----\r\n" << endl;
+				cout << endl << "-------AJOUTER UN TRAJET COMPOSE-----\r\n";
 				unTC = new TrajetCompose();
 				i = 1;
 				do {
+					cout << endl;
 					cout << "Entrez un trajet simple #" << i << endl;
 					cout << "Entrez une ville du depart : ";
 					scanf(" %s", uneVD);
@@ -63,16 +64,20 @@ int main() {
 					scanf(" %s", uneVA);
 					cout << "Entrez un moyen de transport : ";
 					scanf(" %s", unMoyTrans);
+					cout << endl;
 						
 					t = new TrajetSimple(uneVD , uneVA , unMoyTrans);					
 					if(unTC->Ajouter(t) ==false) {
 						cout << "Erreur en ajoutant le trajet!" << endl;
+						cout << endl;
 					}else{
 						i++;
 					}
 					
 					cout << "Continue ? (1 pour oui et 0 pour non)";
-					cin >> k;
+					cin >> k_n;
+					k = k_n -'0';
+					
 				}while(k == 1);
 				C->Ajouter_trajet(unTC);
 				break;		
@@ -97,13 +102,11 @@ int main() {
 				C->Afficher();
 				break;			
 			}
-		cout << endl << "Tapez Y ou y pour continuer : " << endl;
+		cout << endl << "Tapez Y ou y pour continuer : ";
 		cin >> c;				
+		cout << endl;
 	}while(c == 'Y' || c == 'y');
 	
-//	delete t;
-//	delete unTC;
-	delete C;
-	
+	delete C;	
 	return 0;
 }

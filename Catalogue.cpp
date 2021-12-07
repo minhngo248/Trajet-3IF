@@ -92,6 +92,7 @@ void Catalogue::Recherche_avancee(const char* uneVilleDepart, const char* uneVil
 // Algorithme : Parcourir toute la listeTrajetAvance pour afficher les trajets possibles
 //
 	int num;
+	bool b = true;
 	char* uneVD;
 	char* uneVA;
 	creer_liste_avancee(num);
@@ -100,10 +101,15 @@ void Catalogue::Recherche_avancee(const char* uneVilleDepart, const char* uneVil
 		uneVA = new char [50];
 		listeTrajetAvance[i].GetVille(uneVD, uneVA);
 		if (strcmp(uneVD, uneVilleDepart) == 0 && strcmp(uneVA, uneVilleArrivee)==0) {
+			b = false;
 			cout << endl ;
 			listeTrajetAvance[i].Afficher();
 			cout << endl ;
 		}
+	}
+	if (b) {
+		cout << endl;
+		cout << "Il n'y a aucuns trajets possibles" << endl;
 	}
 } //----- Fin de Méthode
 
@@ -111,6 +117,7 @@ void Catalogue::Rechercher(const char* uneVilleDepart, const char* uneVilleArriv
 // Algorithme : parcourir tous les elements dans la listeTrajet
 //
 	NodeTrajet* p = listeTrajet->GetHead();
+	bool b =true;
 	char* villeStart;
 	char* villeFinish;
 	while (p != NULL) {
@@ -119,8 +126,13 @@ void Catalogue::Rechercher(const char* uneVilleDepart, const char* uneVilleArriv
 		p->GetTrajet()->GetTrajet(villeStart , villeFinish);
 		if (strcmp(villeStart , uneVilleDepart) == 0 && strcmp(villeFinish,uneVilleArrivee) == 0) {
 			p->GetTrajet()->Afficher(1);	
+			b = false;
 		}
 		p = p->GetNext();
+	}
+	if (b) {
+		cout << endl;
+		cout << "Il n'y a aucuns trajets possibles" << endl;
 	}
 	delete[] villeStart;
 	delete[] villeFinish;

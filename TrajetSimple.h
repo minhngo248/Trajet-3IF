@@ -31,16 +31,12 @@ public:
 	// une Ville Depart, une Ville Arrivee et un Moyen de Transport 
 	//	
 //-------------------------------------------- Constructeurs - destructeur	
-	TrajetSimple (const TrajetSimple&);
-	// Mode d'emploi (constructeur de copie): Créer une copie d'un trajet simple
-	//
-    TrajetSimple();
-    // Mode d'emploi (constructeur) : initialiser et allouer des memoires pour
-    // le moyen de Transport
-    //
-	TrajetSimple (const char* ,const char* ,const char*);
+	TrajetSimple (const char* villeDepart = "\0",const char* villeArrivee = "\0", const char* unMoyTran = "\0");
 	// Mode d'emploi (constructeur) : affectation des caracteristiques d'un 
 	// trajet simple
+	//
+	TrajetSimple (const TrajetSimple&);
+	// Mode d'emploi (constructeur de copie): Créer une copie d'un trajet simple
 	//
     ~TrajetSimple();
     // Mode d'emploi (destructeur) : liberer les memoires du Moyen de Transport

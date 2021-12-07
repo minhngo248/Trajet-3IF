@@ -20,13 +20,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //-------------------------------------------- Constructeurs - destructeur
-Trajet::Trajet() {
-	villeDepart = new char[50];
-	villeArrivee = new char[50];
-#ifdef MAP
-    cout << "Appel au constructeur de <Trajet>" << endl;
-#endif
-} //------ Fin de Trajet
 
 Trajet::Trajet (const char* uneVilleDepart, const char* uneVilleArrivee) {
 	villeDepart = new char[50];

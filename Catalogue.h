@@ -49,7 +49,7 @@ public:
 //------------------------------------------------------------------ PRIVE	
 private:
 //------------------------------------------------------- Méthodes privées
-void creer_liste_avancee(int&);
+void creer_liste_avancee(int &);
     // Mode d'emploi : creation d'une ListeTrajetAvance en reliant
 	// des trajets ayant la meme nom de tete que celui de queue de
 	// son noeud precedant

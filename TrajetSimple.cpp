@@ -20,12 +20,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //-------------------------------------------- Constructeurs - destructeur
-TrajetSimple::TrajetSimple () {
-	moyTrans = new char[50];
-#ifdef MAP
-    cout << "Appel au constructeur de <TrajetSimple>" << endl;
-#endif
-} //------ Fin de TrajetSimple
 
 TrajetSimple::TrajetSimple(const char* villeDepart,const char* villeArrivee, const char* unMoyTrans)
 : Trajet(villeDepart, villeArrivee) {
