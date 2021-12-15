@@ -12,7 +12,6 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-#include <cstring>
 //------------------------------------------------------ Include personnel
 #include "TrajetCompose.h"
 
@@ -21,16 +20,14 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 TrajetCompose::TrajetCompose() {
 	listeSimple = new ListeTrajet();
-	cout << "Constructeur TrajetCompose" << endl;
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
 } //------ Fin de TrajetCompose
 
 TrajetCompose::TrajetCompose(const TrajetCompose & unTC) {
-	listeSimple = new ListeTrajet();
-	strcpy(villeDepart, unTC.villeDepart);
-	strcpy(villeArrivee, unTC.villeArrivee);
+	villeDepart = unTC.villeDepart;
+	villeArrivee = unTC.villeArrivee;
 	this->listeSimple->SetHead(unTC.listeSimple->GetHead());
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetCompose>" << endl;
@@ -39,7 +36,6 @@ TrajetCompose::TrajetCompose(const TrajetCompose & unTC) {
 
 TrajetCompose::~TrajetCompose() {
 	delete listeSimple;	
-	cout << "Destructeur TrajetCompose" << endl;
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif	
@@ -52,13 +48,13 @@ bool TrajetCompose::Ajouter(TrajetSimple* unTS) {
 	if (listeSimple->GetHead()->GetTrajet()->GetVille(1)[0] == '\0') {
 		strcpy(villeDepart, unTS->GetVille(1));
 		listeSimple->Ajouter_en_queue(unTS);
-		strcpy(villeArrivee, unTS->GetVille(2));
+		villeArrivee = unTS->GetVille(2);
 		b = true;
 	}else{
 		NodeTrajet* p = listeSimple->GetLastNode();
 		if (strcmp(p->GetTrajet()->GetVille(2), unTS->GetVille(1)) ==0) {
 			listeSimple->Ajouter_en_queue(unTS);
-			strcpy(villeArrivee, unTS->GetVille(2));
+			villeArrivee = unTS->GetVille(2);
 			b = true;
 		}
 	}
@@ -66,14 +62,14 @@ bool TrajetCompose::Ajouter(TrajetSimple* unTS) {
 } // -------- Fin de Methode
 
 
-void TrajetCompose::GetTrajet( char* villeStart , char* villeFinish ) const{
+void TrajetCompose::GetTrajet( string villeStart , string villeFinish ) const{
 	NodeTrajet* p = listeSimple->GetHead();
 	if (listeSimple->GetHead()->GetTrajet()->GetVille(1)[0] != '\0') {
-		strcpy(villeStart, p->GetTrajet()->GetVille(1));
+		villeStart = p->GetTrajet()->GetVille(1);
 		while(p->GetNext() != nullptr) {
 			p = p->GetNext();
 		}
-		strcpy(villeFinish , p->GetTrajet()->GetVille(2));
+		villeFinish = p->GetTrajet()->GetVille(2);
 	}	
 } // -------- Fin de Methode
 

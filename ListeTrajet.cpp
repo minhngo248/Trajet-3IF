@@ -8,9 +8,7 @@
 //---------- Réalisation de la classe <ListeTrajet> (fichier ListeTrajet.cpp) -------
 
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
-#include <cstring>
 using namespace std;
 #include <iostream>
 //------------------------------------------------------ Include personnel
@@ -20,7 +18,6 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 ListeTrajet::ListeTrajet() {
 	head = new NodeTrajet();
-	cout << "Constructeur ListeTrajet" << endl;
 #ifdef MAP
     cout << "Appel au constructeur de <ListeTrajet>" << endl;
 #endif	
@@ -36,7 +33,6 @@ ListeTrajet::ListeTrajet(const ListeTrajet& unLT) {
 
 ListeTrajet::~ListeTrajet() {
 	delete head;
-	cout << "Destructeur ListeTrajet" << endl;
 #ifdef MAP
     cout << "Appel au destructeur de <ListeTrajet>" << endl;
 #endif
@@ -69,16 +65,16 @@ void ListeTrajet::Ajouter_en_queue(Trajet* unTrajet) {
 	}	
 } //-------- Fin de Methode
 
-void ListeTrajet::GetVille(char* villeStart, char* villeFinish) const{
-	char* uneVilleStart = new char [50];
-	char* uneVilleFinish = new char [50];
+void ListeTrajet::GetVille(string villeStart, string villeFinish) const{
+	string uneVilleStart;
+	string uneVilleFinish;
 	head->GetTrajet()->GetTrajet(uneVilleStart, uneVilleFinish);
-	strcpy(villeStart, uneVilleStart);
+	villeStart = uneVilleStart;
 	NodeTrajet* p = head;
 	while(p->GetNext() != nullptr)
 		p = p->GetNext();
 	p->GetTrajet()->GetTrajet(uneVilleStart, uneVilleFinish);
-	strcpy(villeFinish, uneVilleFinish);
+	villeFinish = uneVilleFinish;
 } //-------- Fin de Methode
 
 int ListeTrajet::Size() {

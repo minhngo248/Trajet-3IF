@@ -22,7 +22,6 @@ using namespace std;
 NodeTrajet::NodeTrajet() {
 	next = nullptr;
 	trajet = new Trajet();
-	cout << "Constructeur NodeTrajet" << endl;
 #ifdef MAP
     cout << "Appel au constructeur de <NodeTrajet>" << endl;
 #endif
@@ -39,10 +38,9 @@ NodeTrajet::NodeTrajet(const NodeTrajet& unNT) {
 
 NodeTrajet::~NodeTrajet() {
 	delete trajet;
-	if(next != nullptr) {
+	if(this->next != nullptr) {
 		delete next;
 	}
-	cout << "Destructeur NodeTrajet" << endl;
 #ifdef MAP
     cout << "Appel au destructeur de <NodeTrajet>" << endl;
 #endif

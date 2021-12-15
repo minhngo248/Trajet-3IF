@@ -9,11 +9,14 @@
 //---------- Interface de la <ListeTrajet> (fichier ListeTrajet.h) ------
 #if ! defined ( LISTE_TRAJET_H )
 #define LISTE_TRAJET_H
-#include "NodeTrajet.h"
 // Rôle de la classe <ListeTrajet> : definition de la structure de donnees
 // (liste chainee) type Trajet
 //
 //------------------------------------------------------------------------
+
+#include "NodeTrajet.h"
+#include <string>
+
 class ListeTrajet {
 //----------------------------------------------------------------- PUBLIC
 	
@@ -31,7 +34,7 @@ public:
     void SetHead(NodeTrajet*);
     // Mode d'emploi : mettre la valeur du premier élément à la valeur du paramètre passé 
     //
-	void GetVille(char*, char*) const;
+	void GetVille(string, string) const;
 	// Mode d'emploi : prendre la Ville Debut et la Ville en fin de la liste
     //
 	void Ajouter_en_queue(Trajet*); 

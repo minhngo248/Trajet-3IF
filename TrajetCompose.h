@@ -11,6 +11,7 @@
 #define TRAJET_COMPOSE_H
 #include "TrajetSimple.h"
 #include "ListeTrajet.h"
+#include <string>
 
 // Rôle de la classe <TrajetCompose> : definition d'un trajet compose
 // Heritage de l'objet Trajet
@@ -27,7 +28,7 @@ public:
 	void Afficher(const int) const;
 	// Mode d'emploi : afficher tous les Trajets Simples dans la liste
 	//	
-	void GetTrajet( char* , char* ) const;
+	void GetTrajet(string , string) const;
 	// Mode d'emploi : prendre la Ville Debut et la Ville en fin de la
 	//	liste
 	//
