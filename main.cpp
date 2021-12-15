@@ -8,7 +8,7 @@
 
 //-------------------------------------------------------- Include système
 #include <bits/stdc++.h>
-#include <cstdio> 
+#include <string> 
 using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
@@ -19,8 +19,8 @@ using namespace std;
 int main() {
 	char c, c_n;
 	int n, i, k;
-	char uneVilleDepart[50], uneVilleArrivee[50], unMoyTrans[50];
-	char uneVD[50], uneVA[50];
+	string uneVilleDepart, uneVilleArrivee, unMoyTrans;
+	string uneVD, uneVA;
 	Catalogue* C = new Catalogue();
 	TrajetCompose* unTC = new TrajetCompose();
 	TrajetSimple* t = new TrajetSimple();
@@ -42,11 +42,11 @@ int main() {
 			case 1:	
 				cout << endl << "-------AJOUTER UN TRAJET SIMPLE-----\r\n" << endl;
 				cout << "Entrez une ville du depart : ";
-				scanf(" %s", uneVilleDepart);
+				getline(cin, uneVilleDepart, '\n');
 				cout << "Entrez une ville d'arrivee : ";
-				scanf(" %s", uneVilleArrivee);
+				getline(cin, uneVilleArrivee, '\n');
 				cout << "Entrez un moyen de transport : ";
-				scanf(" %s", unMoyTrans);
+				getline(cin, unMoyTrans, '\n');
 				t = new TrajetSimple(uneVilleDepart , uneVilleArrivee , unMoyTrans);					
 				C->Ajouter_trajet(t);
 				break;
@@ -57,11 +57,11 @@ int main() {
 				do {
 					cout << "Entrez un trajet simple #" << i << endl;
 					cout << "Entrez une ville du depart : ";
-					scanf(" %s", uneVD);
+					getline(cin, uneVD, '\n');
 					cout << "Entrez une ville d'arrivee : ";
-					scanf(" %s", uneVA);
+					getline(cin, uneVA, '\n');
 					cout << "Entrez un moyen de transport : ";
-					scanf(" %s", unMoyTrans);
+					getline(cin, unMoyTrans, '\n');
 						
 					t = new TrajetSimple(uneVD , uneVA , unMoyTrans);					
 					if(unTC->Ajouter(t) ==false) {
@@ -78,17 +78,17 @@ int main() {
 			case 3:
 				cout << endl << "--------RECHERCHER DES TRAJETS-----\r\n" << endl;
 				cout << "Entrez une ville du depart : ";
-				scanf(" %s", uneVilleDepart);
+				getline(cin, uneVilleDepart, '\n');
 				cout << "Entrez une ville d'arrivee : ";
-				scanf(" %s", uneVilleArrivee);
+				getline(cin, uneVilleArrivee, '\n');
 				C->Rechercher(uneVilleDepart , uneVilleArrivee);
 				break;
 			case 4:
 				cout << endl << "--------RECHERCHE AVANCEE DES TRAJETS-----\r\n" << endl;
 				cout << "Entrez une ville du depart : ";
-				scanf(" %s", uneVilleDepart);
+				getline(cin, uneVilleDepart, '\n');
 				cout << "Entrez une ville d'arrivee : ";
-				scanf(" %s", uneVilleArrivee);
+				getline(cin, uneVilleArrivee, '\n');
 				C->Recherche_avancee(uneVilleDepart , uneVilleArrivee);
 				break;
 			default:	
@@ -101,9 +101,9 @@ int main() {
 	}while(c == 'Y' || c == 'y');
 	
 
-	delete t;
-	delete unTC;
-//	delete C;
+//	delete t;
+//	delete unTC;
+	delete C;
 	
 	
 	return 0;
