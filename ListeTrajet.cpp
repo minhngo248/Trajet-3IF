@@ -65,7 +65,7 @@ void ListeTrajet::Ajouter_en_queue(Trajet* unTrajet) {
 	}	
 } //-------- Fin de Methode
 
-void ListeTrajet::GetVille(string villeStart, string villeFinish) const{
+void ListeTrajet::GetVille(string& villeStart, string& villeFinish) const{
 	string uneVilleStart;
 	string uneVilleFinish;
 	head->GetTrajet()->GetTrajet(uneVilleStart, uneVilleFinish);

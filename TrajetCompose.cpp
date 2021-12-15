@@ -46,13 +46,13 @@ TrajetCompose::~TrajetCompose() {
 bool TrajetCompose::Ajouter(TrajetSimple* unTS) {
 	bool b =false;
 	if (listeSimple->GetHead()->GetTrajet()->GetVille(1)[0] == '\0') {
-		strcpy(villeDepart, unTS->GetVille(1));
+		villeDepart = unTS->GetVille(1);
 		listeSimple->Ajouter_en_queue(unTS);
 		villeArrivee = unTS->GetVille(2);
 		b = true;
 	}else{
 		NodeTrajet* p = listeSimple->GetLastNode();
-		if (strcmp(p->GetTrajet()->GetVille(2), unTS->GetVille(1)) ==0) {
+		if (p->GetTrajet()->GetVille(2).compare(unTS->GetVille(1)) ==0) {
 			listeSimple->Ajouter_en_queue(unTS);
 			villeArrivee = unTS->GetVille(2);
 			b = true;
@@ -62,7 +62,7 @@ bool TrajetCompose::Ajouter(TrajetSimple* unTS) {
 } // -------- Fin de Methode
 
 
-void TrajetCompose::GetTrajet( string villeStart , string villeFinish ) const{
+void TrajetCompose::GetTrajet( string& villeStart , string& villeFinish ) const{
 	NodeTrajet* p = listeSimple->GetHead();
 	if (listeSimple->GetHead()->GetTrajet()->GetVille(1)[0] != '\0') {
 		villeStart = p->GetTrajet()->GetVille(1);

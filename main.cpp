@@ -36,17 +36,18 @@ int main() {
 		do {
 			cout << "Veuillez choisir une demande entre 1,2,3,4,5 " << endl;
 			cin >> c_n;
+			cin.get();
 			n = c_n -'0';
 		}while (n<1 || n>5);
 		switch(n) {
 			case 1:	
 				cout << endl << "-------AJOUTER UN TRAJET SIMPLE-----\r\n" << endl;
 				cout << "Entrez une ville du depart : ";
-				getline(cin, uneVilleDepart, '\n');
+				getline(cin, uneVilleDepart);
 				cout << "Entrez une ville d'arrivee : ";
-				getline(cin, uneVilleArrivee, '\n');
+				getline(cin, uneVilleArrivee);
 				cout << "Entrez un moyen de transport : ";
-				getline(cin, unMoyTrans, '\n');
+				getline(cin, unMoyTrans);
 				t = new TrajetSimple(uneVilleDepart , uneVilleArrivee , unMoyTrans);					
 				C->Ajouter_trajet(t);
 				break;

@@ -26,7 +26,7 @@ TrajetSimple::TrajetSimple () {
 #endif
 } //------ Fin de TrajetSimple
 
-TrajetSimple::TrajetSimple(const char* villeDepart,const char* villeArrivee, const char* unMoyTrans)
+TrajetSimple::TrajetSimple(const string villeDepart,const string villeArrivee, const string unMoyTrans)
 : Trajet(villeDepart, villeArrivee) {
 	moyTrans = unMoyTrans;
 #ifdef MAP
@@ -55,7 +55,7 @@ string TrajetSimple::GetVille(const int i) const{
 	return Trajet::GetVille(i);
 } // ------- Fin de Methode
 
-void TrajetSimple::GetTrajet( string villeStart, string villeFinish) const{
+void TrajetSimple::GetTrajet( string& villeStart, string& villeFinish) const{
 	Trajet::GetTrajet(villeStart , villeFinish);
 } // ------- Fin de Methode
 	

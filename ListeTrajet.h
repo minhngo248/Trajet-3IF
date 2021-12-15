@@ -34,7 +34,7 @@ public:
     void SetHead(NodeTrajet*);
     // Mode d'emploi : mettre la valeur du premier élément à la valeur du paramètre passé 
     //
-	void GetVille(string, string) const;
+	void GetVille(string& , string&) const;
 	// Mode d'emploi : prendre la Ville Debut et la Ville en fin de la liste
     //
 	void Ajouter_en_queue(Trajet*); 

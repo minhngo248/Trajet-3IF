@@ -51,7 +51,7 @@ Trajet::~Trajet() {
 } //------ Fin de ~Trajet
 
 //----------------------------------------------------- Méthodes publiques
-void Trajet::GetTrajet( string villeStart, string villeFinish ) const{
+void Trajet::GetTrajet( string& villeStart, string& villeFinish ) const{
 	villeStart = villeDepart;
 	villeFinish = villeArrivee;
 } // ------- Fin de Methode

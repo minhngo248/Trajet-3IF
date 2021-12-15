@@ -21,7 +21,7 @@ public:
 	virtual string GetVille(int) const;
 	// Mode d'emploi : 
     //	
-	virtual void GetTrajet( string , string ) const;
+	virtual void GetTrajet( string& , string& ) const;
 	// Mode d'emploi : prendre la Ville Depart et la Ville Arrivee d'un Trajet
     //	
     virtual void Afficher(const int) const;

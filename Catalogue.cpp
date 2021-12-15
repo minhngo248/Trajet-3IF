@@ -88,6 +88,7 @@ void Catalogue::Recherche_avancee(const string uneVilleDepart, const string uneV
 // Algorithme : Parcourir toute la listeTrajetAvance pour afficher les trajets possibles
 //
 	int num = 0;
+	string uneVD, uneVA;
 	creer_liste_avancee(num);
 	for (int i=0;i<num;i++) {
 		listeTrajetAvance[i].GetVille(uneVD, uneVA);
@@ -103,6 +104,7 @@ void Catalogue::Rechercher(const string uneVilleDepart, const string uneVilleArr
 // Algorithme : parcourir tous les elements dans la listeTrajet
 //
 	NodeTrajet* p = listeTrajet->GetHead();
+	string villeStart = "a", villeFinish = "a";
 	while (p != NULL) {
 		p->GetTrajet()->GetTrajet(villeStart , villeFinish);
 		if (villeStart.compare(uneVilleDepart) == 0 && villeFinish.compare(uneVilleArrivee) == 0) {
