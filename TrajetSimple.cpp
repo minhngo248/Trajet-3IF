@@ -12,7 +12,6 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-#include <cstring>
 
 //------------------------------------------------------ Include personnel
 #include "TrajetSimple.h"
@@ -21,7 +20,7 @@ using namespace std;
 
 //-------------------------------------------- Constructeurs - destructeur
 TrajetSimple::TrajetSimple () {
-	moyTrans = new char[50];
+	moyTrans.assign("\0");
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
@@ -29,24 +28,22 @@ TrajetSimple::TrajetSimple () {
 
 TrajetSimple::TrajetSimple(const char* villeDepart,const char* villeArrivee, const char* unMoyTrans)
 : Trajet(villeDepart, villeArrivee) {
-	moyTrans = new char[50];
-	strcpy (moyTrans, unMoyTrans);
+	moyTrans = unMoyTrans;
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
 } //------ Fin de TrajetSimple
 
 TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple ) {
-	strcpy(villeDepart, unTrajetSimple.villeDepart);
-	strcpy(villeArrivee, unTrajetSimple.villeArrivee);
-	strcpy(moyTrans, unTrajetSimple.moyTrans);
+	villeDepart = unTrajetSimple.villeDepart;
+	villeArrivee = unTrajetSimple.villeArrivee;
+	moyTrans = unTrajetSimple.moyTrans;
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
 #endif
 } //------ Fin de TrajetSimple (constructeur de copie)
 
 TrajetSimple::~TrajetSimple() {
-	delete[] moyTrans;
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif
@@ -54,11 +51,11 @@ TrajetSimple::~TrajetSimple() {
 
 //----------------------------------------------------- Méthodes publiques
 
-char* TrajetSimple::GetVille(const int i) const{
+string TrajetSimple::GetVille(const int i) const{
 	return Trajet::GetVille(i);
 } // ------- Fin de Methode
 
-void TrajetSimple::GetTrajet( char* villeStart, char* villeFinish) const{
+void TrajetSimple::GetTrajet( string villeStart, string villeFinish) const{
 	Trajet::GetTrajet(villeStart , villeFinish);
 } // ------- Fin de Methode
 	

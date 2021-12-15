@@ -20,6 +20,7 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 ListeTrajet::ListeTrajet() {
 	head = new NodeTrajet();
+	cout << "Constructeur ListeTrajet" << endl;
 #ifdef MAP
     cout << "Appel au constructeur de <ListeTrajet>" << endl;
 #endif	
@@ -35,6 +36,7 @@ ListeTrajet::ListeTrajet(const ListeTrajet& unLT) {
 
 ListeTrajet::~ListeTrajet() {
 	delete head;
+	cout << "Destructeur ListeTrajet" << endl;
 #ifdef MAP
     cout << "Appel au destructeur de <ListeTrajet>" << endl;
 #endif

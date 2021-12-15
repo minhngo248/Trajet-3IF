@@ -10,7 +10,7 @@
 #define CALALOGUE_H
 #include "ListeTrajet.h"
 #include "Trajet.h"
-#include <cstring>
+#include <string>
 // Rôle de la classe <Catalogue>
 // Gestion du Catalogue
 //------------------------------------------------------------------------ 
@@ -22,10 +22,10 @@ public:
 	void Ajouter_trajet(Trajet*);
     // Mode d'emploi : ajouter des trajets dans le catalogue
     //
-	void Rechercher( const char* , const char* ) const;
+	void Rechercher( const string , const string ) const;
     // Mode d'emploi : recherche simple des trajets possibles
     //	a partir de la Ville du Depart et de la Ville Arrivee  	
-	void Recherche_avancee(const char* , const char*) ;
+	void Recherche_avancee(const string , const string) ;
     // Mode d'emploi : parcourir tous les elements dans la
 	// listeTrajetAvance pour chercher des trajets appropries
 	// a partir d'une VilleDepart et d'une VilleArrivee 	
@@ -49,7 +49,7 @@ public:
 //------------------------------------------------------------------ PRIVE	
 private:
 //------------------------------------------------------- Méthodes privées
-void creer_liste_avancee(int&);
+	void creer_liste_avancee(int&);
     // Mode d'emploi : creation d'une ListeTrajetAvance en reliant
 	// des trajets ayant la meme nom de tete que celui de queue de
 	// son noeud precedant

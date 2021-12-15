@@ -22,7 +22,7 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue() {
 	listeTrajet = new ListeTrajet();
-	listeTrajetAvance = new ListeTrajet();
+	listeTrajetAvance = nullptr;
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
@@ -45,7 +45,7 @@ void Catalogue::creer_liste_avancee(int & num) {
 // Algorithme : parcourir tous les elements de la listeTrajet et relier tous les 
 // trajets possibles
 	long m = pow(2, listeTrajet->Size()) - 1;
-	listeTrajetAvance = new ListeTrajet [m];
+	ListeTrajet* listeTrajetAvance = new ListeTrajet [m];
 	int i, j; //compteur de LTA
 	NodeTrajet* p = listeTrajet->GetHead();
 	NodeTrajet* q;
@@ -53,7 +53,7 @@ void Catalogue::creer_liste_avancee(int & num) {
 		listeTrajetAvance[i].Ajouter_en_queue(p->GetTrajet());
 		p = p->GetNext();
 	}
-	char* villeTail1;	char* villeHead1;	char* villeTail2; char* villeHead2;
+	string villeTail1;	string villeHead1;	string villeTail2; string villeHead2;
 	int a = 0, b = listeTrajet->Size() - 1, k1;
 	int n = 2;
 	while (n <= listeTrajet->Size()) {
@@ -61,14 +61,10 @@ void Catalogue::creer_liste_avancee(int & num) {
 		k1 = i;
 		while (a <= j && j <= b) {
 			p = listeTrajet->GetHead();
-			while(p != nullptr) {
-				villeHead1 = new char [50];
-				villeTail1 = new char [50]; //tail de liste
-				villeHead2 = new char [50]; //head de trajet courant
-				villeTail2 = new char [50]; 
+			while(p != nullptr) { 
 				listeTrajetAvance[j].GetVille(villeHead1, villeTail1);
 				p->GetTrajet()->GetTrajet(villeHead2, villeTail2);
-				if (strcmp(villeTail1, villeHead2) == 0 && strcmp(villeHead1, villeTail2) != 0) { 
+				if (villeTail1.compare(villeHead2) == 0 && villeHead1.compare(villeTail2) != 0) { 
 					q = listeTrajetAvance[j].GetHead();
 					while (q != nullptr) {
 						listeTrajetAvance[i].Ajouter_en_queue(q->GetTrajet());
@@ -88,18 +84,14 @@ void Catalogue::creer_liste_avancee(int & num) {
 	num = i;
 } //----- Fin de Méthode
 
-void Catalogue::Recherche_avancee(const char* uneVilleDepart, const char* uneVilleArrivee) {
+void Catalogue::Recherche_avancee(const string uneVilleDepart, const string uneVilleArrivee) {
 // Algorithme : Parcourir toute la listeTrajetAvance pour afficher les trajets possibles
 //
-	int num;
-	char* uneVD;
-	char* uneVA;
+	int num = 0;
 	creer_liste_avancee(num);
 	for (int i=0;i<num;i++) {
-		uneVD = new char [50];
-		uneVA = new char [50];
 		listeTrajetAvance[i].GetVille(uneVD, uneVA);
-		if (strcmp(uneVD, uneVilleDepart) == 0 && strcmp(uneVA, uneVilleArrivee)==0) {
+		if (uneVD.compare(uneVilleDepart) == 0 && uneVA.compare(uneVilleArrivee) ==0) {
 			cout << endl ;
 			listeTrajetAvance[i].Afficher();
 			cout << endl ;
@@ -107,23 +99,17 @@ void Catalogue::Recherche_avancee(const char* uneVilleDepart, const char* uneVil
 	}
 } //----- Fin de Méthode
 
-void Catalogue::Rechercher(const char* uneVilleDepart, const char* uneVilleArrivee) const{
+void Catalogue::Rechercher(const string uneVilleDepart, const string uneVilleArrivee) const{
 // Algorithme : parcourir tous les elements dans la listeTrajet
 //
 	NodeTrajet* p = listeTrajet->GetHead();
-	char* villeStart;
-	char* villeFinish;
 	while (p != NULL) {
-		villeStart = new char [50];
-		villeFinish = new char [50];
 		p->GetTrajet()->GetTrajet(villeStart , villeFinish);
-		if (strcmp(villeStart , uneVilleDepart) == 0 && strcmp(villeFinish,uneVilleArrivee) == 0) {
+		if (villeStart.compare(uneVilleDepart) == 0 && villeFinish.compare(uneVilleArrivee) == 0) {
 			p->GetTrajet()->Afficher(1);	
 		}
 		p = p->GetNext();
 	}
-	delete[] villeStart;
-	delete[] villeFinish;
 } //----- Fin de Méthode
 
 void Catalogue::Afficher() const{

@@ -12,7 +12,6 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-#include <cstring>
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
@@ -21,46 +20,43 @@ using namespace std;
 
 //-------------------------------------------- Constructeurs - destructeur
 Trajet::Trajet() {
-	villeDepart = new char[50];
-	villeArrivee = new char[50];
+	villeDepart = "\0";
+	villeArrivee = "\0";
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 } //------ Fin de Trajet
 
-Trajet::Trajet (const char* uneVilleDepart, const char* uneVilleArrivee) {
-	villeDepart = new char[50];
-	villeArrivee = new char[50];
-	strcpy (villeDepart, uneVilleDepart);
-	strcpy (villeArrivee, uneVilleArrivee);
+Trajet::Trajet (const string uneVilleDepart, const string uneVilleArrivee) {
+	villeDepart = uneVilleDepart;
+	villeArrivee = uneVilleArrivee;
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 } //------ Fin de Trajet
 
 Trajet::Trajet (const Trajet & unTrajet) {
-	strcpy(villeDepart, unTrajet.villeDepart);
-	strcpy(villeArrivee, unTrajet.villeArrivee);
+	villeDepart = unTrajet.villeDepart;
+	villeArrivee = unTrajet.villeArrivee;
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Trajet>" << endl;
 #endif
 } //----- Fin de Trajet (constructeur de copie)
 
 Trajet::~Trajet() {
-	delete[] villeDepart;
-	delete[] villeArrivee;
+
 #ifdef MAP
     cout << "Appel au destructeur de <Trajet>" << endl;
 #endif
 } //------ Fin de ~Trajet
 
 //----------------------------------------------------- Méthodes publiques
-void Trajet::GetTrajet( char* villeStart, char* villeFinish ) const{
-	strcpy(villeStart , villeDepart);
-	strcpy(villeFinish, villeArrivee);
+void Trajet::GetTrajet( string villeStart, string villeFinish ) const{
+	villeStart = villeDepart;
+	villeFinish = villeArrivee;
 } // ------- Fin de Methode
 
-char* Trajet::GetVille(int i) const{
+string Trajet::GetVille(int i) const{
 	if (i == 1) {
 		return this->villeDepart;
 	}

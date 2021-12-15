@@ -1,19 +1,19 @@
 sejours: TrajetSimple.o TrajetCompose.o Trajet.o NodeTrajet.o ListeTrajet.o Catalogue.o main.o 
-	g++ -o sejours *.o -ansi -pedantic -std=c++11 -Wall -D MAP
+	g++ -o sejours *.o -ansi -pedantic -std=c++11 -Wall 
 main: main.cpp
-	g++ -c main.cpp -D MAP
+	g++ -c main.cpp 
 Trajet: Trajet.cpp
-	g++ -c Trajet.cpp -D MAP
+	g++ -c Trajet.cpp
 TrajetSimple: TrajetSimple.cpp
-	g++ -c TrajetSimple.cpp -D MAP
+	g++ -c TrajetSimple.cpp
 TrajetCompose: TrajetCompose.cpp
-	g++ -c TrajetCompose.cpp -D MAP
+	g++ -c TrajetCompose.cpp
 ListeTrajet: ListeTrajet.cpp
-	g++ -c ListeTrajet.cpp -D MAP
+	g++ -c ListeTrajet.cpp
 NodeTrajet: NodeTrajet.cpp
-	g++ -c NodeTrajet.cpp -D MAP
+	g++ -c NodeTrajet.cpp
 Catalogue: Catalogue.cpp
-	g++ -c Catalogue.cpp -D MAP
+	g++ -c Catalogue.cpp
 valgrind: ./sejours
 	valgrind ./sejours -g
 

@@ -21,12 +21,14 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 TrajetCompose::TrajetCompose() {
 	listeSimple = new ListeTrajet();
+	cout << "Constructeur TrajetCompose" << endl;
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
 } //------ Fin de TrajetCompose
 
 TrajetCompose::TrajetCompose(const TrajetCompose & unTC) {
+	listeSimple = new ListeTrajet();
 	strcpy(villeDepart, unTC.villeDepart);
 	strcpy(villeArrivee, unTC.villeArrivee);
 	this->listeSimple->SetHead(unTC.listeSimple->GetHead());
@@ -37,6 +39,7 @@ TrajetCompose::TrajetCompose(const TrajetCompose & unTC) {
 
 TrajetCompose::~TrajetCompose() {
 	delete listeSimple;	
+	cout << "Destructeur TrajetCompose" << endl;
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif	

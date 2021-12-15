@@ -10,7 +10,7 @@
 #if ! defined ( TRAJET_SIMPLE_H )
 #define TRAJET_SIMPLE_H
 #include "Trajet.h"
-
+#include <string>
 // Rôle de la classe <TrajetSimple> : definition d'un trajet simple
 // Heritage de l'objet Trajet
 //
@@ -20,10 +20,10 @@ class TrajetSimple : public Trajet {
 public:
 //----------------------------------------------------- Méthodes publiques
     
-	char* GetVille(const int) const;
+	string GetVille(const int) const;
 	// Mode d'emploi : Prendre soit la ville de départ ou la ville d'arrivée
 	//	
-    void GetTrajet( char* , char* ) const;
+    void GetTrajet( string , string ) const;
 	// Mode d'emploi : Prendre soit la ville de départ et la ville d'arrivée en même temps
 	//
     void Afficher(const int) const;
@@ -38,7 +38,7 @@ public:
     // Mode d'emploi (constructeur) : initialiser et allouer des memoires pour
     // le moyen de Transport
     //
-	TrajetSimple (const char* ,const char* ,const char*);
+	TrajetSimple (const string ,const string ,const string);
 	// Mode d'emploi (constructeur) : affectation des caracteristiques d'un 
 	// trajet simple
 	//
@@ -48,7 +48,7 @@ public:
 
 protected:
 //----------------------------------------------------- Attributs protégés
-	char* moyTrans;
+	string moyTrans;
 };
 
 #endif // ! defined (TRAJET_SIMPLE_H)

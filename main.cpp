@@ -22,7 +22,7 @@ int main() {
 	char uneVilleDepart[50], uneVilleArrivee[50], unMoyTrans[50];
 	char uneVD[50], uneVA[50];
 	Catalogue* C = new Catalogue();
-	TrajetCompose* unTC;
+	TrajetCompose* unTC = new TrajetCompose();
 	TrajetSimple* t = new TrajetSimple();
 	do {	
 		//Menu
@@ -50,7 +50,6 @@ int main() {
 				t = new TrajetSimple(uneVilleDepart , uneVilleArrivee , unMoyTrans);					
 				C->Ajouter_trajet(t);
 				break;
-			
 			case 2: 
 				cout << endl << "-------AJOUTER UN TRAJET COMPOSE-----\r\n" << endl;
 				unTC = new TrajetCompose();
@@ -101,9 +100,11 @@ int main() {
 		cin >> c;				
 	}while(c == 'Y' || c == 'y');
 	
-//	delete t;
-//	delete unTC;
-	delete C;
+
+	delete t;
+	delete unTC;
+//	delete C;
+	
 	
 	return 0;
 }

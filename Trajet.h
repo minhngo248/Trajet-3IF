@@ -12,15 +12,16 @@
 //
 //
 //------------------------------------------------------------------------
+#include <string>
 class Trajet {
 //----------------------------------------------------------------- PUBLIC
 public:
 //----------------------------------------------------- Méthodes publiques
   
-	virtual char* GetVille(int) const;
+	virtual string GetVille(int) const;
 	// Mode d'emploi : 
     //	
-	virtual void GetTrajet( char* , char* ) const;
+	virtual void GetTrajet( string , string ) const;
 	// Mode d'emploi : prendre la Ville Depart et la Ville Arrivee d'un Trajet
     //	
     virtual void Afficher(const int) const;
@@ -36,7 +37,7 @@ public:
     // Mode d'emploi (constructeur de copie) : Créer une copie d'un Trajet
     //
     //
-    Trajet ( const char* , const char* );
+    Trajet ( const string , const string );
 	// Mode d'emploi (constructeur) : Créer un trajet à partir d'une ville de départ et
 	// une ville d'arrivée
 	//     
@@ -45,7 +46,7 @@ public:
 	//
 protected:
 //----------------------------------------------------- Attributs protégés	
-	char* villeDepart;
-	char* villeArrivee;
+	string villeDepart;
+	string villeArrivee;
 };
 #endif // ! defined (TRAJET_H)
