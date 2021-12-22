@@ -13,6 +13,8 @@
 //
 //------------------------------------------------------------------------
 #include <string>
+#include <fstream>
+enum type{Simple , Compose};
 class Trajet {
 //----------------------------------------------------------------- PUBLIC
 public:
@@ -28,6 +30,11 @@ public:
 	// Mode d'emploi : afficher les caracteristique d'un Trajet : la Ville Depart, 
 	// la Ville Arrivee et le Moyen de Transport
 	//
+	virtual void FicWrite(ofstream & , const int);
+	//
+	//
+	//
+	type GetType() const;
 //-------------------------------------------- Constructeurs - destructeur	
 	Trajet();
 	// Mode d'emploi (constructeur) : initialiser et allouer des espaces de memoire pour 
@@ -48,5 +55,6 @@ protected:
 //----------------------------------------------------- Attributs protégés	
 	string villeDepart;
 	string villeArrivee;
+	type typeTrajet;
 };
 #endif // ! defined (TRAJET_H)

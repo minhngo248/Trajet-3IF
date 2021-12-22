@@ -10,7 +10,11 @@
 #define CALALOGUE_H
 #include "ListeTrajet.h"
 #include "Trajet.h"
+#include "TrajetSimple.h"
+#include "TrajetCompose.h"
+#include <iostream>
 #include <string>
+#include <fstream>
 // Rôle de la classe <Catalogue>
 // Gestion du Catalogue
 //------------------------------------------------------------------------ 
@@ -31,7 +35,11 @@ public:
 	// a partir d'une VilleDepart et d'une VilleArrivee 	
 	void Afficher() const;
 	// Mode d'emploi : afficher tous les trajets dans le catalogue
-	
+	//
+	void Ecriture_fichier() const;
+	//
+	//
+	void Lecture_fichier();
 //-------------------------------------------- Constructeurs - destructeur 
 	Catalogue();
 	// Mode d'emploi (constructeur) : allocation des memoires pour la 

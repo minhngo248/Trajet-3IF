@@ -20,24 +20,26 @@ using namespace std;
 
 //-------------------------------------------- Constructeurs - destructeur
 TrajetSimple::TrajetSimple () {
-	moyTrans.assign("\0");
+	this->moyTrans = "\0";
+	this->typeTrajet = Simple;
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
 } //------ Fin de TrajetSimple
 
-TrajetSimple::TrajetSimple(const string villeDepart,const string villeArrivee, const string unMoyTrans)
-: Trajet(villeDepart, villeArrivee) {
-	moyTrans = unMoyTrans;
+TrajetSimple::TrajetSimple(const string uneVilleDepart,const string uneVilleArrivee, const string unMoyTrans)
+: Trajet(uneVilleDepart, uneVilleArrivee) {
+	this->moyTrans = unMoyTrans;
+	this->typeTrajet = Simple;
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
 } //------ Fin de TrajetSimple
 
-TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple ) {
-	villeDepart = unTrajetSimple.villeDepart;
-	villeArrivee = unTrajetSimple.villeArrivee;
-	moyTrans = unTrajetSimple.moyTrans;
+TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple ):Trajet(unTrajetSimple) 
+{
+	this->moyTrans = unTrajetSimple.moyTrans;
+	this->typeTrajet = Simple;
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
 #endif
@@ -68,6 +70,18 @@ void TrajetSimple::Afficher(const int i) const {
 	}else{
 		Trajet::Afficher(i);
 		cout << " en " << moyTrans;
+	}
+} // ------- Fin de Methode
+
+void TrajetSimple::FicWrite(ofstream & fic , const int i) {
+	if (i == 1) {
+		fic << "TS:"; 
+		Trajet::FicWrite(fic,i);
+		fic << "," << moyTrans;
+		fic << endl;
+	}else{
+		Trajet::FicWrite(fic,i);
+		fic << "," << moyTrans;
 	}
 } // ------- Fin de Methode
 

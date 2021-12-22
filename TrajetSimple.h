@@ -11,6 +11,7 @@
 #define TRAJET_SIMPLE_H
 #include "Trajet.h"
 #include <string>
+#include <fstream>
 // Rôle de la classe <TrajetSimple> : definition d'un trajet simple
 // Heritage de l'objet Trajet
 //
@@ -30,6 +31,10 @@ public:
 	// Mode d'emploi :  afficher les caracteristique d'un Trajet simple :
 	// une Ville Depart, une Ville Arrivee et un Moyen de Transport 
 	//	
+	void FicWrite(ofstream & , const int);
+	//
+	//
+	//
 //-------------------------------------------- Constructeurs - destructeur	
 	TrajetSimple (const TrajetSimple&);
 	// Mode d'emploi (constructeur de copie): Créer une copie d'un trajet simple

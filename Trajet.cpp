@@ -20,24 +20,22 @@ using namespace std;
 
 //-------------------------------------------- Constructeurs - destructeur
 Trajet::Trajet() {
-	villeDepart = "\0";
-	villeArrivee = "\0";
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 } //------ Fin de Trajet
 
 Trajet::Trajet (const string uneVilleDepart, const string uneVilleArrivee) {
-	villeDepart = uneVilleDepart;
-	villeArrivee = uneVilleArrivee;
+	this->villeDepart = uneVilleDepart;
+	this->villeArrivee = uneVilleArrivee;
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 } //------ Fin de Trajet
 
 Trajet::Trajet (const Trajet & unTrajet) {
-	villeDepart = unTrajet.villeDepart;
-	villeArrivee = unTrajet.villeArrivee;
+	this->villeDepart = unTrajet.villeDepart;
+	this->villeArrivee = unTrajet.villeArrivee;
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Trajet>" << endl;
 #endif
@@ -52,8 +50,8 @@ Trajet::~Trajet() {
 
 //----------------------------------------------------- Méthodes publiques
 void Trajet::GetTrajet( string& villeStart, string& villeFinish ) const{
-	villeStart = villeDepart;
-	villeFinish = villeArrivee;
+	villeStart = this->villeDepart;
+	villeFinish = this->villeArrivee;
 } // ------- Fin de Methode
 
 string Trajet::GetVille(int i) const{
@@ -65,5 +63,13 @@ string Trajet::GetVille(int i) const{
 	
 void Trajet::Afficher(const int i) const {
 	cout << "de " << villeDepart << " a " << villeArrivee;  
+} // ------- Fin de Methode
+
+void Trajet::FicWrite(ofstream & fic , const int i) {
+	fic << villeDepart << "," << villeArrivee;
+} // ------- Fin de Methode
+
+type Trajet::GetType() const {
+	return this->typeTrajet;
 } // ------- Fin de Methode
 

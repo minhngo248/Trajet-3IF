@@ -20,8 +20,7 @@ int main() {
 	char c, c_n;
 	int n, i, k;
 	string uneVilleDepart, uneVilleArrivee, unMoyTrans;
-	string uneVD, uneVA;
-	Catalogue* C = new Catalogue();
+	Catalogue C;
 	TrajetCompose* unTC = new TrajetCompose();
 	TrajetSimple* t = new TrajetSimple();
 	do {	
@@ -32,13 +31,13 @@ int main() {
 		cout << "3. Rechercher des trajets directs. \r\n" << endl;
 		cout << "4. Rechercher tous les trajets possibles. \r\n" << endl;
 		cout << "5. Afficher tous les trajets dans le catalogue. \r\n" << endl;
-			
+		cout << "6. Lecture dans un fichier. \r\n" << endl;
 		do {
-			cout << "Veuillez choisir une demande entre 1,2,3,4,5 " << endl;
+			cout << "Veuillez choisir une demande entre 1,2,3,4,5,6 " << endl;
 			cin >> c_n;
 			cin.get();
 			n = c_n -'0';
-		}while (n<1 || n>5);
+		}while (n<1 || n>6);
 		switch(n) {
 			case 1:	
 				cout << endl << "-------AJOUTER UN TRAJET SIMPLE-----\r\n" << endl;
@@ -49,32 +48,32 @@ int main() {
 				cout << "Entrez un moyen de transport : ";
 				getline(cin, unMoyTrans);
 				t = new TrajetSimple(uneVilleDepart , uneVilleArrivee , unMoyTrans);					
-				C->Ajouter_trajet(t);
+				C.Ajouter_trajet(t);
 				break;
 			case 2: 
 				cout << endl << "-------AJOUTER UN TRAJET COMPOSE-----\r\n" << endl;
-				unTC = new TrajetCompose();
 				i = 1;
+				unTC = new TrajetCompose();
 				do {
 					cout << "Entrez un trajet simple #" << i << endl;
 					cout << "Entrez une ville du depart : ";
-					getline(cin, uneVD, '\n');
+					getline(cin, uneVilleDepart, '\n');
 					cout << "Entrez une ville d'arrivee : ";
-					getline(cin, uneVA, '\n');
+					getline(cin, uneVilleArrivee, '\n');
 					cout << "Entrez un moyen de transport : ";
 					getline(cin, unMoyTrans, '\n');
 						
-					t = new TrajetSimple(uneVD , uneVA , unMoyTrans);					
-					if(unTC->Ajouter(t) ==false) {
+					t = new TrajetSimple(uneVilleDepart , uneVilleArrivee , unMoyTrans);					
+					if(unTC->Ajouter(t) == false) {
 						cout << "Erreur en ajoutant le trajet!" << endl;
 					}else{
 						i++;
 					}
-					
 					cout << "Continue ? (1 pour oui et 0 pour non)";
 					cin >> k;
+					cin.get();
 				}while(k == 1);
-				C->Ajouter_trajet(unTC);
+				C.Ajouter_trajet(unTC);
 				break;		
 			case 3:
 				cout << endl << "--------RECHERCHER DES TRAJETS-----\r\n" << endl;
@@ -82,7 +81,7 @@ int main() {
 				getline(cin, uneVilleDepart, '\n');
 				cout << "Entrez une ville d'arrivee : ";
 				getline(cin, uneVilleArrivee, '\n');
-				C->Rechercher(uneVilleDepart , uneVilleArrivee);
+				C.Rechercher(uneVilleDepart , uneVilleArrivee);
 				break;
 			case 4:
 				cout << endl << "--------RECHERCHE AVANCEE DES TRAJETS-----\r\n" << endl;
@@ -90,22 +89,23 @@ int main() {
 				getline(cin, uneVilleDepart, '\n');
 				cout << "Entrez une ville d'arrivee : ";
 				getline(cin, uneVilleArrivee, '\n');
-				C->Recherche_avancee(uneVilleDepart , uneVilleArrivee);
+				C.Recherche_avancee(uneVilleDepart , uneVilleArrivee);
 				break;
-			default:	
+			case 5:	
 				cout << endl << "--------AFFICHER TOUS LES TRAJETS DANS LE CATALOGUE---------\r\n" << endl;
-				C->Afficher();
-				break;			
+				C.Afficher();
+				break;
+			default:
+				cout << endl << "--------LECTURE DANS UN FICHIER---------\r\n" << endl;
+				C.Lecture_fichier();
+				break;	
 			}
 		cout << endl << "Tapez Y ou y pour continuer : " << endl;
-		cin >> c;				
+		cin >> c;
+	//	if (c != 'Y' && c != 'y') C.Ecriture_fichier();				
 	}while(c == 'Y' || c == 'y');
 	
-
 //	delete t;
 //	delete unTC;
-	delete C;
-	
-	
 	return 0;
 }

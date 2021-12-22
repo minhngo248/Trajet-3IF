@@ -24,8 +24,8 @@ ListeTrajet::ListeTrajet() {
 } //-------- Fin de ListeTrajet
 
 ListeTrajet::ListeTrajet(const ListeTrajet& unLT) {
-	head = new NodeTrajet();
-	head = unLT.GetHead();
+	this->head = new NodeTrajet();
+	this->head = unLT.GetHead();
 #ifdef MAP
     cout << "Appel au constructeur de copie de <ListeTrajet>" << endl;
 #endif
@@ -50,7 +50,7 @@ NodeTrajet* ListeTrajet::GetLastNode() const{
 } //-------- Fin de Methode
 
 void ListeTrajet::Ajouter_en_queue(Trajet* unTrajet) {
-	if (head->GetTrajet()->GetVille(1)[0] == '\0') {
+	if (head->GetTrajet()->GetVille(1).compare("\0") == 0) {
 		head = new NodeTrajet();
 		head->SetTrajet(unTrajet);
 		head->SetNext(nullptr);
@@ -65,7 +65,7 @@ void ListeTrajet::Ajouter_en_queue(Trajet* unTrajet) {
 	}	
 } //-------- Fin de Methode
 
-void ListeTrajet::GetVille(string& villeStart, string& villeFinish) const{
+void ListeTrajet::GetVille(string& villeStart, string& villeFinish) {
 	string uneVilleStart;
 	string uneVilleFinish;
 	head->GetTrajet()->GetTrajet(uneVilleStart, uneVilleFinish);
@@ -80,7 +80,7 @@ void ListeTrajet::GetVille(string& villeStart, string& villeFinish) const{
 int ListeTrajet::Size() {
 	int size = 0;
 	NodeTrajet* p = head;
-	if (head->GetTrajet()->GetVille(1)[0] == '\0') return 0;
+	if (head->GetTrajet()->GetVille(1).compare("\0") == 0) return 0;
 	else {
 		while (p != nullptr) {
 			size++;
@@ -93,7 +93,7 @@ int ListeTrajet::Size() {
 void ListeTrajet::Afficher() const{
 	bool b = true;
 	NodeTrajet* p = head;
-	while (p != nullptr && p->GetTrajet()->GetVille(1)[0] != '\0') {
+	while (p != nullptr && p->GetTrajet()->GetVille(1).compare("\0") != 0) {
 		p->GetTrajet()->Afficher(1);
 		p = p->GetNext();
 		b = false;
