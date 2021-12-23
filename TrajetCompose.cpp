@@ -92,9 +92,7 @@ void TrajetCompose::FicWrite(ofstream & fic , const int i) {
 	NodeTrajet* p = listeSimple->GetHead();
 	while (p != nullptr) {
 		p->GetTrajet()->FicWrite(fic,0);
-		if (p->GetNext() != nullptr) {
-			fic << ";";
-		}
+		fic << ";";
 		p = p->GetNext();
 	} 
 	fic << endl;

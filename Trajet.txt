@@ -1,3 +1,4 @@
-TS:Paris,Lyon,Avion
-TS:Lille,Marseille,Train
-
+TS:Paris,Lyon,Train
+TC:Lyon,Grenoble,Auto;Grenoble,Marseille,Auto;
+TS:Marseille,Paris,Avion
+TC:Paris,Nantes,Train;Nantes,Bordeaux,Bus;

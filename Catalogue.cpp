@@ -142,6 +142,7 @@ void Catalogue::Ecriture_fichier() const {
 		case 2: 
 			cout << "1. Sauvegarde de tous les trajets simples" << endl;
 			cout << "2. Sauvegarde de tous les trajets composes" << endl;
+			cout << "Veuillez choisir un choix" << endl;
 			cin >> c;
 			if (c == 1) {
 				p = listeTrajet->GetHead();
@@ -169,13 +170,14 @@ void Catalogue::Ecriture_fichier() const {
 void Catalogue::Lecture_fichier() {
 	ifstream fic;
 	TrajetSimple* t;
-	char c;
+	TrajetCompose* unTC;
 	fic.open("Trajet.txt", ifstream::in);
 	if (!fic.is_open()) {
 		cout << "Pas de fichier." << endl;
 		return;
 	}
-	string typeTrajet , villeDepart , villeArrivee , moyTrans;
+	string typeTrajet , villeDepart , villeArrivee , moyTrans, unString, bigString;
+	size_t n,m,k,m1,k1;
 	while(!fic.eof()) {
 		getline(fic , typeTrajet , ':');
 		if (typeTrajet.compare("TS") == 0) {
@@ -184,18 +186,29 @@ void Catalogue::Lecture_fichier() {
 			getline(fic , moyTrans, '\n');
 			t = new TrajetSimple(villeDepart,villeArrivee,moyTrans);
 			Ajouter_trajet(t); 
-		}/*else if (typeTrajet.compare("TC") == 0) {
-			for(int i=0;i<2;++i) {
-				getline(fic , unString, ';');
-				fic.seekpos()
-				ss = stringstream(unString);
-				ss >> villeDepart;
-				ss >> villeArrivee;
-				ss >> moyTrans;
-				c = fic.get();
-				cout << villeDepart << villeArrivee << moyTrans << "\t" << c << endl;
-			}		
-		}*/
+		}else if (typeTrajet.compare("TC") == 0) {
+			getline(fic, bigString, '\n');
+			n = count(bigString.begin(),bigString.end(),';');
+			k = 0;
+			unTC = new TrajetCompose();
+			for(int i=0;i<n;++i) {
+				m = bigString.find_first_of(';', k);
+				unString = bigString.substr(k , m-k);
+				k = m+1;
+				
+				k1 = 0;
+				m1 = unString.find_first_of(',');
+				villeDepart = unString.substr(k1, m1);
+				k1 = m1 + 1;
+				m1 = unString.find_first_of(',' , k1);
+				villeArrivee = unString.substr(k1 , m1 - k1);
+				k1 = m1 + 1;
+				moyTrans = unString.substr(k1);					
+				t = new TrajetSimple(villeDepart,villeArrivee,moyTrans);
+				unTC->Ajouter(t);
+			}
+			Ajouter_trajet(unTC);
+		}
 	}
 	fic.close();
 } //----- Fin de Méthode

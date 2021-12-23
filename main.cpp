@@ -102,7 +102,7 @@ int main() {
 			}
 		cout << endl << "Tapez Y ou y pour continuer : " << endl;
 		cin >> c;
-	//	if (c != 'Y' && c != 'y') C.Ecriture_fichier();				
+		if (c != 'Y' && c != 'y') C.Ecriture_fichier();				
 	}while(c == 'Y' || c == 'y');
 	
 //	delete t;

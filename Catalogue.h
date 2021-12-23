@@ -12,6 +12,8 @@
 #include "Trajet.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
+#include <sstream>
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <fstream>
