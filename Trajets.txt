@@ -1,0 +1,2 @@
+TS: paris, lyon, tgv
+TC: paris, lyon, avion; lyon, lille, tgv
