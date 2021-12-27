@@ -19,7 +19,7 @@ class NodeTrajet {
 	
 public:
 //----------------------------------------------------------------- PUBLIC
-	Trajet* GetTrajet();
+	Trajet* GetTrajet() const;
 	// Mode d'emploi : prendre le trajet de ce élément
     //
 	NodeTrajet* GetNext() const;

@@ -20,7 +20,6 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 TrajetCompose::TrajetCompose() {
 	listeSimple = new ListeTrajet();
-	this->typeTrajet = Compose;
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
@@ -29,7 +28,6 @@ TrajetCompose::TrajetCompose() {
 TrajetCompose::TrajetCompose(const TrajetCompose & unTC):Trajet(unTC) 
 {
 	this->listeSimple->SetHead(unTC.listeSimple->GetHead());
-	this->typeTrajet = Compose;
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetCompose>" << endl;
 #endif
@@ -88,12 +86,14 @@ void TrajetCompose::Afficher(const int i) const {
 } // -------- Fin de Methode
 
 void TrajetCompose::FicWrite(ofstream & fic , const int i) {
-	fic << "TC:";
+	fic << "TC: ";
 	NodeTrajet* p = listeSimple->GetHead();
 	while (p != nullptr) {
 		p->GetTrajet()->FicWrite(fic,0);
-		fic << ";";
 		p = p->GetNext();
+		if (p != nullptr) {
+			fic << "; ";
+		}
 	} 
 	fic << endl;
 } // -------- Fin de Methode

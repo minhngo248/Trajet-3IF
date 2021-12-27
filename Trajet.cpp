@@ -66,10 +66,7 @@ void Trajet::Afficher(const int i) const {
 } // ------- Fin de Methode
 
 void Trajet::FicWrite(ofstream & fic , const int i) {
-	fic << villeDepart << "," << villeArrivee;
+	fic << villeDepart << ", " << villeArrivee;
 } // ------- Fin de Methode
 
-type Trajet::GetType() const {
-	return this->typeTrajet;
-} // ------- Fin de Methode
 

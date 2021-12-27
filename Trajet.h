@@ -14,13 +14,12 @@
 //------------------------------------------------------------------------
 #include <string>
 #include <fstream>
-enum type{Simple , Compose};
 class Trajet {
 //----------------------------------------------------------------- PUBLIC
 public:
 //----------------------------------------------------- Méthodes publiques
   
-	virtual string GetVille(int) const;
+	string GetVille(int) const;
 	// Mode d'emploi : 
     //	
 	virtual void GetTrajet( string& , string& ) const;
@@ -34,7 +33,6 @@ public:
 	//
 	//
 	//
-	type GetType() const;
 //-------------------------------------------- Constructeurs - destructeur	
 	Trajet();
 	// Mode d'emploi (constructeur) : initialiser et allouer des espaces de memoire pour 
@@ -55,6 +53,5 @@ protected:
 //----------------------------------------------------- Attributs protégés	
 	string villeDepart;
 	string villeArrivee;
-	type typeTrajet;
 };
 #endif // ! defined (TRAJET_H)

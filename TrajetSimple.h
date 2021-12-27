@@ -21,9 +21,6 @@ class TrajetSimple : public Trajet {
 public:
 //----------------------------------------------------- Méthodes publiques
     
-	string GetVille(const int) const;
-	// Mode d'emploi : Prendre soit la ville de départ ou la ville d'arrivée
-	//	
     void GetTrajet( string& , string& ) const;
 	// Mode d'emploi : Prendre soit la ville de départ et la ville d'arrivée en même temps
 	//

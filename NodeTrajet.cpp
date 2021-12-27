@@ -20,16 +20,17 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 
 NodeTrajet::NodeTrajet() {
+	next = nullptr;
 	trajet = new Trajet();
-	this->next = nullptr;
 #ifdef MAP
     cout << "Appel au constructeur de <NodeTrajet>" << endl;
 #endif
 } //------ Fin de NodeTrajet
 
-NodeTrajet::NodeTrajet(const NodeTrajet& unNT):trajet(unNT.trajet) 
-{
+NodeTrajet::NodeTrajet(const NodeTrajet& unNT) {
 	next = nullptr;
+	trajet = new Trajet();
+	trajet = unNT.GetTrajet();
 #ifdef MAP
     cout << "Appel au constructeur de copie de <NodeTrajet>" << endl;
 #endif
@@ -47,7 +48,7 @@ NodeTrajet::~NodeTrajet() {
 
 //----------------------------------------------------- Méthodes publiques
 
-Trajet* NodeTrajet::GetTrajet() {
+Trajet* NodeTrajet::GetTrajet() const{
 	return this->trajet;
 } //-------- Fin de Methode
 
