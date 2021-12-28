@@ -67,10 +67,9 @@ void TrajetSimple::Afficher(const int i) const {
 
 void TrajetSimple::FicWrite(ofstream & fic , const int i) {
 	if (i == 1) {
-		fic << "TS: "; 
+		fic << endl << "TS: "; 
 		Trajet::FicWrite(fic,i);
 		fic << ", " << moyTrans;
-		fic << endl;
 	}else{
 		Trajet::FicWrite(fic,i);
 		fic << ", " << moyTrans;

@@ -51,6 +51,9 @@ public:
 //------------------------------------------------------------------ PRIVE	
 private:
 //------------------------------------------------------- Méthodes privées
+	string toUpper(const string& str) const;
+	//
+	//
 	void creer_liste_avancee(int&);
     // Mode d'emploi : creation d'une ListeTrajetAvance en reliant
 	// des trajets ayant la meme nom de tete que celui de queue de

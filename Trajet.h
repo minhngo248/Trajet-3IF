@@ -35,7 +35,7 @@ public:
 	//
 //-------------------------------------------- Constructeurs - destructeur	
 	Trajet();
-	// Mode d'emploi (constructeur) : initialiser et allouer des espaces de memoire pour 
+	// Mode d'emploi (constructeur) : initialiser 
 	// les caracteristiques d'un trajet : villeDepart et villeArrivee
 	// 
     Trajet (const Trajet&);

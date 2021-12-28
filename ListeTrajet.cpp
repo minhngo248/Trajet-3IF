@@ -50,7 +50,7 @@ NodeTrajet* ListeTrajet::GetLastNode() const{
 } //-------- Fin de Methode
 
 void ListeTrajet::Ajouter_en_queue(Trajet* unTrajet) {
-	if (head->GetTrajet()->GetVille(1)[0] == '\0') {
+	if (head->GetTrajet()->GetVille(1).length() == 0) {
 		head = new NodeTrajet();
 		head->SetTrajet(unTrajet);
 		head->SetNext(nullptr);

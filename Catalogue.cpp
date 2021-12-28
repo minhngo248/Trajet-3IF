@@ -37,6 +37,20 @@ Catalogue::~Catalogue() {
 
 //----------------------------------------------------- Méthodes publiques
 
+string Catalogue::toUpper (const string& str) const{
+	char c;
+	unsigned i;
+	string s = "";
+	for (i=0; i < str.length(); ++i) {
+		c = str.at(i);
+		if (c >= 97 && c <= 122) {
+			c = c -32;
+		}
+		s.append(1,c);
+	}
+	return s;	
+}
+
 void Catalogue::Ajouter_trajet(Trajet* trajet) {
 	listeTrajet->Ajouter_en_queue(trajet);
 } //----- Fin de Méthode
@@ -96,10 +110,9 @@ void Catalogue::Recherche_avancee(const string uneVilleDepart, const string uneV
 	creer_liste_avancee(num);
 	for (int i=0;i<num;i++) {
 		listeTrajetAvance[i].GetVille(uneVD, uneVA);
-		if (uneVD.compare(uneVilleDepart) == 0 && uneVA.compare(uneVilleArrivee) ==0) {
+		if (toUpper(uneVD).compare(uneVilleDepart) == 0 && toUpper(uneVA).compare(uneVilleArrivee) ==0) {
 			cout << endl ;
 			listeTrajetAvance[i].Afficher();
-			cout << endl ;
 		}
 	}
 } //----- Fin de Méthode
@@ -111,7 +124,7 @@ void Catalogue::Rechercher(const string uneVilleDepart, const string uneVilleArr
 	string villeStart = "a", villeFinish = "a";
 	while (p != NULL) {
 		p->GetTrajet()->GetTrajet(villeStart , villeFinish);
-		if (villeStart.compare(uneVilleDepart) == 0 && villeFinish.compare(uneVilleArrivee) == 0) {
+		if (toUpper(villeStart).compare(uneVilleDepart) == 0 && toUpper(villeFinish).compare(uneVilleArrivee) == 0) {
 			p->GetTrajet()->Afficher(1);	
 		}
 		p = p->GetNext();

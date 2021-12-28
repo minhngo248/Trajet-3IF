@@ -31,9 +31,10 @@ string toUpper (const string& str) {
 	return s;	
 }
 
-void addTrajetSimple (Catalogue* C, string line, TrajetCompose* TC = nullptr, const int k =0, const string VD = "", const string VA = "") {
+bool addTrajetSimple (Catalogue* C, string line, TrajetCompose* TC = nullptr, const int k =0, const string VD = "", const string VA = "") {
 	bool bVD = (toUpper(VD) == "NON"); // Si l'utilisateur n'avez pas besoin de une ville de depart specifique
 	bool bVA = (toUpper(VA) == "NON"); // Si l'utilisateur n'avez pas besoin de une ville d'arrivee specifique
+	bool b = true;
 	
 	string delimiter = ", ";
 	string* membre = new string[3];
@@ -52,7 +53,7 @@ void addTrajetSimple (Catalogue* C, string line, TrajetCompose* TC = nullptr, co
 	
 	if (k ==3) {
 		if (!((toUpper(membre[0]) == VD || bVD) && (toUpper(membre[1]) == VA || bVA))) {
-			return;
+			return b;
 		}
 	}
 	
@@ -60,13 +61,15 @@ void addTrajetSimple (Catalogue* C, string line, TrajetCompose* TC = nullptr, co
 	if (TC == nullptr) {
 		C->Ajouter_trajet(TS);
 	}else{
-		TC->Ajouter(TS);
+		b = TC->Ajouter(TS);
 	}
+	return b;
 }
 
 void addTrajetCompose (Catalogue* C, string line, const int k =0, const string VD = "", const string VA = "") {
 	bool bVD = (toUpper(VD) == "NON"); // Si l'utilisateur n'avez pas besoin de une ville de depart specifique
 	bool bVA = (toUpper(VA) == "NON"); // Si l'utilisateur n'avez pas besoin de une ville d'arrivee specifique
+	bool b = true;;
 	
 	string characTrajet;	
 	string delimiter = "; ";
@@ -78,7 +81,11 @@ void addTrajetCompose (Catalogue* C, string line, const int k =0, const string V
 	line.append(delimiter);
 	while ((pos = line.find(delimiter)) != string::npos) {
 		characTrajet = line.substr(0,pos);
-		addTrajetSimple(C, characTrajet, TC);				
+		b = addTrajetSimple(C, characTrajet, TC);
+		if (!b) {
+			delete TC;
+			return;
+		}				
 		line.erase(0, pos + delimiter.length());
 	}
 	if (k ==3) {
@@ -154,7 +161,6 @@ void saveToFile (Catalogue* C, const string& fileName, const int k, const string
 	TrajetSimple* TS;
 	
 	myFile.open(fileName, ios::app);
-	myFile << endl;
 		
 	n = C->GetList()->GetHead();
 	switch(k) {
@@ -199,15 +205,18 @@ void saveToFile (Catalogue* C, const string& fileName, const int k, const string
 int main() {
 	char c, c_n;
 	int n , i, k;
+	bool quit = false;
+	unsigned int p1, p2;
+	
 	string uneVilleDepart, uneVilleArrivee, unMoyTrans;
 	string uneVD, uneVA;
 	Catalogue* C = new Catalogue();
-	TrajetCompose* unTC = new TrajetCompose();
-	TrajetSimple* t = new TrajetSimple();
+	TrajetCompose* unTC;
+	TrajetSimple* t;
 	
 	do {	
 		//Menu
-		cout << "Veuillez choisir une demande \r\n" << endl;
+		cout << endl << "Veuillez choisir une demande \r\n" << endl;
 		cout << "1. Charger d'un fichier \r\n" << endl;
 		cout << "2. Ajouter un trajet simple. \r\n" << endl;
 		cout << "3. Ajouter un trajet composee. \r\n" << endl;
@@ -312,7 +321,7 @@ int main() {
 				getline(cin, uneVilleDepart, '\n');
 				cout << "Entrez une ville d'arrivee : ";
 				getline(cin, uneVilleArrivee, '\n');
-				C->Rechercher(uneVilleDepart , uneVilleArrivee);
+				C->Rechercher(toUpper(uneVilleDepart) , toUpper(uneVilleArrivee));
 				break;
 			case 5:
 				cout << endl << "--------RECHERCHE AVANCEE DES TRAJETS-----\r\n" << endl;
@@ -320,7 +329,7 @@ int main() {
 				getline(cin, uneVilleDepart, '\n');
 				cout << "Entrez une ville d'arrivee : ";
 				getline(cin, uneVilleArrivee, '\n');
-				C->Recherche_avancee(uneVilleDepart , uneVilleArrivee);
+				C->Recherche_avancee(toUpper(uneVilleDepart) , toUpper(uneVilleArrivee));
 				break;
 			case 6:	
 				cout << endl << "--------AFFICHER TOUS LES TRAJETS DANS LE CATALOGUE---------\r\n" << endl;
@@ -332,7 +341,7 @@ int main() {
 				cout << "1. Sauvegarde de tous les trajets. " << endl ;
 				cout << "2. Sauvegarde de tous les trajets simples ou de trajets composes." << endl ;
 				cout << "3. Sauvegarde de tous les trajets selon une ville de depart ou une ville d'arrivee." << endl ;
-				cout << "4. Sauvegarde de (n - m + 1) trajets." << endl ;
+				cout << "4. Sauvegarde d'une intervalle de trajets [n,m]." << endl ;
 				cout << "5. Quitter" << endl;
 				cout << endl << "Choississez un choix" << endl ;
 				
@@ -366,6 +375,12 @@ int main() {
 						saveToFile(C, "Trajets.txt", 3, "",uneVilleDepart , uneVilleArrivee);
 						break;
 					case 4:
+						cout << "Entrez la postion du premier trajet: ";
+						cin >> p1;
+						cin.get();
+						cout << "Entrez la postion du dernier trajet: ";
+						cin >> p2;
+						cin.get();
 						break;
 					
 					default:
@@ -374,10 +389,11 @@ int main() {
 				break;
 			
 			default:
+				quit = true;
 				break;
 		}
 		
-		if (n <1 || n>7) {
+		if (quit) {
 			break;
 		}
 			

@@ -44,7 +44,7 @@ TrajetCompose::~TrajetCompose() {
 
 bool TrajetCompose::Ajouter(TrajetSimple* unTS) {
 	bool b = false;
-	if (listeSimple->GetHead()->GetTrajet()->GetVille(1).compare("\0") == 0) {
+	if (listeSimple->GetHead()->GetTrajet()->GetVille(1).length() == 0) {
 		villeDepart = unTS->GetVille(1);
 		listeSimple->Ajouter_en_queue(unTS);
 		villeArrivee = unTS->GetVille(2);
@@ -63,7 +63,7 @@ bool TrajetCompose::Ajouter(TrajetSimple* unTS) {
 
 void TrajetCompose::GetTrajet( string& villeStart , string& villeFinish ) const{
 	NodeTrajet* p = listeSimple->GetHead();
-	if (listeSimple->GetHead()->GetTrajet()->GetVille(1).compare("\0") != 0) {
+	if (listeSimple->GetHead()->GetTrajet()->GetVille(1).length() != 0) {
 		villeStart = p->GetTrajet()->GetVille(1);
 		while(p->GetNext() != nullptr) {
 			p = p->GetNext();
@@ -86,7 +86,7 @@ void TrajetCompose::Afficher(const int i) const {
 } // -------- Fin de Methode
 
 void TrajetCompose::FicWrite(ofstream & fic , const int i) {
-	fic << "TC: ";
+	fic << endl << "TC: ";
 	NodeTrajet* p = listeSimple->GetHead();
 	while (p != nullptr) {
 		p->GetTrajet()->FicWrite(fic,0);
@@ -95,5 +95,4 @@ void TrajetCompose::FicWrite(ofstream & fic , const int i) {
 			fic << "; ";
 		}
 	} 
-	fic << endl;
 } // -------- Fin de Methode
