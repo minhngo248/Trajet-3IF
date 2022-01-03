@@ -17,6 +17,7 @@ using namespace std;
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
 
+//une méthode pour mettre les lettres en majuscule pour la comparaison de strings
 string toUpper (const string& str) {
 	char c;
 	unsigned i;
@@ -31,6 +32,8 @@ string toUpper (const string& str) {
 	return s;	
 }
 
+
+// une méthode pour ajouter un trajet simple au catalogue
 bool addTrajetSimple (Catalogue* C, string line, TrajetCompose* TC = nullptr, const int k =0, const string VD = "", const string VA = "") {
 	bool bVD = (toUpper(VD) == "NON"); // Si l'utilisateur n'avez pas besoin de une ville de depart specifique
 	bool bVA = (toUpper(VA) == "NON"); // Si l'utilisateur n'avez pas besoin de une ville d'arrivee specifique
@@ -66,10 +69,12 @@ bool addTrajetSimple (Catalogue* C, string line, TrajetCompose* TC = nullptr, co
 	return b;
 }
 
+
+// une méthode pour ajouter un trajet composé au catalogue
 void addTrajetCompose (Catalogue* C, string line, const int k =0, const string VD = "", const string VA = "") {
 	bool bVD = (toUpper(VD) == "NON"); // Si l'utilisateur n'avez pas besoin de une ville de depart specifique
 	bool bVA = (toUpper(VA) == "NON"); // Si l'utilisateur n'avez pas besoin de une ville d'arrivee specifique
-	bool b = true;;
+	bool addTS = true; // Si un trajet simple est ajouté avec succèss
 	
 	string characTrajet;	
 	string delimiter = "; ";
@@ -81,8 +86,8 @@ void addTrajetCompose (Catalogue* C, string line, const int k =0, const string V
 	line.append(delimiter);
 	while ((pos = line.find(delimiter)) != string::npos) {
 		characTrajet = line.substr(0,pos);
-		b = addTrajetSimple(C, characTrajet, TC);
-		if (!b) {
+		addTS = addTrajetSimple(C, characTrajet, TC);
+		if (!addTS) {
 			delete TC;
 			return;
 		}				
@@ -97,7 +102,7 @@ void addTrajetCompose (Catalogue* C, string line, const int k =0, const string V
 	C->Ajouter_trajet(TC);
 }
 
-void addFromFile(Catalogue* C, const string& fileName, const int k, const string trajet = "", const string VD = "", const string VA = "") {
+void addFromFile(Catalogue* C, const string& fileName, const int k, const string trajet = "", const string VD = "", const string VA = "", unsigned int n =0, unsigned int m =0) {
 	
 	ifstream myFile;
 	string line;
@@ -106,52 +111,75 @@ void addFromFile(Catalogue* C, const string& fileName, const int k, const string
 	string delimiter = ": ";
 	size_t pos = 0;	
 	
+	int count = 1;
+	
 	TrajetSimple * TS;
 	TrajetCompose* TC = nullptr;
 	
 	myFile.open(fileName);
 	while (getline(myFile,line)) {
 		pos = line.find(delimiter);
+		if (pos == string::npos) {
+			continue;
+		}
+		
 		typeTrajet = line.substr(0, pos);
 		line.erase(0, pos + delimiter.length());
 		
 		switch(k) {
 			case 1:
-				if (typeTrajet.compare("TS") ==0) {
+				if (typeTrajet == "TS") {
 					addTrajetSimple(C, line);
 				}
-				else {
+				else if (typeTrajet == "TC") {
 					addTrajetCompose(C, line);	
 				}
 				break;
 			case 2:
-				if (trajet.compare("TS") ==0) {
+				if (typeTrajet == "TS") {
 					if (typeTrajet.compare("TS") ==0) {
 						addTrajetSimple(C, line);
 					}
-				}else{
+				}
+				else if (typeTrajet == "TC") {
 					if (typeTrajet.compare("TC") ==0) {
 						addTrajetCompose(C, line);
 					}
 				}
 				break;
 			case 3:
-				if (typeTrajet.compare("TS") ==0) {
+				if (typeTrajet == "TS") {
 					addTrajetSimple(C, line, TC, k, VD, VA);
 				}
-				else {
+				else if (typeTrajet == "TC") {
 					addTrajetCompose(C, line, k, VD, VA);	
 				}
-			case 4:
 				break;
 			default:
+				if (typeTrajet == "TS" || typeTrajet == "TC") && count < n) {
+					++count;
+				}
+				if (typeTrajet == "TS" && count >= n && count <= m) {
+					++count;
+					addTrajetSimple(C, line);
+				}
+				else if (typeTrajet == "TC" && count >= n && count <= m) {
+					++count;
+					addTrajetCompose(C, line);
+				}
+				
+				if (count < n) {
+					cout << endl << "Accuns trajets sont ajoutés au catalogue." << endl;
+				}else {
+					cout << endl << "Les trajets en position de " << n << " à " << count << " sont ajoutés au catalogue." << endl;
+				}	
 				break;
 		}		
 	}
 	myFile.close();
 }
 
-void saveToFile (Catalogue* C, const string& fileName, const int k, const string trajet = "", const string VD = "", const string VA = "") {
+void saveToFile (Catalogue* C, const string& fileName, const int k, const string trajet = "", const string VD = "", const string VA = "", unsigned int p =0, unsigned int m =0) {
 	
 	bool bVD = (toUpper(VD) == "NON"); // Si l'utilisateur n'avez pas besoin de une ville de depart specifique
 	bool bVA = (toUpper(VA) == "NON"); // Si l'utilisateur n'avez pas besoin de une ville d'arrivee specifique
@@ -159,6 +187,8 @@ void saveToFile (Catalogue* C, const string& fileName, const int k, const string
 	ofstream myFile;
 	NodeTrajet* n;
 	TrajetSimple* TS;
+	
+	int count =1;
 	
 	myFile.open(fileName, ios::app);
 		
@@ -198,6 +228,21 @@ void saveToFile (Catalogue* C, const string& fileName, const int k, const string
 			}
 			break;
 		default:
+			while (n != nullptr || count > m) {
+				if (count < p) {
+					++count;
+				}else if (count <=m) {
+					n->GetTrajet()->FicWrite(myFile, 1);
+					++count;
+				}	
+				n = n->GetNext();
+			}
+			
+			if (count < p) {
+				cout << endl << "Accuns trajets sont sauvegardés." << endl;
+			}else{
+				cout << endl << "Les trajets en position de " << p << " à " << count << " sont sauvegardés." << endl;
+			}	
 			break;
 	}
 }
