@@ -2,7 +2,7 @@
                            TrajetSimple  - caracterise par une Ville Depart
                            une Ville Arrivee et un Moyen de Transport
                              -------------------
-    début                : 23 novembre 2021
+    début                : 14 décembre 2021
     copyright            : (C) 2021 par NGO Ngoc Minh, PHAM Quoc Viet
 *************************************************************************/
 
@@ -29,23 +29,22 @@ public:
 	// une Ville Depart, une Ville Arrivee et un Moyen de Transport 
 	//	
 	void FicWrite(ofstream & , const int);
-	//
-	//
+	// Mode d'emploi: écrire dans le fichier les caractéristiques de
+	// ce trajet
 	//
 //-------------------------------------------- Constructeurs - destructeur	
 	TrajetSimple (const TrajetSimple&);
 	// Mode d'emploi (constructeur de copie): Créer une copie d'un trajet simple
 	//
     TrajetSimple();
-    // Mode d'emploi (constructeur) : initialiser et allouer des memoires pour
-    // le moyen de Transport
+    // Mode d'emploi (constructeur) : initialiser le moyen de Transport
     //
 	TrajetSimple (const string ,const string ,const string);
 	// Mode d'emploi (constructeur) : affectation des caracteristiques d'un 
 	// trajet simple
 	//
     ~TrajetSimple();
-    // Mode d'emploi (destructeur) : liberer les memoires du Moyen de Transport
+    // Mode d'emploi (destructeur) : liberer les memoires du trajet
 	//
 
 protected:

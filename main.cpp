@@ -102,6 +102,8 @@ void addTrajetCompose (Catalogue* C, string line, const int k =0, const string V
 	C->Ajouter_trajet(TC);
 }
 
+
+// Dans cette méthode, la variable k va décider nous sommes dans quel cas
 void addFromFile(Catalogue* C, const string& fileName, const int k, const string trajet = "", const string VD = "", const string VA = "", unsigned int n =0, unsigned int m =0) {
 	
 	ifstream myFile;
@@ -127,7 +129,7 @@ void addFromFile(Catalogue* C, const string& fileName, const int k, const string
 		line.erase(0, pos + delimiter.length());
 		
 		switch(k) {
-			case 1:
+			case 1:  //Chargement de tous les trajets
 				if (typeTrajet == "TS") {
 					addTrajetSimple(C, line);
 				}
@@ -135,7 +137,7 @@ void addFromFile(Catalogue* C, const string& fileName, const int k, const string
 					addTrajetCompose(C, line);	
 				}
 				break;
-			case 2:
+			case 2:  //Chargement des trajets selon leur type
 				if (typeTrajet == "TS") {
 					if (typeTrajet.compare("TS") ==0) {
 						addTrajetSimple(C, line);
@@ -147,7 +149,7 @@ void addFromFile(Catalogue* C, const string& fileName, const int k, const string
 					}
 				}
 				break;
-			case 3:
+			case 3:  //Chargement des trajets selon leur ville de départ et/ou leur ville d'arrivée
 				if (typeTrajet == "TS") {
 					addTrajetSimple(C, line, TC, k, VD, VA);
 				}
@@ -155,7 +157,7 @@ void addFromFile(Catalogue* C, const string& fileName, const int k, const string
 					addTrajetCompose(C, line, k, VD, VA);	
 				}
 				break;
-			default:
+			default:  //Chargement des trajets selon leur position dans le fichier
 				if ((typeTrajet == "TS" || typeTrajet == "TC") && count < n) {
 					++count;
 				}
@@ -179,6 +181,8 @@ void addFromFile(Catalogue* C, const string& fileName, const int k, const string
 	myFile.close();
 }
 
+
+// Dans cette méthode, la variable k va décider nous sommes dans quel cas
 void saveToFile (Catalogue* C, const string& fileName, const int k, const string trajet = "", const string VD = "", const string VA = "", unsigned int p=0, unsigned int m=0) {
 	
 	bool bVD = (toUpper(VD) == "NON"); // Si l'utilisateur n'avez pas besoin de une ville de depart specifique
@@ -194,13 +198,13 @@ void saveToFile (Catalogue* C, const string& fileName, const int k, const string
 		
 	n = C->GetList()->GetHead();
 	switch(k) {
-		case 1:
+		case 1:  //Sauvegarde de tous les trajets
 			while (n != nullptr) {
 				n->GetTrajet()->FicWrite(myFile, 1);	
 				n = n->GetNext();
 			}
 			break;
-		case 2:
+		case 2:  //Sauvegarde des trajets selon leur type
 			if (trajet.compare("TS") ==0) {
 				while (n != nullptr) {
 					TS = dynamic_cast <TrajetSimple*> (n->GetTrajet());
@@ -219,7 +223,7 @@ void saveToFile (Catalogue* C, const string& fileName, const int k, const string
 				}
 			}
 			break;	
-		case 3:
+		case 3:  //Sauvegarde des trajets selon leur ville de départ et/ou leur ville d'arrivée
 			while (n != nullptr) {
 				if ((toUpper(n->GetTrajet()->GetVille(1)) == toUpper(VD) || bVD) && ((toUpper(n->GetTrajet()->GetVille(2)) == toUpper(VA) || bVA))) {
 					n->GetTrajet()->FicWrite(myFile, 1);	
@@ -227,7 +231,7 @@ void saveToFile (Catalogue* C, const string& fileName, const int k, const string
 				n = n->GetNext();
 			}
 			break;
-		default:
+		default:  //Sauvegarde des trajets selon leur position dans le fichier
 			while (n != nullptr && count < p) {	
 				n = n->GetNext();
 				++count;

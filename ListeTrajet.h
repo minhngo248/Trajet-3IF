@@ -2,7 +2,7 @@
                            ListeTrajet  - structure de donnees pour 
                            sauvegarder des trajets
                              -------------------
-    début                : 23 novembre 2021
+    début                : 14 décembre 2021
     copyright            : (C) 2021 par NGO Ngoc Minh, PHAM Quoc Viet
 *************************************************************************/
 

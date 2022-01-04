@@ -1,7 +1,7 @@
 /*************************************************************************
                            Trajet  - definition d'un trajet
                              -------------------
-    début                : 23 novembre 2021
+    début                : 14 décembre 2021
     copyright            : (C) 2021 par NGO Ngoc Minh, PHAM Quoc Viet
 *************************************************************************/
 
@@ -20,7 +20,7 @@ public:
 //----------------------------------------------------- Méthodes publiques
   
 	string GetVille(int) const;
-	// Mode d'emploi : 
+	// Mode d'emploi : prendre soit la Ville Depart ou la Ville Arrivee
     //	
 	virtual void GetTrajet( string& , string& ) const;
 	// Mode d'emploi : prendre la Ville Depart et la Ville Arrivee d'un Trajet
@@ -30,8 +30,8 @@ public:
 	// la Ville Arrivee et le Moyen de Transport
 	//
 	virtual void FicWrite(ofstream & , const int);
-	//
-	//
+	// Mode d'emploi: écrire dans le fichier les caractéristiques de
+	// ce trajet
 	//
 //-------------------------------------------- Constructeurs - destructeur	
 	Trajet();
@@ -41,13 +41,12 @@ public:
     Trajet (const Trajet&);
     // Mode d'emploi (constructeur de copie) : Créer une copie d'un Trajet
     //
-    //
     Trajet ( const string , const string );
 	// Mode d'emploi (constructeur) : Créer un trajet à partir d'une ville de départ et
 	// une ville d'arrivée
 	//     
 	virtual ~Trajet();
-	// Mode d'emploi (destructeur) : liberer les memoires de la VilleDepart et villeArrivee
+	// Mode d'emploi (destructeur) : liberer les memoires du trajet
 	//
 protected:
 //----------------------------------------------------- Attributs protégés	

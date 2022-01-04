@@ -2,7 +2,7 @@
                            TrajetCompose  - une liste de chainee de trajets
                            simples
                              -------------------
-    début                : 23 novembre 2021
+    début                : 14 décembre 2021
     copyright            : (C) 2021 par NGO Ngoc Minh, PHAM Quoc Viet
 *************************************************************************/
 
@@ -30,11 +30,11 @@ public:
 	//	
 	void GetTrajet(string& , string&) const;
 	// Mode d'emploi : prendre la Ville Debut et la Ville en fin de la
-	//	liste
+	// liste
 	//
 	void FicWrite(ofstream & , const int);
-	//
-	//
+	// Mode d'emploi: écrire dans le fichier les caractéristiques de
+	// ce trajet
 	//
 //-------------------------------------------- Constructeurs - destructeur	
      

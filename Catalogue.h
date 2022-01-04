@@ -1,7 +1,7 @@
 /*************************************************************************
                            Catalogue
                              -------------------
-    début                : 23 novembre 2021
+    début                : 14 décembre 2021
     copyright            : (C) 2021 par NGO Ngoc Minh, PHAM Quoc Viet
 *************************************************************************/
 
@@ -28,8 +28,10 @@ public:
 	void Recherche_avancee(const string , const string) ;
     // Mode d'emploi : parcourir tous les elements dans la
 	// listeTrajetAvance pour chercher des trajets appropries
-	// a partir d'une VilleDepart et d'une VilleArrivee 	
+	// a partir d'une VilleDepart et d'une VilleArrivee 
+	//	
 	ListeTrajet* GetList() const;
+	//Mode d'emploi : prendre la liste de trajets de ce catalogue
 	//
 	void Afficher() const;
 	// Mode d'emploi : afficher tous les trajets dans le catalogue
@@ -42,7 +44,6 @@ public:
 	Catalogue(const Catalogue&); 
 	// Mode d'emploi (constructeur de copie) : Créer une copie d'une catalogue
     // 
-    //		
 	~Catalogue();
 	// Mode d'emploi (destructeur) : desallocation des memoires de la  
     // listeTrajet et de la listeTrajetAvance
@@ -52,13 +53,14 @@ public:
 private:
 //------------------------------------------------------- Méthodes privées
 	string toUpper(const string& str) const;
-	//
+	// Mode d'emploi : mettre les lettres en majuscule pour la 
+	// comparaison de strings
 	//
 	void creer_liste_avancee(int&);
     // Mode d'emploi : creation d'une ListeTrajetAvance en reliant
 	// des trajets ayant la meme nom de tete que celui de queue de
 	// son noeud precedant
-
+	//
 	ListeTrajet* listeTrajet; 
 	//stokage de tous les trajets du catalogue
 	ListeTrajet* listeTrajetAvance; 
