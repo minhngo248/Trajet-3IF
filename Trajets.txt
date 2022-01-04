@@ -1,2 +1,3 @@
-TS: paris, lyon, tgv
-TC: paris, lyon, avion; lyon, lille, tgv
+TS: Lyon, Paris, Auto
+TC: Lyon, Marseille, Bateau; Marseille, Paris, Avion
+TS: Paris, Lyon, Train

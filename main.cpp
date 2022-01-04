@@ -156,7 +156,7 @@ void addFromFile(Catalogue* C, const string& fileName, const int k, const string
 				}
 				break;
 			default:
-				if (typeTrajet == "TS" || typeTrajet == "TC") && count < n) {
+				if ((typeTrajet == "TS" || typeTrajet == "TC") && count < n) {
 					++count;
 				}
 				if (typeTrajet == "TS" && count >= n && count <= m) {
@@ -179,7 +179,7 @@ void addFromFile(Catalogue* C, const string& fileName, const int k, const string
 	myFile.close();
 }
 
-void saveToFile (Catalogue* C, const string& fileName, const int k, const string trajet = "", const string VD = "", const string VA = "", unsigned int p =0, unsigned int m =0) {
+void saveToFile (Catalogue* C, const string& fileName, const int k, const string trajet = "", const string VD = "", const string VA = "", unsigned int p=0, unsigned int m=0) {
 	
 	bool bVD = (toUpper(VD) == "NON"); // Si l'utilisateur n'avez pas besoin de une ville de depart specifique
 	bool bVA = (toUpper(VA) == "NON"); // Si l'utilisateur n'avez pas besoin de une ville d'arrivee specifique
@@ -188,9 +188,9 @@ void saveToFile (Catalogue* C, const string& fileName, const int k, const string
 	NodeTrajet* n;
 	TrajetSimple* TS;
 	
-	int count =1;
+	int count = 1;
 	
-	myFile.open(fileName, ios::app);
+	myFile.open(fileName, ios::out);
 		
 	n = C->GetList()->GetHead();
 	switch(k) {
@@ -228,28 +228,24 @@ void saveToFile (Catalogue* C, const string& fileName, const int k, const string
 			}
 			break;
 		default:
-			while (n != nullptr || count > m) {
-				if (count < p) {
-					++count;
-				}else if (count <=m) {
-					n->GetTrajet()->FicWrite(myFile, 1);
-					++count;
-				}	
+			while (n != nullptr && count < p) {	
 				n = n->GetNext();
+				++count;
 			}
 			
-			if (count < p) {
-				cout << endl << "Accuns trajets sont sauvegardés." << endl;
-			}else{
-				cout << endl << "Les trajets en position de " << p << " à " << count << " sont sauvegardés." << endl;
+			while (count <= m) {
+				n->GetTrajet()->FicWrite(myFile, 1);
+				n = n->GetNext();
+				++count;
 			}	
 			break;
 	}
+	myFile.close();
 }
 
 int main() {
 	char c, c_n;
-	int n , i, k;
+	int n, m , i, k;
 	bool quit = false;
 	unsigned int p1, p2;
 	
@@ -316,6 +312,13 @@ int main() {
 						addFromFile(C, "Trajets.txt", 3, "",uneVilleDepart , uneVilleArrivee);
 						break;
 					case 4:
+						cout << endl << "Entrez un  n : ";
+						cin >> n;
+						cin.get();
+						cout << endl << "Entrez un nombre m : ";
+						cin >> m;
+						cin.get();
+						addFromFile(C, "Trajets.txt", 4,"","","",n,m);
 						break;
 					
 					default:
@@ -426,6 +429,7 @@ int main() {
 						cout << "Entrez la postion du dernier trajet: ";
 						cin >> p2;
 						cin.get();
+						saveToFile(C,"Trajets.txt",4,"","","",p1,p2);
 						break;
 					
 					default:
