@@ -263,7 +263,6 @@ int main() {
 	unsigned int p1, p2;
 	
 	string uneVilleDepart, uneVilleArrivee, unMoyTrans;
-	string uneVD, uneVA;
 	Catalogue* C = new Catalogue();
 	TrajetCompose* unTC;
 	TrajetSimple* t;
@@ -357,13 +356,13 @@ int main() {
 				do {
 					cout << "Entrez un trajet simple #" << i << endl;
 					cout << "Entrez une ville du depart : ";
-					getline(cin, uneVD, '\n');
+					getline(cin, uneVilleDepart, '\n');
 					cout << "Entrez une ville d'arrivee : ";
-					getline(cin, uneVA, '\n');
+					getline(cin, uneVilleArrivee, '\n');
 					cout << "Entrez un moyen de transport : ";
 					getline(cin, unMoyTrans, '\n');
 						
-					t = new TrajetSimple(uneVD , uneVA , unMoyTrans);					
+					t = new TrajetSimple(uneVilleDepart , uneVilleArrivee , unMoyTrans);					
 					if(unTC->Ajouter(t) ==false) {
 						cout << "Erreur en ajoutant le trajet!" << endl;
 					}else{
