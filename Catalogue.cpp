@@ -125,6 +125,7 @@ void Catalogue::Rechercher(const string uneVilleDepart, const string uneVilleArr
 	while (p != NULL) {
 		p->GetTrajet()->GetTrajet(villeStart , villeFinish);
 		if (toUpper(villeStart).compare(uneVilleDepart) == 0 && toUpper(villeFinish).compare(uneVilleArrivee) == 0) {
+			cout << endl;
 			p->GetTrajet()->Afficher(1);	
 		}
 		p = p->GetNext();

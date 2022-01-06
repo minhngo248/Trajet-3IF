@@ -160,6 +160,7 @@ void addFromFile(Catalogue* C, const string& fileName, const int k, const string
 			default:  //Chargement des trajets selon leur position dans le fichier
 				if ((typeTrajet == "TS" || typeTrajet == "TC") && count < n) {
 					++count;
+					continue;
 				}
 				if (typeTrajet == "TS" && count >= n && count <= m) {
 					++count;
@@ -170,13 +171,15 @@ void addFromFile(Catalogue* C, const string& fileName, const int k, const string
 					addTrajetCompose(C, line);
 				}
 				
-				if (count < n) {
-					cout << endl << "Accuns trajets sont ajoutés au catalogue." << endl;
-				}else {
-					cout << endl << "Les trajets en position de " << n << " à " << count << " sont ajoutés au catalogue." << endl;
-				}	
-				break;
+				
 		}		
+	}
+	if (k>3) {
+		if (count <= n) {
+			cout << endl << "Accuns trajets sont ajoutés au catalogue." << endl;
+		}else {
+			cout << endl << "Les trajets en position de " << n << " à " << count-1 << " sont ajoutés au catalogue." << endl;
+		}	
 	}
 	myFile.close();
 }
@@ -194,7 +197,7 @@ void saveToFile (Catalogue* C, const string& fileName, const int k, const string
 	
 	int count = 1;
 	
-	myFile.open(fileName, ios::out);
+	myFile.open(fileName, ios::app);
 		
 	n = C->GetList()->GetHead();
 	switch(k) {
@@ -237,11 +240,17 @@ void saveToFile (Catalogue* C, const string& fileName, const int k, const string
 				++count;
 			}
 			
-			while (count <= m) {
+			while (n != nullptr && count <= m) {
 				n->GetTrajet()->FicWrite(myFile, 1);
 				n = n->GetNext();
 				++count;
-			}	
+			}
+			
+			if (count <= p) {
+				cout << endl << "Accuns trajets sont sauvegardés." << endl;
+			}else {
+				cout << endl << "Les trajets en position de " << p << " à " << count-1 << " sont sauvegardés." << endl;
+			}		
 			break;
 	}
 	myFile.close();
@@ -319,7 +328,7 @@ int main() {
 						cout << endl << "Entrez un  n : ";
 						cin >> n;
 						cin.get();
-						cout << endl << "Entrez un nombre m : ";
+						cout << "Entrez un nombre m : ";
 						cin >> m;
 						cin.get();
 						addFromFile(C, "Trajets.txt", 4,"","","",n,m);
@@ -427,7 +436,7 @@ int main() {
 						saveToFile(C, "Trajets.txt", 3, "",uneVilleDepart , uneVilleArrivee);
 						break;
 					case 4:
-						cout << "Entrez la postion du premier trajet: ";
+						cout << endl << "Entrez la postion du premier trajet: ";
 						cin >> p1;
 						cin.get();
 						cout << "Entrez la postion du dernier trajet: ";

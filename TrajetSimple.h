@@ -36,10 +36,7 @@ public:
 	TrajetSimple (const TrajetSimple&);
 	// Mode d'emploi (constructeur de copie): Créer une copie d'un trajet simple
 	//
-    TrajetSimple();
-    // Mode d'emploi (constructeur) : initialiser le moyen de Transport
-    //
-	TrajetSimple (const string ,const string ,const string);
+	TrajetSimple (const string = "",const string = "",const string = "");
 	// Mode d'emploi (constructeur) : affectation des caracteristiques d'un 
 	// trajet simple
 	//

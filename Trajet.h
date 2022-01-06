@@ -45,7 +45,7 @@ public:
 	// Mode d'emploi (constructeur) : Créer un trajet à partir d'une ville de départ et
 	// une ville d'arrivée
 	//     
-	virtual ~Trajet();
+	~Trajet();
 	// Mode d'emploi (destructeur) : liberer les memoires du trajet
 	//
 protected:

@@ -18,14 +18,8 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------- Constructeurs - destructeur
-TrajetSimple::TrajetSimple () {
-	this->moyTrans = "\0";
-#ifdef MAP
-    cout << "Appel au constructeur de <TrajetSimple>" << endl;
-#endif
-} //------ Fin de TrajetSimple
 
-TrajetSimple::TrajetSimple(const string uneVilleDepart,const string uneVilleArrivee, const string unMoyTrans)
+TrajetSimple::TrajetSimple(const string uneVilleDepart, const string uneVilleArrivee, const string unMoyTrans)
 : Trajet(uneVilleDepart, uneVilleArrivee) {
 	this->moyTrans = unMoyTrans;
 #ifdef MAP
